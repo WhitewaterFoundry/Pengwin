@@ -101,7 +101,7 @@ done
 
 ## setup script
 
-if $updateflag=true
+if [ updateflag ]
 then
   echo "Continuing with updated script from GitHub."
   updateupgrade
