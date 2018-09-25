@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -e
-response = ""
-$updateflag = false
+set response = ""
+set updateflag = false
 
 # functions
 
