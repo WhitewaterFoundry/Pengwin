@@ -1,25 +1,83 @@
 #!/bin/bash
 
-# placeholder for out of box experience script
+set -e
 
-# add zsh/ohmyzsh?
+# functions
 
-# add fish/ohmyfish?
+## core functions
 
-# add neovim?
+function welcomeprompt {
+echo "Welcome to WLinux."
+echo 
+echo "WLinux comes with a core set of packages. This script allows you to install optional sets of packages."
+echo
+}
 
-# add vs code?
+function continueprompt {
+read -r -p "Would you like to continue setup? [Y/n] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+then
+    echo "Continuing with setup."
+else
+    echo "You may run the script again any time by running: bash /etc/setup"
+    quit
+fi
+}
 
-# add azure tools?
+function quit {
+exit
+}
 
-# add aws tools?
+function updatescriptprompt {
+read -r -p "Would you like to download and run an updated version of this setup from the GitHub? [Y/n] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+then
+    TMPDIR=$(mktemp -d)
+    curl https://raw.githubusercontent.com/WhitewaterFoundry/WLinux/sirredbeard/linux_files/setup | | bash -s -- u
+    quit
+else
+    echo "Continuing with defualt install script."
+fi
+}
 
-# add python?
+## package meta function
 
-# add ruby?
+function installpackages {
+zshinstall
+fishinstall
+neoviminstall
+}
 
-# add haskell?
+## individual package install functions
 
-# add rust?
+function zshinstall {
+}
 
-# add xorg?
+function fishinstall {
+}
+
+function neoviminstall {
+}
+
+# main
+
+## process update command line flag
+
+while getopts ":u" opt; do
+  case ${opt} in
+    u ) $updateflag=true
+      ;;
+  esac
+done
+
+## setup script
+
+if $updateflag
+then
+  installpackages
+else
+  welcomeprompt
+  continueprompt
+  updatescriptprompt
+  installpackages
+fi
