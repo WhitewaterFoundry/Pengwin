@@ -9,9 +9,9 @@ $updateflag = false
 ## core functions
 
 function welcomeprompt {
-echo "Welcome to WLinux."
+echo "Welcome to WLinux. Thank you for supporting sustainable indie open source development."
 echo 
-echo "WLinux comes with a core set of packages. This script allows you to install optional sets of packages."
+echo "WLinux comes with a core set of packages. This script allows you to install additional sets of curated packages."
 echo
 }
 
@@ -101,7 +101,7 @@ done
 
 ## setup script
 
-if $updateflag
+if $updateflag=true
 then
   echo "Continuing with updated script from GitHub."
   updateupgrade
