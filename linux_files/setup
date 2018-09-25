@@ -92,10 +92,16 @@ fi
 
 ## process update command line flag
 
-while getopts ":u" opt; do
-  case ${opt} in
+while getopts ":u:" opt; do
+  case $opt in
     u ) updateflag=true
       ;;
+    \?  ) echo "Option -$OPTARG requires an argument." >&2
+         exit 1
+      ;;
+    : ) updateflag=false
+      ;;
+
   esac
 done
 
