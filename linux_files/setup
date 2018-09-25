@@ -40,6 +40,9 @@ else
 fi
 }
 
+function securitypatches {
+}
+
 ## package meta functions
 
 function installpackages {
@@ -99,12 +102,14 @@ if $updateflag
 then
   echo "Continuing with updated script from GitHub."
   updateupgrade
+  securitypatches
   installpackages
 else
   welcomeprompt
   continueprompt
   updatescriptprompt
   updateupgrade
+  securitypatches
   installpackages
 fi
 
