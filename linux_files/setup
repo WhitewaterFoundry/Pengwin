@@ -14,8 +14,8 @@ echo
 }
 
 function continueprompt {
-read -r -p "Would you like to continue setup? [Y/n] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+read -r -p "Would you like to continue with this setup script? [Y/n] " response
+if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]
 then
     echo "Continuing with setup."
 else
@@ -30,7 +30,7 @@ exit
 
 function updatescriptprompt {
 read -r -p "Would you like to download and run an updated version of this setup from GitHub? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]
 then
     TMPDIR=$(mktemp -d)
     curl https://raw.githubusercontent.com/WhitewaterFoundry/WLinux/sirredbeard/linux_files/setup | bash -s -- u
