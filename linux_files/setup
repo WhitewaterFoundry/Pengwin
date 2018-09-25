@@ -33,7 +33,7 @@ read -r -p "Would you like to download and run an updated version of this setup 
 if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]
 then
     TMPDIR=$(mktemp -d)
-    curl https://raw.githubusercontent.com/WhitewaterFoundry/WLinux/sirredbeard/linux_files/setup | bash -s -- u
+    curl https://raw.githubusercontent.com/WhitewaterFoundry/WLinux/sirredbeard/linux_files/setup | bash -s u
     quit
 else
     echo "Continuing with release install script."
@@ -92,7 +92,7 @@ fi
 
 while getopts ":u" opt; do
   case ${opt} in
-    u ) $updateflag=true
+    u ) updateflag=true
       ;;
   esac
 done
