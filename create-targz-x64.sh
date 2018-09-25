@@ -35,14 +35,18 @@ sudo cp $BUILDIR/linux_files/sources.list $TMPDIR/$DIST/etc/apt/sources.list
 sudo cp $BUILDIR/linux_files/preferences $TMPDIR/$DIST/etc/apt/preferences
 sudo cp $BUILDIR/linux_files/wsl.conf $TMPDIR/$DIST/etc/wsl.conf
 sudo cp $BUILDIR/linux_files/default $TMPDIR/$DIST/etc/dpkg/origins/default
+sudo cp $BUILDIR/linux_files/setup $TMPDIR/$DIST/etc/setup
+
+#make setup executable
+sudo chroot $DIST chmod 755 /etc/setup
 
 # copy app installer scripts to image
-sudo cp $BUILDIR/linux_files/installchrome.sh $TMPDIR/$DIST/opt/installchrome.sh
-sudo cp $BUILDIR/linux_files/installcode.sh $TMPDIR/$DIST/opt/installcode.sh
+# sudo cp $BUILDIR/linux_files/installchrome.sh $TMPDIR/$DIST/opt/installchrome.sh
+# sudo cp $BUILDIR/linux_files/installcode.sh $TMPDIR/$DIST/opt/installcode.sh
 
 # make app installer scripts executable
-sudo chroot $DIST chmod u+x /opt/installchrome.sh
-sudo chroot $DIST chmod u+x /opt/installcode.sh
+# sudo chroot $DIST chmod u+x /opt/installchrome.sh
+# sudo chroot $DIST chmod u+x /opt/installcode.sh
 
 # install python 3.7 from testing
 sudo chroot $DIST apt update
