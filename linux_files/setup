@@ -30,10 +30,10 @@ exit
 
 function updatescriptprompt {
 read -r -p "Would you like to download and run an updated version of this setup from GitHub? [y/N] " response
-if [[ $response == ^[yY]$ ]]; then
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 then
     TMPDIR=$(mktemp -d)
-    curl https://raw.githubusercontent.com/WhitewaterFoundry/WLinux/sirredbeard/linux_files/setup | | bash -s -- u
+    curl https://raw.githubusercontent.com/WhitewaterFoundry/WLinux/sirredbeard/linux_files/setup | bash -s -- u
     quit
 else
     echo "Continuing with release install script."
@@ -41,6 +41,7 @@ fi
 }
 
 function securitypatches {
+echo "Checking for security updates."
 }
 
 ## package meta functions
@@ -60,7 +61,7 @@ sudo apt upgrade -y
 
 function zshinstall {
 read -r -p "Would you like to download and set optional shell zsh? [y/N] " response
-if [[ $response == ^[yY]$ ]]; then
+if [[ $response == ^[yY]$ ]]
 then
     sudo apt install zsh -y
     chsh -z /bin/zsh
@@ -70,7 +71,7 @@ fi
 
 function fishinstall {
 read -r -p "Would you like to download and set optional shell fish? [y/N] " response
-if [[ $response == ^[yY]$ ]]; then
+if [[ $response == ^[yY]$ ]]
 then
     sudo apt install fish -y
     chsh -z /bin/zsh
@@ -79,7 +80,7 @@ fi
 
 function neoviminstall {
 read -r -p "Would you like to download and install neovim? [y/N] " response
-if [[ $response == ^[yY]$ ]]; then
+if [[ $response == ^[yY]$ ]]
 then
     sudo apt install neovim -y
 fi
@@ -98,7 +99,7 @@ done
 
 ## setup script
 
-if $updateflag
+if [ $updateflag ]
 then
   echo "Continuing with updated script from GitHub."
   updateupgrade
