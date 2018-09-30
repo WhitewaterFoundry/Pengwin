@@ -338,8 +338,6 @@ then
 
     # current attempt with vbe/windows startup
 
-    
-
     # write vbe 
 
         # set ws=wscript.createobject("wscript.shell")
