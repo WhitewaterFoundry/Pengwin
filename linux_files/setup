@@ -336,44 +336,70 @@ then
     # extract to pulseaudio into place
     unzip pulseaudio-for-wsl.zip -d /mnt/c/PulseAudio/
 
-    # wget winsw
-    wget http://repo.jenkins-ci.org/releases/com/sun/winsw/winsw/2.1.2/winsw-2.1.2-bin.exe
+    # current attempt with vbe/windows startup
 
-    # sha check on winsw for security
-    checker=`sha256sum winsw-2.1.2-bin.exe | cut -d" " -f1`
-    if [[ "$checker" != "9f35cdfa6e2204df9a250454aea6c2c45d745168f99425d5236b1d30efdae01f" ]]
-    then
-        echo "sha256sum does not match for winsw-2.1.2-bin.exe. Aborted."
-        exit 1
-    else
-        echo "sha256sum matched for winsw-2.1.2-bin.exe. Proceed with Installation..."
-    fi
-        # sha256sum 9f35cdfa6e2204df9a250454aea6c2c45d745168f99425d5236b1d30efdae01f  winsw-2.1.2-bin.exe 
-
-    # copy winsw into place
-    cp winsw-2.1.2-bin.exe /mnt/c/PulseAudio/pulseaudio.exe
-
-    # create winsw service xml file
-    echo "<service>" >> pulseaudio.xml
-    echo "  <id>PulseAudio</id>" >> pulseaudio.xml
-    echo "  <name>PulseAudio</name>" >> pulseaudio.xml
-    echo "  <description>This service supports sound playback in Windows Subsystem for Linux.</description>" >> pulseaudio.xml
-    echo "  <executable>C:\PulseAudio\bin\pulseaudio.exe</executable>" >> pulseaudio.xml
-    echo "  <arguments>-D</arguments>" >> pulseaudio.xml
-    echo "  <startmode>Automatic</startmode>" >> pulseaudio.xml
-    echo "</service>" >> pulseaudio.xml
-    sudo cp pulseaudio.xml /mnt/c/PulseAudio/
-
-    # wget elevate
-    wget https://github.com/jpassing/elevate/releases/download/1.0/elevate.zip
-
-    # extract elevate into place
-    unzip elevate.zip -d /mnt/c/PulseAudio/
     
-    # register pulse audio service
-    cmd.exe /C "C:\PulseAudio\bin\x64\Release\Elevate.exe C:\PulseAudio\pulseaudio.exe install C:\PulseAudio\pulseaudio.xml"
 
-    # install and configure pulseaudio on WLinux
+    # write vbe 
+
+        # set ws=wscript.createobject("wscript.shell")
+        # ws.run "C:\PulseAudio\bin\pulseaudio.exe",0
+
+    # place vbe in Windows startup
+
+
+
+    # tell users to log off / log back in
+
+
+    #############################################
+    # previous attempt with winsw/elevate 
+
+    # # wget winsw
+    # wget http://repo.jenkins-ci.org/releases/com/sun/winsw/winsw/2.1.2/winsw-2.1.2-bin.exe
+
+    # # sha check on winsw for security
+    # checker=`sha256sum winsw-2.1.2-bin.exe | cut -d" " -f1`
+    # if [[ "$checker" != "9f35cdfa6e2204df9a250454aea6c2c45d745168f99425d5236b1d30efdae01f" ]]
+    # then
+    #    echo "sha256sum does not match for winsw-2.1.2-bin.exe. Aborted."
+    #    exit 1
+    # else
+    #    echo "sha256sum matched for winsw-2.1.2-bin.exe. Proceed with Installation..."
+    # fi
+
+    # # copy winsw into place
+    # cp winsw-2.1.2-bin.exe /mnt/c/PulseAudio/pulseaudio.exe
+
+    # # create winsw service xml file
+    # echo "<service>" >> pulseaudio.xml
+    # echo "  <id>PulseAudio</id>" >> pulseaudio.xml
+    # echo "  <name>PulseAudio</name>" >> pulseaudio.xml
+    # echo "  <description>This service supports sound playback in Windows Subsystem for Linux.</description>" >> pulseaudio.xml
+    # echo "  <executable>C:\PulseAudio\bin\pulseaudio.exe</executable>" >> pulseaudio.xml
+    # echo "  <arguments>-D</arguments>" >> pulseaudio.xml
+    # echo "  <startmode>Automatic</startmode>" >> pulseaudio.xml
+    # echo "</service>" >> pulseaudio.xml
+    # sudo cp pulseaudio.xml /mnt/c/PulseAudio/
+
+    # # wget elevate
+    # wget https://github.com/jpassing/elevate/releases/download/1.0/elevate.zip
+
+    # # extract elevate into place
+    # unzip elevate.zip -d /mnt/c/PulseAudio/
+    
+    # # register pulse audio service
+    # cmd.exe /C "C:\PulseAudio\bin\x64\Release\Elevate.exe C:\PulseAudio\pulseaudio.exe install C:\PulseAudio\pulseaudio.xml"
+
+    ############################################
+
+
+
+
+
+
+
+    # # install and configure pulseaudio on WLinux
     sudo apt install pulseaudio -y
     export PULSE_SERVER=tcp:127.0.0.1;
     sudo sh -c 'echo "export PULSE_SERVER=tcp:127.0.0.1;" >> /etc/profile'
@@ -381,7 +407,7 @@ then
     
     cleantmp
 else
-    cmd.exe /C "C:\PulseAudio\bin\x64\Release\Elevate.exe C:\PulseAudio\pulseaudio.exe uninstall C:\PulseAudio\pulseaudio.xml"
+    # cmd.exe /C "C:\PulseAudio\bin\x64\Release\Elevate.exe C:\PulseAudio\pulseaudio.exe uninstall C:\PulseAudio\pulseaudio.xml"
 fi
 }
 
