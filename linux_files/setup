@@ -336,22 +336,15 @@ then
     # extract to pulseaudio into place
     unzip pulseaudio-for-wsl.zip -d /mnt/c/PulseAudio/
 
-    # current attempt with vbe/windows startup
+    #############################################
+    # current method with vbe in windows startup
 
     # write vbe 
-
-        # set ws=wscript.createobject("wscript.shell")
-        # ws.run "C:\PulseAudio\bin\pulseaudio.exe",0
-
-    # place vbe in Windows startup
-
-
-
-    # tell users to log off / log back in
-
+    cmd.exe /C 'echo set ws=wscript.createobject("wscript.shell") > "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\start_pulseaudio.vbe"'
+    cmd.exe /C 'echo ws.run "C:\PulseAudio\bin\pulseaudio.exe --exit-idle-time=-1",0 >> "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\start_pulseaudio.vbe"'
 
     #############################################
-    # previous attempt with winsw/elevate 
+    # previous method with winsw/elevate 
 
     # # wget winsw
     # wget http://repo.jenkins-ci.org/releases/com/sun/winsw/winsw/2.1.2/winsw-2.1.2-bin.exe
@@ -390,12 +383,6 @@ then
     # cmd.exe /C "C:\PulseAudio\bin\x64\Release\Elevate.exe C:\PulseAudio\pulseaudio.exe install C:\PulseAudio\pulseaudio.xml"
 
     ############################################
-
-
-
-
-
-
 
     # # install and configure pulseaudio on WLinux
     sudo apt install pulseaudio -y
