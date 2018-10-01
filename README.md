@@ -12,15 +12,26 @@ WLinux can be downloaded from the [Microsoft Store](https://afflnk.microsoft.com
 ## Features
 
 - A fast Linux terminal and development environment for developers and pro-users built on CentOS and [Windows® Subsystem for Linux](https://github.com/sirredbeard/Awesome-WSL) (WSL).
+- A solid base on which to build and test applications and interact with cloud services.
 - Support for [many Linux graphical apps](https://github.com/ethanhs/WSL-Programs) with no need to configure display or libGL settings. Requires a Windows-based X client, such as [X410](https://token2shell.com/x410/).
 
-## Obtaining Support
+## Getting Started
 
-**[Official WLinux Wiki](https://github.com/WhitewaterFoundry/WLinux/wiki)**
+### Installing WLinux
 
-Please check the Wiki first. It has a guide for getting started, guides for installing packages, and more.
+### Installing Applications
 
-**GitHub**: First search for your issue [here](https://github.com/sirredbeard/WLinux/issues). If you are unable to find your answer, please open a new issue [here](https://github.com/sirredbeard/WLinux/issues/new).
+#### Azure-CLI
+
+#### Go
+
+#### Python 3
+
+#### Powershell
+
+#### Visual Studio Code
+
+### Troubleshooting
 
 ## Additional Documentation
 

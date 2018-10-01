@@ -19,7 +19,7 @@ EOF
 
 mkdir $TMPDIR/centos7
 
-sudo yum -y -c centos7.repo --disablerepo=* --enablerepo=centos7-chroot-base --enablerepo=centos7-chroot-epel --disableplugin=* --installroot=$TMPDIR/centos7. install \
+sudo yum -y -c centos7.repo --disablerepo=* --enablerepo=centos7-chroot-base --enablerepo=centos7-chroot-epel --disableplugin=* --installroot=$TMPDIR/centos7 install \
 	bash \
 	bash-completion \
 	vim-minimal \
