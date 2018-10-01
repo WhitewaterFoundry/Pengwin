@@ -74,5 +74,6 @@ CentOS 7 EULA
 
     The Distribution is released as GPLv2. Individual packages in the distribution come with their own licences.
 
+    https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
     https://wiki.centos.org/Sources
     https://git.centos.org/

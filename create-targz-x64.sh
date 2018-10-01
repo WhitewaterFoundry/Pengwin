@@ -28,24 +28,24 @@ generateHosts = true
 generateResolvConf = true
 EOF
 
-mkdir $TMPDIR/centos7
+mkdir centos7
 
 sudo yum -y -c centos7.repo --disablerepo=* --enablerepo=centos7-chroot-base --enablerepo=centos7-chroot-epel --disableplugin=* --installroot=$TMPDIR/centos7 install bash bash-completion vim-minimal yum iproute iputils rootfiles sudo git 
 
-sudo cp wsl.conf $TMPDIR/centos7/etc/wsl.conf
+sudo cp wsl.conf centos7/etc/wsl.conf
 
-sudo chroot $TMPDIR/centos7 bash -c 'echo "export DISPLAY=:0" > /etc/profile'
-sudo chroot $TMPDIR/centos7 bash -c 'echo "export LIBGL_ALWAYS_INDIRECT=1" > /etc/profile'
-sudo chroot $TMPDIR/centos7 bash -c 'echo "export NO_AT_BRIDGE=1" > /etc/profile'
-sudo chroot $TMPDIR/centos7 bash -c 'echo "export DISPLAY=:0" > /etc/environment'
-sudo chroot $TMPDIR/centos7 bash -c 'echo "export LIBGL_ALWAYS_INDIRECT=1" > /etc/environment'
-sudo chroot $TMPDIR/centos7 bash -c 'echo "export NO_AT_BRIDGE=1" > /etc/environment'
-sudo chroot $TMPDIR/centos7 bash -c 'echo 7 >> /etc/yum/vars/releasever'
-sudo chroot $TMPDIR/centos7 bash -c 'echo "x86_64" > /etc/yum/vars/basearch'
-sudo chroot $TMPDIR/centos7 yum clean all
-sudo chroot $TMPDIR/centos7 rm -rf /boot /var/cache/yum/* /tmp/ks-script* /var/log/* /tmp/* /etc/sysconfig/network-scripts/ifcfg-*
-sudo chroot $TMPDIR/centos7 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
-sudo chroot $TMPDIR/centos 
+sudo chroot centos7 bash -c 'echo "export DISPLAY=:0" > /etc/profile'
+sudo chroot centos7 bash -c 'echo "export LIBGL_ALWAYS_INDIRECT=1" > /etc/profile'
+sudo chroot centos7 bash -c 'echo "export NO_AT_BRIDGE=1" > /etc/profile'
+sudo chroot centos7 bash -c 'echo "export DISPLAY=:0" > /etc/environment'
+sudo chroot centos7 bash -c 'echo "export LIBGL_ALWAYS_INDIRECT=1" > /etc/environment'
+sudo chroot centos7 bash -c 'echo "export NO_AT_BRIDGE=1" > /etc/environment'
+sudo chroot centos7 bash -c 'echo 7 >> /etc/yum/vars/releasever'
+sudo chroot centos7 bash -c 'echo "x86_64" > /etc/yum/vars/basearch'
+sudo chroot centos7 yum clean all
+sudo chroot centos7 rm -rf /boot /var/cache/yum/* /tmp/ks-script* /var/log/* /tmp/* /etc/sysconfig/network-scripts/ifcfg-*
+sudo chroot centos7 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
+sudo chroot centos 
 
 sudo tar --exclude=$TMPDIR/centos7/home --exclude=$TMPDIR/centos7/var/cache/yum/* -zcvf $BUILDIR/install.tar.gz centos7 
 
