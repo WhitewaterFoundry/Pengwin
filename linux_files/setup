@@ -451,6 +451,81 @@ then
 fi
 }
 
+
+### additional package managers
+
+# for after 1.1.20
+
+function flatpakinstall {
+read -r -p "Would you like to download and install Flatpak? [y/N] " response
+if [[ "$response" =~ ^[yY]$ ]]
+then
+    createtmp
+
+    echo "Installing dependencies."
+    
+    sudo apt install git -y
+
+    sudo apt -t testing install build-essential libcurl4-gnutls-dev libsoup2.4-dev \
+      libext2fs-dev autoconf autopoint libtool libgpgme-dev bison \
+      liblzma-dev libgirepository1.0-dev libcap-dev libarchive-dev \
+      libjson-glib-dev libxau-dev libappstream-glib-dev -y
+
+    echo "Getting and building ostree from source. Please wait."
+
+    git clone https://github.com/ostreedev/ostree.git
+    cd ostree
+    ./autogen.sh --disable-rofiles-fuse --disable-man --with-curl
+    make
+    sudo make install
+    cd ..
+
+    echo "Getting and building flatpak from source. Please wait."
+
+    git clone https://github.com/flatpak/flatpak.git
+    cd flatpak
+    git checkout wip/WSL
+    ./autogen.sh --disable-system-helper --disable-seccomp --disable-documentation --with-priv-mode=setuid
+    make                                # ran into some issues here detecting the just-built ostree libs, do we need to update the path above?
+    sudo make install
+    cd ..
+
+    echo "Installing flathub repo."
+
+    flatpak remote-add --user flathub https://flathub.org/repo/flathub.flatpakrepo
+    
+    echo "Flatpak installed."
+
+    echo
+
+    echo "To install Flatpaks: $ flatpak install --user org.gnome.FeedReader"
+
+    echo "To run installed Flatpak: $ flatpak run org.gnome.FeedReader"
+
+    cleantmp
+fi    
+}
+
+function snapinstall {
+read -r -p "Would you like to download and install snapd? [y/N] " response
+if [[ "$response" =~ ^[yY]$ ]]
+then
+    createtmp
+
+    sudo apt-get install dirmngr -y
+
+    gpg --keyserver keyserver.ubuntu.com --recv-key 40976EAF437D05B5 && gpg --export --armor 40976EAF437D05B5 | sudo apt-key add -
+    gpg --keyserver keyserver.ubuntu.com --recv-key 3B4FE6ACC0B21F32 && gpg --export --armor 3B4FE6ACC0B21F32 | sudo apt-key add -
+    sudo bash -c "echo 'deb deb http://archive.ubuntu.com/ubuntu/ trusty main' >> /etc/apt/sources.list.d/snapd.list"
+    sudo apt update
+    sudo apt upgrade -yes
+    sudo apt -t trusty install systemd-shim snapd -y
+    snap install hello                 # need to find a away to launch snapd in the background from /etc/profile when this is enabled
+
+    cleantmp
+fi
+}
+
 # main
 
 welcomeprompt
