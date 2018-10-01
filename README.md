@@ -1,6 +1,6 @@
 # WLinux
 
-The first Linux® distribution optimized for WSL. Based on Debian®.
+The first Linux® distribution optimized for WSL. Based on CentOS.
 
 From open-source software startup [Whitewater Foundry](https://whitewaterfoundry.com
 ).
@@ -11,37 +11,35 @@ WLinux can be downloaded from the [Microsoft Store](https://afflnk.microsoft.com
 
 ## Features
 
-- A fast Linux terminal and development environment for developers and pro-users built on [Windows® Subsystem for Linux](https://github.com/sirredbeard/Awesome-WSL) (WSL) on Windows 10.
-- A new out-of-the-box experience for users to get started on the Linux terminal.
-- Choice of terminal shells: bash, csh, zsh (with oh-my-zsh), and fish (with oh-my-fish).
-- Choice of editors: emacs, neovim, nano, and Visual Studio Code.
-- Choice of development environments: nodejs, python 3.7, and go.
-- Choice of cloud and administration tools: PowerShell and Azure-cli.
-- Ships with [wslu](https://github.com/wslutilities/wslu), a set of useful open-source utilities for interacting between WSL and Windows 10.
-- Optional Windows Explorer shell integration and support for HiDPI displays.
-- Support for [many Linux graphical apps](https://github.com/ethanhs/WSL-Programs) with no need to configure display or libGL settings. Requires a Windows-based X client, such as [X410](http://afflnk.microsoft.com/c/1291904/459838/7593?prodsku=9NLP712ZMN9Q&u=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fstore%2Fp%2Fx410%2F9NLP712ZMN9Q).
-- Additional packages can be easily installed via the apt package management system from the [expansive Debian repos](https://packages.debian.org/stable/) and third-party apt-based repos.
-- A handful of unnecessary packages, such as systemd, have been are removed from the base image to reduce size and increase stability.
-- New features are [actively developed](https://github.com/WhitewaterFoundry/WLinux/pulls) based on [community interest](https://github.com/WhitewaterFoundry/WLinux/issues).
-- WLinux features faster patching for WSL-specific bugs than any upstream Linux distro on WSL.
-- WLinux users can re-run `$ bash /etc/setup` at any time to get access to latest WLinux features and customizations for WSL.
+- A fast Linux terminal and development environment for developers and pro-users built on CentOS and [Windows® Subsystem for Linux](https://github.com/sirredbeard/Awesome-WSL) (WSL).
+- A solid base on which to build applications, interact with cloud services, and test applications for enterprise deployments.
+- Support for [many Linux graphical apps](https://github.com/ethanhs/WSL-Programs) with no need to configure display or libGL settings. Requires a Windows-based X client, such as [X410](https://token2shell.com/x410/).
 
-Note: The features above refer to the current GitHub version slated for release as 1.1.20 on the Store in early October. Build WLinux yourself and help us test and debug new features. 
+## Getting Started
 
-## Obtaining Support
+### Installing Applications
 
-**[Official WLinux Wiki](https://github.com/WhitewaterFoundry/WLinux/wiki)**
+- Python
+- Ruby
+- Go
+- Code
+- wslu
+- fish and oh-my-fish
+- zsh and oh-my-zsh
+- Powershell
+- Azure CLI
 
-Please check the Wiki first. It has a guide for getting started, guides for installing packages, and more.
+### Troubleshooting
 
-**GitHub**: First search for your issue [here](https://github.com/sirredbeard/WLinux/issues). If you are unable to find your answer, please open a new issue [here](https://github.com/sirredbeard/WLinux/issues/new).
+- Check the [FAQ](https://github.com/WhitewaterFoundry/WLinux/wiki).
+- Search [existing issues](https://github.com/WhitewaterFoundry/WLinux/issues?utf8=%E2%9C%93&q=).
+- Open a [new issue](https://github.com/WhitewaterFoundry/WLinux/issues/new/choose).
 
 ## Additional Documentation
 
 - [LICENSE.md](LICENSE.md)
 - [BUILDING.md](BUILDING.md)
 - [PRIVACY.md](PRIVACY.md)
-- [ROADMAP.md](ROADMAP.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Related Pages

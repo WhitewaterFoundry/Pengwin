@@ -1,76 +1,53 @@
 #!/bin/bash
 
-# install script dependencies
-sudo apt update
-sudo apt -y install curl gnupg cdebootstrap
-
-# create our environment
 set -e
 BUILDIR=$(pwd)
 TMPDIR=$(mktemp -d)
-ARCH="amd64"
-DIST="stable"
 cd $TMPDIR
 
-# bootstrap image
-sudo cdebootstrap -a $ARCH --include=sudo,locales,git,ssh,apt-transport-https,wget,ca-certificates,man,less,curl $DIST $DIST http://deb.debian.org/debian
+cat > centos7.repo << EOF
+[centos7-chroot-base]
+name=CentOS-7-Base
+baseurl=http://mirror.centos.org/centos/7/os/x86_64
+gpgcheck=0
 
-# clean apt cache
-sudo chroot $DIST apt-get clean
+[centos7-chroot-epel]
+name=Extra Packages for Enterprise Linux 7
+baseurl=http://dl.fedoraproject.org/pub/epel/7/x86_64
+gpgcheck=0
+EOF
 
-# configure bash
-sudo chroot $DIST /bin/bash -c "echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen"
-sudo chroot $DIST /bin/bash -c "update-locale LANGUAGE=en_US.UTF-8 LC_ALL=C"
+cat > wsl.conf << EOF
+[automount]
+enabled = true
+options = "metadata,uid=1000,gid=1000,umask=22,fmask=11,case=off"
+mountFsTab = true
 
-# download and copy latest wslu repo key
-curl https://api.patrickwu.ml/public.key | gpg --dearmor > $BUILDIR/wslu.gpg
-sudo cp $BUILDIR/wslu.gpg $TMPDIR/$DIST/etc/apt/trusted.gpg.d/wslu.gpg
-rm $BUILDIR/wslu.gpg
+[network]
+generateHosts = true
+generateResolvConf = true
+EOF
 
-# copy custom files to image
-sudo cp $BUILDIR/linux_files/profile $TMPDIR/$DIST/etc/profile
-sudo cp $BUILDIR/linux_files/environment $TMPDIR/$DIST/etc/environment
-sudo cp $BUILDIR/linux_files/os-release $TMPDIR/$DIST/etc/os-release
-sudo cp $BUILDIR/linux_files/sources.list $TMPDIR/$DIST/etc/apt/sources.list
-sudo cp $BUILDIR/linux_files/preferences $TMPDIR/$DIST/etc/apt/preferences
-sudo cp $BUILDIR/linux_files/wsl.conf $TMPDIR/$DIST/etc/wsl.conf
-sudo cp $BUILDIR/linux_files/default $TMPDIR/$DIST/etc/dpkg/origins/default
-sudo mkdir $TMPDIR/$DIST/etc/fonts
-sudo cp $BUILDIR/linux_files/local.conf $TMPDIR/$DIST/etc/fonts/local.conf
-sudo cp $BUILDIR/linux_files/helpme $TMPDIR/$DIST/etc/helpme
-sudo cp $BUILDIR/linux_files/setup $TMPDIR/$DIST/etc/setup
+mkdir centos7
 
-sudo mkdir $TMPDIR/$DIST/opt/ShellIntegration
-sudo cp $BUILDIR/linux_files/ShellIntegration/Install.reg $TMPDIR/$DIST/opt/ShellIntegration/Install.reg
-sudo cp $BUILDIR/linux_files/ShellIntegration/Uninstall.reg $TMPDIR/$DIST/opt/ShellIntegration/Uninstall.reg
+sudo yum -y -c centos7.repo --disablerepo=* --enablerepo=centos7-chroot-base --enablerepo=centos7-chroot-epel --disableplugin=* --installroot=$TMPDIR/centos7 install bash bash-completion vim-minimal yum iproute iputils rootfiles sudo git 
 
-#make helpme and setup executable
-sudo chroot $DIST chmod 755 /etc/helpme
-sudo chroot $DIST chmod 755 /etc/setup
+sudo cp wsl.conf centos7/etc/wsl.conf
 
-# set up the latest wslu app
-sudo chroot $DIST chmod 644 /etc/apt/trusted.gpg.d/wslu.gpg
-sudo chroot $DIST apt update
-sudo chroot $DIST apt -y install wslu
+sudo chroot centos7 bash -c 'echo "export DISPLAY=:0" > /etc/profile'
+sudo chroot centos7 bash -c 'echo "export LIBGL_ALWAYS_INDIRECT=1" > /etc/profile'
+sudo chroot centos7 bash -c 'echo "export NO_AT_BRIDGE=1" > /etc/profile'
+sudo chroot centos7 bash -c 'echo "export DISPLAY=:0" > /etc/environment'
+sudo chroot centos7 bash -c 'echo "export LIBGL_ALWAYS_INDIRECT=1" > /etc/environment'
+sudo chroot centos7 bash -c 'echo "export NO_AT_BRIDGE=1" > /etc/environment'
+sudo chroot centos7 bash -c 'echo 7 >> /etc/yum/vars/releasever'
+sudo chroot centos7 bash -c 'echo "x86_64" > /etc/yum/vars/basearch'
+sudo chroot centos7 yum clean all
+sudo chroot centos7 rm -rf /boot /var/cache/yum/* /tmp/ks-script* /var/log/* /tmp/* /etc/sysconfig/network-scripts/ifcfg-*
+sudo chroot centos7 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
+sudo chroot centos 
 
-# the sudoers lecture is one of the first things users see when they run /etc/setup, it is a bit jarring, and a bit out of place on WSL, so let's make it a bit more friendly
+sudo tar --exclude=$TMPDIR/centos7/home --exclude=$TMPDIR/centos7/var/cache/yum/* -zcvf $BUILDIR/install.tar.gz centos7 
 
-sudo chroot $DIST /bin/bash -c "echo 'Defaults lecture_file = /etc/sudoers.lecture' >> /etc/sudoers"
-sudo chroot $DIST /bin/bash -c "echo 'Enter your UNIX password below. This is not your Windows password.' >> /etc/sudoers.lecture"
-
-# remove unnecessary apt packages
-sudo chroot $DIST apt remove systemd dmidecode -y --allow-remove-essential
-
-# clean up orphaned apt dependencies
-sudo chroot $DIST apt-get autoremove -y
-
-# create tar
-cd $DIST
-sudo tar --ignore-failed-read -czvf $TMPDIR/install.tar.gz *
-
-# move into place in build folder
-cd $TMPDIR
-cp install.tar.gz $BUILDIR/x64/
 cd $BUILDIR
-
-# cp install.tar.gz /mnt/c/Users/Hayden/OneDrive/Documents/GitHub/WLinux/x64/
+rm -r $TMPDIR
