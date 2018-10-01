@@ -9,7 +9,7 @@ set -e
 BUILDIR=$(pwd)
 TMPDIR=$(mktemp -d)
 ARCH="amd64"
-DIST="stable"
+DIST="testing"
 cd $TMPDIR
 
 # bootstrap image
@@ -73,4 +73,3 @@ cd $TMPDIR
 cp install.tar.gz $BUILDIR/x64/
 cd $BUILDIR
 
-# cp install.tar.gz /mnt/c/Users/Hayden/OneDrive/Documents/GitHub/WLinux/x64/
