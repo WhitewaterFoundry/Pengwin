@@ -22,7 +22,7 @@
     1. Select "Choose Certificate"
     1. Click the Configure Certificate drop down and select Create test certificate.
 1. Build install.tar.gz
-    1. See [build-tar.bat].
+    1. Use [create-targz.x64.sh] and copy to x64 in your build folder.
 1. Build the solution to make sure you have everything you need. Fix any build dependencies you are missing.
 1. Build the Windows UWP package:
     1. Open a `Developer Command Prompt for VS 2017` and change directory to your build directory.

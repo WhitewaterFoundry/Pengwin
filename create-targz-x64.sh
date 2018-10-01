@@ -17,7 +17,7 @@ baseurl=http://dl.fedoraproject.org/pub/epel/7/x86_64
 gpgcheck=0
 EOF
 
-mkdir centos7
+mkdir $TMPDIR/centos7
 
 sudo yum -y -c centos7.repo --disablerepo=* --enablerepo=centos7-chroot-base --enablerepo=centos7-chroot-epel --disableplugin=* --installroot=$TMPDIR/centos7. install \
 	bash \
@@ -29,5 +29,14 @@ sudo yum -y -c centos7.repo --disablerepo=* --enablerepo=centos7-chroot-base --e
 	rootfiles \
 	sudo
 
-cd BUILDIR
+sudo chroot $TMPDIR/centos7 echo "7" > /etc/yum/vars/releasever
+sudo chroot $TMPDIR/centos7 echo "x86_64" > /etc/yum/vars/basearch
+sudo chroot $TMPDIR/centos7 yum clean all
+sudo chroot $TMPDIR/centos7 rm -rf /boot /var/cache/yum/* /tmp/ks-script* /var/log/* /tmp/* /etc/sysconfig/network-scripts/ifcfg-*
+sudo chroot $TMPDIR/centos7 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
+sudo chroot $TMPDIR/centos 
+
+sudo tar --exclude=$TMPDIR/centos7/home --exclude=$TMPDIR/centos7/var/cache/yum/* -zcvf $BUILDIR/install.tar.gz centos7 
+
+cd $BUILDIR
 rm -r $TMPDIR

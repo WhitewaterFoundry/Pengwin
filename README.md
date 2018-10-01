@@ -11,18 +11,8 @@ WLinux can be downloaded from the [Microsoft Store](https://afflnk.microsoft.com
 
 ## Features
 
-- A fast Linux terminal and development environment for developers and pro-users built on [Windows® Subsystem for Linux](https://github.com/sirredbeard/Awesome-WSL) (WSL) on Windows 10.
-- A new out-of-the-box experience for users to get started on the Linux terminal.
-- Choice of terminal shells: bash, csh, zsh (with oh-my-zsh), and fish (with oh-my-fish).
-- Choice of editors: emacs, neovim, nano, and Visual Studio Code.
-- Choice of development environments: nodejs, Python 3.7, and go.
-- Choice of cloud and administration tools: PowerShell and Azure.
-- Ships with [wslu](https://github.com/wslutilities/wslu), a set of useful open-source utilities for interacting between WSL and Windows 10.
-- Optional Windows Explorer shell integration and support for HiDPI displays.
-- Support for [many Linux graphical apps](https://github.com/ethanhs/WSL-Programs) with no need to configure display or libGL settings. Requires a Windows-based X client, such as [X410](http://afflnk.microsoft.com/c/1291904/459838/7593?prodsku=9NLP712ZMN9Q&u=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fstore%2Fp%2Fx410%2F9NLP712ZMN9Q).
-- A handful of unnecessary packages have been are removed from the base image to reduce size and increase stability.
-- New features are [actively developed](https://github.com/WhitewaterFoundry/WLinux/pulls) based on [community interest](https://github.com/WhitewaterFoundry/WLinux/issues).
-- WLinux features faster patching for WSL-specific bugs than any upstream Linux distro on WSL.
+- A fast Linux terminal and development environment for developers and pro-users built on CentOS and [Windows® Subsystem for Linux](https://github.com/sirredbeard/Awesome-WSL) (WSL).
+- Support for [many Linux graphical apps](https://github.com/ethanhs/WSL-Programs) with no need to configure display or libGL settings. Requires a Windows-based X client, such as [X410](https://token2shell.com/x410/).
 
 ## Obtaining Support
 
@@ -37,7 +27,6 @@ Please check the Wiki first. It has a guide for getting started, guides for inst
 - [LICENSE.md](LICENSE.md)
 - [BUILDING.md](BUILDING.md)
 - [PRIVACY.md](PRIVACY.md)
-- [ROADMAP.md](ROADMAP.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Related Pages
