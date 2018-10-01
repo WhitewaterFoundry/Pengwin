@@ -10,8 +10,5 @@ https://help.github.com/articles/github-privacy-statement/
 Microsoft Privacy Policy
 https://privacy.microsoft.com/en-us/privacystatement
 
-Debian Privacy Policy
-https://www.debian.org/legal/privacy
-
-wslu repo
-https://github.com/wslutilities/wslu/blob/master/CODE_OF_CONDUCT.md
+CentOS Privacy Policy
+https://www.centos.org/legal/privacy/
