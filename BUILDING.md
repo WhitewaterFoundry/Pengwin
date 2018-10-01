@@ -1,6 +1,6 @@
 ## WLinux Components
 
-- build-tar.bat - Builds the WLinux custom Linux distro in a WLinux or Debian environment.
+- build-tar.bat - Builds the WLinux custom Linux distro in an existing Linux environment.
 - Launcher project - Builds the actual executable that is run when a user launches the app. 
 - DistroLauncher-Appx project - Builds the distro package with all the assets and other dependencies. 
 
