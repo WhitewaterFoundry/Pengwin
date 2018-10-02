@@ -16,7 +16,7 @@ WLinux comes with a core set of packages installed. This setup allows\
 you to install some selected packages for WLinux and configure optional settings.\
 Many more packages are available via the apt package management system.\n
 To learn more about apt you should use man, try typing $ man apt\
-"
+" 15 80
 }
 
 function continueprompt {
@@ -29,7 +29,7 @@ else
 fi
 }
 
-function continueprompt {
+function updatescriptprompt {
 if (whiptail --title "Upgrade setup?" --yesno "Would you like to download and run an updated version of this setup?" 8 75) then
     createtmp
     echo "Backing up old /etc/setup to /etc/setup.old"
@@ -52,7 +52,6 @@ fi
 
 function securitypatches {
 echo "No WSL hotfixes required."
-
 }
 
 function createtmp {
@@ -82,44 +81,88 @@ function byemessage {
     exit 0
 }
 
+function mainmenu{
+
+SELECTION=$(whiptail --title "OpenCV Compile Assist from $CUR_OPENCV_VER to $OPENCV_VER" --menu "Arrow/Enter Selects or Tab Key" 0 0 0 --cancel-button Quit --ok-button Select \
+  "1 EXPLORER INTEGRATION" "Enable to right-click on folders and open in WLinux" \
+  "2 SHELL" "Install and configure default shells from bash, zsh, csh, and fish" \
+  "3 EDITORS "Install text editors neovim, emacs, or Visual Studio Code" \
+  "4 PYTHON "Install Python 3.7 and download and install latest PIP" \
+  "5 NODEJS"  "Install Node.js" \
+  "6 GO" "Install the latest Go" \
+  "7 POWERSHELL/AZURE" "Install PowerShell for Linux and Azure CLI Tools" \
+  "8 BASIC GUI TOOLS" "Install the basic tools libraries needed for most GUI apps and set HiDPI" \
+  "q QUIT" "Setup Program"  3>&1 1>&2 2>&3)
+  RET=$?
+  if [ $RET -eq 1 ]; then
+    exit 0
+  elif [ $RET -eq 0 ]; then
+    case "$SELECTION" in
+      1\ *) explorerintegration
+            mainmenu ;;
+      2\ *) installandsetshell
+            fzfinstall
+            mainmenu ;;
+      3\ *) neoviminstall
+            emacsinstall
+            codeinstall
+            mainmenu ;;
+      4\ *) pythoninstall
+            mainmenu ;;
+      5\ *) nodeinstall
+            mainmenu ;;
+      6\ *) goinstall
+            mainmenu ;;
+      7\ *) powershellinstall
+            azurecliinstall
+            mainmenu ;;
+      8\ *) basicguiinstall
+            hidpiconfig
+            mainmenu ;;
+      q\ *) echo "Exiting menu..."
+         *) whiptail --msgbox "Unrecognized option" 20 60 1 ;;
+    esac || whiptail --msgbox "There was an error running selection $SELECTION" 20 60 1
+  fi
+}
+
 ## internationalization
 
 function languageprompt {
-read -r -p "Would you like to configure additional languages? [y/N] " response
-if [[ "$response" =~ ^[yY]$ ]]
+if (whiptail --title "International?" --yesno "Would you like to configure additional languages in WLinux?" 8 65) then
 then
     echo "Running $ dpkg-reconfigure locales"
     sudo dpkg-reconfigure locales
 fi
 }
 
-## package meta functions
+# package index
 
-    # list all package sets and the order they should be presented for optional install here
+# shells
+# installandsetshell
 
-function installpackages {
-echo "Shells:"
-installandsetshell
-echo "Editors:"
-neoviminstall
-emacsinstall
-echo "Enhancements:"
-fzfinstall
-explorerintegration
-## package set functions
-echo "Development Environment:"
-pythoninstall
-nodeinstall
-goinstall
-powershellinstall
-echo "Cloud Tools:"
-azurecliinstall
-echo "GUI Applications:"
-basicguiinstall
-codeinstall
-chromeinstall
-hidpiconfig
-}
+# editors
+# neoviminstall
+# emacsinstall
+# codeinstall
+
+# enhancements
+# explorerintegration
+# fzfinstall
+# addrepos
+
+# development environments
+# pythoninstall
+# nodeinstall
+# goinstall
+
+# cloud tools
+# azurecliinstall
+# powershellinstall
+
+# gui tools
+# basicguiinstall
+# hidpiconfig
+
 
 function updateupgrade {
 echo "Updating apt package index from repositories: $ sudo apt update"
@@ -441,16 +484,15 @@ then
 fi
 }
 
-# main
+# the action
 
 welcomeprompt
 continueprompt
+securitypatches
 updatescriptprompt
 languageprompt
 updateupgrade
-securitypatches
-installpackages
-addrepos
+mainmenu
 byemessage
 
 exit 0
