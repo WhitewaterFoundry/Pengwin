@@ -83,16 +83,17 @@ function byemessage {
 
 function mainmenu{
 
-SELECTION=$(whiptail --title "OpenCV Compile Assist from $CUR_OPENCV_VER to $OPENCV_VER" --menu "Arrow/Enter Selects or Tab Key" 0 0 0 --cancel-button Quit --ok-button Select \
-  "1 EXPLORER INTEGRATION" "Enable to right-click on folders and open in WLinux" \
-  "2 SHELL" "Install and configure default shells from bash, zsh, csh, and fish" \
-  "3 EDITORS "Install text editors neovim, emacs, or Visual Studio Code" \
-  "4 PYTHON "Install Python 3.7 and download and install latest PIP" \
+SELECTION=$(whiptail --title "Main Menu" --menu "Arrow/Enter Selects" 0 0 0 --cancel-button Quit --ok-button Select \
+  "1 EXPLORER" "Enable right-click on folders to open in WLinux" \
+  "2 SHELLS" "Install and configure default shells from bash, zsh, csh, and fish" \
+  "3 EDITORS" "Install text editors neovim, emacs, or Visual Studio Code" \
+  "4 PYTHON" "Install Python 3.7 and download and install latest PIP" \
   "5 NODEJS"  "Install Node.js" \
   "6 GO" "Install the latest Go" \
   "7 POWERSHELL/AZURE" "Install PowerShell for Linux and Azure CLI Tools" \
   "8 BASIC GUI TOOLS" "Install the basic tools libraries needed for most GUI apps and set HiDPI" \
   "q QUIT" "Setup Program"  3>&1 1>&2 2>&3)
+
   RET=$?
   if [ $RET -eq 1 ]; then
     exit 0
