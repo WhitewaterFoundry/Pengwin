@@ -358,7 +358,7 @@ if [[ "$response" =~ ^[yY]$ ]]
 then
     createtmp
     curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-    sudo apt install -t testing nodejs build-essential -y 
+    sudo apt install -t testing nodejs npm build-essential -y 
     cleantmp
 
         read -r -p "Would you like to download and install the optional Yarn package manager? [y/N] " response
