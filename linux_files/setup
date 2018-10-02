@@ -362,7 +362,7 @@ if [[ "$response" =~ ^[yY]$ ]]
 then
     createtmp
     echo "Downloading Go using wget."
-    wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+    wget https://dl.google.com/go/go1.11.1.linux-amd64.tar.gz
     echo "Unpacking tar binaries to /usr/local/go."
     sudo tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz
     echo "Creating ~/go/ for your projects."
