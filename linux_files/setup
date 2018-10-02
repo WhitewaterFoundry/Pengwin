@@ -1,17 +1,12 @@
 #!/bin/bash
-
-response=""
 CURDUR=""
 TMPDIR=""
-VERSION="1.1.20"
+VERSION="1.1.21pre"
+REPSONSE=""
 
 # functions
 
-## core functions
-
-function welcomeprompt {
-whiptail --title "Welcome to WLinux" --msgbox \
-"Thank you for supporting sustainable independent open-source development.\n
+function welcomeprompt {whiptail --title "Welcome to WLinux" --msgbox "Thank you for supporting sustainable independent open-source development.\n
 WLinux comes with a core set of packages installed. This setup allows\
 you to install some selected packages for WLinux and configure optional settings.\
 Many more packages are available via the apt package management system.\n
@@ -93,7 +88,6 @@ SELECTION=$(whiptail --title "WLinux Setup Main Menu" --menu "Enter Selects" 0 0
   "7 POWERSHELL/AZURE" "Install PowerShell for Linux and Azure CLI Tools" \
   "8 BASIC GUI TOOLS" "Install the basic tools libraries needed for most GUI apps and set HiDPI" \
   "q QUIT" "Quit This Menu Program"  3>&1 1>&2 2>&3)
-
   RET=$?
   if [ $RET -eq 1 ]; then
     exit 0
