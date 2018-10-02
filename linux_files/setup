@@ -83,7 +83,7 @@ function byemessage {
 
 function mainmenu{
 
-SELECTION=$(whiptail --title "Main Menu" --menu "Arrow/Enter Selects" 0 0 0 --cancel-button Quit --ok-button Select \
+SELECTION=$(whiptail --title "WLinux Setup Main Menu" --menu "Enter Selects" 0 0 0 --cancel-button Quit --ok-button Select \
   "1 EXPLORER" "Enable right-click on folders to open in WLinux" \
   "2 SHELLS" "Install and configure default shells from bash, zsh, csh, and fish" \
   "3 EDITORS" "Install text editors neovim, emacs, or Visual Studio Code" \
@@ -92,7 +92,7 @@ SELECTION=$(whiptail --title "Main Menu" --menu "Arrow/Enter Selects" 0 0 0 --ca
   "6 GO" "Install the latest Go" \
   "7 POWERSHELL/AZURE" "Install PowerShell for Linux and Azure CLI Tools" \
   "8 BASIC GUI TOOLS" "Install the basic tools libraries needed for most GUI apps and set HiDPI" \
-  "q QUIT" "Setup Program"  3>&1 1>&2 2>&3)
+  "q QUIT" "Quit This Menu Program"  3>&1 1>&2 2>&3)
 
   RET=$?
   if [ $RET -eq 1 ]; then
