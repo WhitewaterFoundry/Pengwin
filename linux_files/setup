@@ -6,7 +6,8 @@ REPSONSE=""
 
 # functions
 
-function welcomeprompt {whiptail --title "Welcome to WLinux" --msgbox "Thank you for supporting sustainable independent open-source development.\n
+function welcomeprompt {
+whiptail --title "Welcome to WLinux" --msgbox "Thank you for supporting sustainable independent open-source development.\n
 WLinux comes with a core set of packages installed. This setup allows\
 you to install some selected packages for WLinux and configure optional settings.\
 Many more packages are available via the apt package management system.\n
@@ -77,7 +78,6 @@ function byemessage {
 }
 
 function mainmenu{
-
 SELECTION=$(whiptail --title "WLinux Setup Main Menu" --menu "Enter Selects" 0 0 0 --cancel-button Quit --ok-button Select \
   "1 EXPLORER" "Enable right-click on folders in Windows Explorer to open them in WLinux" \
   "2 SHELLS" "Install and configure default shells from bash, zsh, csh, and fish" \
@@ -115,7 +115,7 @@ SELECTION=$(whiptail --title "WLinux Setup Main Menu" --menu "Enter Selects" 0 0
       8\ *) basicguiinstall
             hidpiconfig
             mainmenu ;;
-      q\ *) echo "Exiting menu..."
+      q\ *) echo "Exiting menu..." ;;
          *) whiptail --msgbox "Unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running selection $SELECTION" 20 60 1
   fi
@@ -125,7 +125,6 @@ SELECTION=$(whiptail --title "WLinux Setup Main Menu" --menu "Enter Selects" 0 0
 
 function languageprompt {
 if (whiptail --title "International?" --yesno "Would you like to configure additional languages in WLinux?" 8 65) then
-then
     echo "Running $ dpkg-reconfigure locales"
     sudo dpkg-reconfigure locales
 fi
