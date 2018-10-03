@@ -1,32 +1,23 @@
 #!/bin/bash
-
-response=""
 CURDUR=""
 TMPDIR=""
-VERSION="1.1.20"
+VERSION="1.1.21pre"
+REPSONSE=""
 
 # functions
 
-## core functions
-
 function welcomeprompt {
-echo
-echo "Welcome to WLinux."
-echo "Thank you for supporting sustainable independent open-source development."
-echo
-echo "WLinux comes with a core set of packages installed. This setup tool allows"
-echo "you to install selected packages for WLinux and configure optional settings."
-echo
-echo "Additional packages are available via the apt package management system."
-echo "To learn more about apt you should use man, try typing $ man apt"
-echo
+whiptail --title "Welcome to WLinux" --msgbox "Thank you for supporting sustainable independent open-source development.\n
+WLinux comes with a core set of packages installed. This setup allows\
+you to install some selected packages for WLinux and configure optional settings.\
+Many more packages are available via the apt package management system.\n
+To learn more about apt you should use man, try typing $ man apt\
+" 15 80
 }
 
 function continueprompt {
-read -r -p "Would you like to continue this setup tool? [Y/n] " response
-if [[ "$response" =~ ^[yY]$ ]] || [[ -z $response ]]
-then
-    echo "Let's get started setting up WLinux."
+if (whiptail --title "Continue setup?" --yesno "Would you like to continue setup?" 8 30) then
+    echo "Starting setup."
 else
     echo "Exiting..."
     echo "You may run the script again any time by running: bash /etc/setup"
@@ -35,9 +26,7 @@ fi
 }
 
 function updatescriptprompt {
-read -r -p "Would you like to download and run an updated version of this setup? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
-then
+if (whiptail --title "Upgrade setup?" --yesno "Would you like to download and run an updated version of this setup?" 8 75) then
     createtmp
     echo "Backing up old /etc/setup to /etc/setup.old"
     sudo cp /etc/setup /etc/setup.old
@@ -53,13 +42,12 @@ then
     taskkill.exe /IM WLinux.exe
     exit 0
 else
-    echo "Continuing with built-in setup. If you encounter problems, try an updated setup."
+    whiptail --title "Release setup" --msgbox "Continuing with built-in setup. If you encounter problems, please try updating setup." 10 40
 fi
 }
 
 function securitypatches {
 echo "No WSL hotfixes required."
-
 }
 
 function createtmp {
@@ -89,44 +77,87 @@ function byemessage {
     exit 0
 }
 
+function mainmenu{
+SELECTION=$(whiptail --title "WLinux Setup Main Menu" --menu "Enter Selects" 0 0 0 --cancel-button Quit --ok-button Select \
+  "1 EXPLORER" "Enable right-click on folders in Windows Explorer to open them in WLinux" \
+  "2 SHELLS" "Install and configure default shells from bash, zsh, csh, and fish" \
+  "3 EDITORS" "Install text editors neovim, emacs, or Visual Studio Code" \
+  "4 PYTHON" "Install Python 3.7 and download and install latest PIP" \
+  "5 NODEJS"  "Install Node.js" \
+  "6 GO" "Install the latest Go" \
+  "7 POWERSHELL and AZURE" "Install PowerShell for Linux and Azure CLI Tools" \
+  "8 BASIC GUI TOOLS" "Install the basic libraries needed for most GUI apps and optionally set HiDPI" \
+  "q QUIT" "Quit This Menu Program"  3>&1 1>&2 2>&3)
+  
+  RET=$?
+  if [ $RET -eq 1 ]; then
+    exit 0
+  elif [ $RET -eq 0 ]; then
+    case "$SELECTION" in
+      1\ *) explorerintegration
+            mainmenu ;;
+      2\ *) installandsetshell
+            fzfinstall
+            mainmenu ;;
+      3\ *) neoviminstall
+            emacsinstall
+            codeinstall
+            mainmenu ;;
+      4\ *) pythoninstall
+            mainmenu ;;
+      5\ *) nodeinstall
+            mainmenu ;;
+      6\ *) goinstall
+            mainmenu ;;
+      7\ *) powershellinstall
+            azurecliinstall
+            mainmenu ;;
+      8\ *) basicguiinstall
+            hidpiconfig
+            mainmenu ;;
+      q\ *) echo "Exiting menu..." ;;
+         *) whiptail --msgbox "Unrecognized option" 20 60 1 ;;
+    esac || whiptail --msgbox "There was an error running selection $SELECTION" 20 60 1
+  fi
+}
+
 ## internationalization
 
 function languageprompt {
-read -r -p "Would you like to configure additional languages? [y/N] " response
-if [[ "$response" =~ ^[yY]$ ]]
-then
+if (whiptail --title "International?" --yesno "Would you like to configure additional languages in WLinux?" 8 65) then
     echo "Running $ dpkg-reconfigure locales"
     sudo dpkg-reconfigure locales
 fi
 }
 
-## package meta functions
+# package index
 
-    # list all package sets and the order they should be presented for optional install here
+# shells
+# installandsetshell
 
-function installpackages {
-echo "Shells:"
-installandsetshell
-echo "Editors:"
-neoviminstall
-emacsinstall
-echo "Enhancements:"
-fzfinstall
-explorerintegration
-## package set functions
-echo "Development Environment:"
-pythoninstall
-nodeinstall
-goinstall
-powershellinstall
-echo "Cloud Tools:"
-azurecliinstall
-echo "GUI Applications:"
-basicguiinstall
-codeinstall
-chromeinstall
-hidpiconfig
-}
+# editors
+# neoviminstall
+# emacsinstall
+# codeinstall
+
+# enhancements
+# explorerintegration
+# fzfinstall
+# addrepos
+
+# development environments
+# pythoninstall
+# nodeinstall
+# goinstall
+
+# cloud tools
+# azurecliinstall
+# powershellinstall
+
+# gui tools
+# basicguiinstall
+# hidpiconfig
+
 
 function updateupgrade {
 echo "Updating apt package index from repositories: $ sudo apt update"
@@ -291,21 +322,6 @@ then
 fi
 }
 
-function chromeinstall {
-read -r -p "Would you like to download and install Google Chrome? (Note: Experimental) [y/N] " response
-if [[ "$response" =~ ^[yY]$ ]]
-then
-    createtmp
-    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
-    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main " > /etc/apt/sources.list.d/googlechrome.list' 
-    sudo apt update
-    sudo apt upgrade -y
-    sudo apt install google-chrome-stable -y
-    sudo rm /etc/apt/sources.list.d/googlechrome.list   #chrome takes over it's own apt settings
-    cleantmp
-fi
-}
-
 function hidpiconfig {
 read -r -p "Would you like to configure Qt and GDK for HiDPI displays? (Note: Experimental) [y/N] " response
 if [[ "$response" =~ ^[yY]$ ]]
@@ -341,7 +357,7 @@ if [[ "$response" =~ ^[yY]$ ]]
 then
     createtmp
     curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-    sudo apt install -t testing nodejs build-essential -y 
+    sudo apt install -t testing nodejs npm build-essential -y 
     cleantmp
 
         read -r -p "Would you like to download and install the optional Yarn package manager? [y/N] " response
@@ -362,7 +378,7 @@ if [[ "$response" =~ ^[yY]$ ]]
 then
     createtmp
     echo "Downloading Go using wget."
-    wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+    wget https://dl.google.com/go/go1.11.1.linux-amd64.tar.gz
     echo "Unpacking tar binaries to /usr/local/go."
     sudo tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz
     echo "Creating ~/go/ for your projects."
@@ -448,16 +464,15 @@ then
 fi
 }
 
-# main
+# the action
 
 welcomeprompt
-updatescriptprompt       
 continueprompt
+securitypatches
+updatescriptprompt
 languageprompt
 updateupgrade
-securitypatches
-installpackages
-addrepos
+mainmenu
 byemessage
 
 exit 0
