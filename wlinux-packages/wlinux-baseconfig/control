@@ -1,0 +1,7 @@
+Package: wlinux-baseconfig
+Section: utils
+Maintainer: Whitewater Foundry, Ltd. Co. <support@whitewaterfoundry.com>
+Version: 1.2
+Priority: Standard
+Architecture: all
+Description: WLinux base configuration.
