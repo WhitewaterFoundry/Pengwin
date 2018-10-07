@@ -23,36 +23,13 @@ sudo chroot $DIST /bin/bash -c "echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && l
 sudo chroot $DIST /bin/bash -c "update-locale LANGUAGE=en_US.UTF-8 LC_ALL=C"
 
 # download and copy latest wslu repo key
-curl https://api.patrickwu.ml/public.key | gpg --dearmor > $BUILDIR/wslu.gpg
-sudo cp $BUILDIR/wslu.gpg $TMPDIR/$DIST/etc/apt/trusted.gpg.d/wslu.gpg
-rm $BUILDIR/wslu.gpg
+curl https://repo.whitewaterfoundry.com/public.key | gpg --dearmor > $BUILDIR/wlinux.gpg
+sudo cp $BUILDIR/wlinux.gpg $TMPDIR/$DIST/etc/apt/trusted.gpg.d/wlinux.gpg
+rm $BUILDIR/wlinux.gpg
 
-# copy custom files to image
-sudo cp $BUILDIR/linux_files/profile $TMPDIR/$DIST/etc/profile
-sudo cp $BUILDIR/linux_files/environment $TMPDIR/$DIST/etc/environment
-sudo cp $BUILDIR/linux_files/os-release $TMPDIR/$DIST/etc/os-release
-sudo cp $BUILDIR/linux_files/sources.list $TMPDIR/$DIST/etc/apt/sources.list
-sudo cp $BUILDIR/linux_files/preferences $TMPDIR/$DIST/etc/apt/preferences
-sudo cp $BUILDIR/linux_files/wsl.conf $TMPDIR/$DIST/etc/wsl.conf
-sudo cp $BUILDIR/linux_files/default $TMPDIR/$DIST/etc/dpkg/origins/default
-sudo mkdir $TMPDIR/$DIST/etc/fonts
-sudo cp $BUILDIR/linux_files/local.conf $TMPDIR/$DIST/etc/fonts/local.conf
-sudo cp $BUILDIR/linux_files/helpme $TMPDIR/$DIST/etc/helpme
-sudo cp $BUILDIR/linux_files/setup $TMPDIR/$DIST/etc/setup
-
-#make helpme and setup executable
-sudo chroot $DIST chmod 755 /etc/helpme
-sudo chroot $DIST chmod 755 /etc/setup
-
-# set up the latest wslu app
-sudo chroot $DIST chmod 644 /etc/apt/trusted.gpg.d/wslu.gpg
+sudo chroot $DIST chmod 644 /etc/apt/trusted.gpg.d/wlinux.gpg
 sudo chroot $DIST apt update
-sudo chroot $DIST apt -y install wslu
-
-# the sudoers lecture is one of the first things users see when they run /etc/setup, it is a bit jarring, and a bit out of place on WSL, so let's make it a bit more friendly
-
-sudo chroot $DIST /bin/bash -c "echo 'Defaults lecture_file = /etc/sudoers.lecture' >> /etc/sudoers"
-sudo chroot $DIST /bin/bash -c "echo 'Enter your UNIX password below. This is not your Windows password.' >> /etc/sudoers.lecture"
+sudo chroot $DIST apt -y install wslu wlinux-setup wlinux-baseconfig
 
 # remove unnecessary apt packages
 sudo chroot $DIST apt remove systemd dmidecode -y --allow-remove-essential
