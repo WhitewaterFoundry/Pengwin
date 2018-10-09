@@ -3,7 +3,7 @@
 RESPONSE=""
 CURDUR=""
 TMPDIR=""
-VERSION="1.1.21"
+VERSION="1.2"
 
 # functions
 
