@@ -185,6 +185,7 @@ EDITORCHOICE=$(
 whiptail --title "Editor Menu" --checklist --separate-output "Custom editors (nano and vi included):" 12 55 5 \
     "NEOVIM" "Neovim" off \
     "EMACS" "Emacs" off \
+    "SAM" "sam (requires X)"
     "CODE" "Visual Studio Code (requires X)" off 3>&1 1>&2 2>&3
 )
 
@@ -198,6 +199,10 @@ fi
 
 if [[ $EDITORCHOICE == *"CODE"* ]] ; then
   codeinstall
+fi
+
+if [[ $EDITORCHOICE == *"SAM"* ]] ; then
+  saminstall
 fi
 
 }
@@ -322,6 +327,22 @@ if (whiptail --title "CODE" --yesno "Would you like to download and install Micr
 else
     echo "Skipping CODE"
 fi  
+}
+
+function saminstall {
+if (whiptail --title "SAM" --yesno "Would you like to download and install sam?" 8 70) then
+    echo "Installing sam"
+    createtmp
+    sudo apt install -t testing build-essential libxi-dev libxft-dev -y
+    git clone https://github.com/deadpixi/sam
+    cd sam
+    make clean
+    make
+    sudo make install
+    cleantmp
+else
+    echo "Skipping SAM"
+
 }
 
 ### gui apps and related
