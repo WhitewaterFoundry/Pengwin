@@ -342,7 +342,7 @@ if (whiptail --title "SAM" --yesno "Would you like to download and install sam?"
     cleantmp
 else
     echo "Skipping SAM"
-
+fi
 }
 
 ### gui apps and related
