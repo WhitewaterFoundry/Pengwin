@@ -99,6 +99,7 @@ whiptail --title "WLinux GUI Setup" --checklist --separate-output "Hand-curated 
     "DOTNET" "Install latest .NET Core SDK from Microsoft and Nuget" off \
     "JAVA" "Install Java SDK and JRE" off \
     "POWERSHELL" "Install PowerShell for Linux and Azure CLI tools" off \
+    "SYSINTERNALS" "Install Linux port of ProcDump" \
     "GUI" "Install the basic libraries needed for most GUI apps" off \
     "LANGUAGE" "Change default language and keyboard setting in WSL" off 3>&1 1>&2 2>&3
 )
@@ -159,6 +160,11 @@ if [[ $CHOICE == *"POWERSHELL"* ]] ; then
   echo "POWERSHELL"
   powershellinstall
   azurecliinstall
+fi
+
+if [[ $CHOICE == *"SYSINTERNALS"* ]] ; then
+  echo "SYSINTERNALS"
+  sysinternalsinstall
 fi
 
 if [[ $CHOICE == *"GUI"* ]] ; then
@@ -621,7 +627,7 @@ else
     echo "Skipping OpenJDK"
 fi
 
-if (whiptail --title "Java IDE" --yesno "Would you like to install the Eclipse IDE?" 8 75) then
+if (whiptail --title "Java IDE" --yesno "Would you like to install the Eclipse IDE?" 8 60) then
     echo "Installing Eclipse"
     echo "$ apt install eclipse -y"
     sudo apt install eclipse -y
@@ -645,6 +651,24 @@ if (whiptail --title "POWERSHELL" --yesno "Would you like to download and instal
     cleantmp
 else
     echo "Skipping POWERSHELL"
+fi
+}
+
+function sysinternalsinstall {
+
+if (whiptail --title "SYSINTERNALS" --yesno "Would you like to download and install Linux ports of Microsoft Sysinternals tools?" 8 90) then
+    echo "Installing SYSINTERNALS"
+    createtmp
+    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+    sudo cp microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+    rm microsoft.gpg
+    sudo sh -c 'echo "deb https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod stretch main" > /etc/apt/sources.list.d/microsoft.list' 
+    sudo apt update
+    sudo apt upgrade -y
+    sudo apt install procdump -y
+    cleantmp
+else
+    echo "Skipping SYSINTERNALS"
 fi
 }
 
