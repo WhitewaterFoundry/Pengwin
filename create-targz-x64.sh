@@ -13,7 +13,7 @@ cd $TMPDIR
 sudo bash -c "echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.list.d/testing.list"
 sudo bash -c "echo 'deb-src http://deb.debian.org/debian stable main' >> /etc/apt/sources.list.d/sources.list"
 sudo bash -c "echo 'deb-src http://deb.debian.org/debian stable-updates main' >> /etc/apt/sources.list.d/sources.list"
-sudo bash -c "echo 'deb-src deb-src http://security.debian.org/debian-security/ stable/updates main' >> /etc/apt/sources.list.d/sources.list"
+sudo bash -c "echo 'deb-src http://security.debian.org/debian-security/ stable/updates main' >> /etc/apt/sources.list.d/sources.list"
 
 # install script dependencies
 sudo apt update
