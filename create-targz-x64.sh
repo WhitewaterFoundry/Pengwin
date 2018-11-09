@@ -23,27 +23,24 @@ sudo apt -y -t testing install gcc-8
 # bootstrap image
 sudo cdebootstrap -a $ARCH --include=sudo,locales,git,ssh,apt-transport-https,wget,ca-certificates,man,less,curl $DIST $DIST http://deb.debian.org/debian
 
-# clean apt cache
-sudo chroot $DIST apt-get clean
-
 # create bash environment
-
 CC="gcc-8"
 DEB_CFLAGS_SET="-g -O3 -march=skylake"
 sudo rm /usr/bin/gcc
 sudo ln -s /usr/bin/gcc-8 /usr/bin/gcc
 
 # install build dependencies and get source
-
 sudo apt build-dep bash -t stable -y
 sudo apt source bash -t stable
 
+# build bash
 cd bash-4.4
 sudo dpkg-buildpackage -rsudo
 cd ..
 
-sudo cp bash_4.4-5_amd64.deb $TMPDIR/$DIST/etc/
-sudo chroot $DIST sudo dpkg -i bash_4.4-5_amd64.deb
+# 
+sudo cp bash_4.4-5_amd64.deb $TMPDIR/$DIST/
+sudo chroot $DIST sudo dpkg -i /bash_4.4-5_amd64.deb
 
 # clean apt cache
 sudo chroot $DIST apt-get clean
