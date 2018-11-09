@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# install script dependencies
-sudo apt update
-sudo apt -y install curl gnupg cdebootstrap
-
 # create our environment
 set -e
 BUILDIR=$(pwd)
@@ -12,8 +8,42 @@ ARCH="amd64"
 DIST="stable"
 cd $TMPDIR
 
+# enable debian testing and source repos
+
+sudo bash -c "echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.list.d/testing.list"
+sudo bash -c "echo 'deb-src http://deb.debian.org/debian stable main' >> /etc/apt/sources.list.d/sources.list"
+sudo bash -c "echo 'deb-src http://deb.debian.org/debian stable-updates main' >> /etc/apt/sources.list.d/sources.list"
+sudo bash -c "echo 'deb-src deb-src http://security.debian.org/debian-security/ stable/updates main' >> /etc/apt/sources.list.d/sources.list"
+
+# install script dependencies
+sudo apt update
+sudo apt -y -t stable install curl gnupg cdebootstrap build-essential
+sudo apt -y -t testing install gcc-8
+
 # bootstrap image
 sudo cdebootstrap -a $ARCH --include=sudo,locales,git,ssh,apt-transport-https,wget,ca-certificates,man,less,curl $DIST $DIST http://deb.debian.org/debian
+
+# clean apt cache
+sudo chroot $DIST apt-get clean
+
+# create bash environment
+
+CC="gcc-8"
+DEB_CFLAGS_SET="-g -O3 -march=skylake"
+sudo rm /usr/bin/gcc
+sudo ln -s /usr/bin/gcc-8 /usr/bin/gcc
+
+# install build dependencies and get source
+
+sudo apt build-dep bash -t stable -y
+sudo apt source bash -t stable
+
+cd bash-4.4
+sudo dpkg-buildpackage -rsudo
+cd ..
+
+sudo cp bash_4.4-5_amd64.deb $TMPDIR/$DIST/etc/
+sudo chroot $DIST sudo dpkg -i bash_4.4-5_amd64.deb
 
 # clean apt cache
 sudo chroot $DIST apt-get clean
@@ -68,3 +98,11 @@ sudo tar --ignore-failed-read -czvf $TMPDIR/install.tar.gz *
 cd $TMPDIR
 cp install.tar.gz $BUILDIR/x64/
 cd $BUILDIR
+
+# clean up
+
+sudo apt remove gcc-8 -y
+sudo apt autoremove -y
+sudo rm /etc/apt/sources.list.d/testing.list
+sudo rm /usr/bin/gcc
+sudo ln -s /usr/bin/gcc-6 /usr/bin/gcc
