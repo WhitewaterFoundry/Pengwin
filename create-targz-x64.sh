@@ -5,20 +5,18 @@ set -e
 BUILDIR=$(pwd)
 TMPDIR=$(mktemp -d)
 ARCH="amd64"
-DIST="stable"
+DIST="testing"
 cd $TMPDIR
 
-# enable debian testing and source repos
+# enable debian source repos
 
-sudo bash -c "echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.list.d/testing.list"
-sudo bash -c "echo 'deb-src http://deb.debian.org/debian stable main' >> /etc/apt/sources.list.d/sources.list"
-sudo bash -c "echo 'deb-src http://deb.debian.org/debian stable-updates main' >> /etc/apt/sources.list.d/sources.list"
-sudo bash -c "echo 'deb-src http://security.debian.org/debian-security/ stable/updates main' >> /etc/apt/sources.list.d/sources.list"
+sudo bash -c "echo 'deb-src http://deb.debian.org/debian testing main' >> /etc/apt/sources.list.d/sources.list"
+sudo bash -c "echo 'deb-src http://deb.debian.org/debian testing-updates main' >> /etc/apt/sources.list.d/sources.list"
+sudo bash -c "echo 'deb-src http://security.debian.org/debian-security/ testing/updates main' >> /etc/apt/sources.list.d/sources.list"
 
 # install script dependencies
 sudo apt update
-sudo apt -y -t stable install curl gnupg cdebootstrap build-essential
-sudo apt -y -t testing install gcc-8
+sudo apt -y -install curl gnupg cdebootstrap build-essential gcc-8
 
 # bootstrap image
 sudo cdebootstrap -a $ARCH --include=sudo,locales,git,ssh,apt-transport-https,wget,ca-certificates,man,less,curl $DIST $DIST http://deb.debian.org/debian
@@ -30,8 +28,8 @@ sudo rm /usr/bin/gcc
 sudo ln -s /usr/bin/gcc-8 /usr/bin/gcc
 
 # install build dependencies and get source
-sudo apt build-dep bash -t stable -y
-sudo apt source bash -t stable
+sudo apt build-dep bash -y
+sudo apt source bash
 
 # build bash
 cd bash-4.4
@@ -99,8 +97,5 @@ cd $BUILDIR
 
 # clean up
 
-sudo apt remove gcc-8 -y
-sudo apt autoremove -y
-sudo rm /etc/apt/sources.list.d/testing.list
 sudo rm /usr/bin/gcc
 sudo ln -s /usr/bin/gcc-6 /usr/bin/gcc
