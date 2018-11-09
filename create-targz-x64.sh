@@ -38,9 +38,10 @@ cd bash-4.4
 sudo dpkg-buildpackage -rsudo
 cd ..
 
-# 
-sudo cp bash_4.4-5_amd64.deb $TMPDIR/$DIST/
+# copy into place and install
+sudo cp bash_4.4-5_amd64.deb $TMPDIR/$DIST/ash_4.4-5_amd64.deb
 sudo chroot $DIST sudo dpkg -i /bash_4.4-5_amd64.deb
+sudo chroot $DIST sudo rm /bash_4.4-5_amd64.deb
 
 # clean apt cache
 sudo chroot $DIST apt-get clean
