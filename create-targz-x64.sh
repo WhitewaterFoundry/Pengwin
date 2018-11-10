@@ -16,10 +16,18 @@ sudo bash -c "echo 'deb-src http://security.debian.org/debian-security/ testing/
 
 # install script dependencies
 sudo apt update
-sudo apt -y -install curl gnupg cdebootstrap build-essential gcc-8
+sudo apt -y -t testing install curl gnupg cdebootstrap build-essential gcc-8
+
+# download and install patched libdebian-installer, see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=90469
+wget https://github.com/WhitewaterFoundry/WLinux/raw/Testing/libdebian-installer4_0.116_amd64.deb
+sudo dpkg -i libdebian-installer4_0.116_amd64.deb
 
 # bootstrap image
 sudo cdebootstrap -a $ARCH --include=sudo,locales,git,ssh,apt-transport-https,wget,ca-certificates,man,less,curl $DIST $DIST http://deb.debian.org/debian
+
+# remove patched libdebian-installer4
+sudo apt remove libdebian-installer4 -y
+sudo apt --fix-broken install -y
 
 # create bash environment
 CC="gcc-8"
