@@ -19,7 +19,7 @@ sudo apt update
 sudo apt -y -t testing install curl gnupg cdebootstrap build-essential gcc-8
 
 # download and install patched libdebian-installer, see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=90469
-wget https://github.com/WhitewaterFoundry/WLinux/raw/Testing/libdebian-installer4_0.116_amd64.deb
+wget https://github.com/WhitewaterFoundry/WLinux/raw/libdebian-installer4_0.116_amd64.deb
 sudo dpkg -i libdebian-installer4_0.116_amd64.deb
 
 # bootstrap image
