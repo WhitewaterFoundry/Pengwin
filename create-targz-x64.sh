@@ -33,14 +33,13 @@ sudo apt build-dep bash -y
 sudo apt source bash
 
 # build bash
-cd bash-4.4
+cd bash-4.4.18
 sudo dpkg-buildpackage -rsudo
 cd ..
 
 # copy into place and install
-sudo cp bash_4.4-5_amd64.deb $TMPDIR/$DIST/ash_4.4-5_amd64.deb
-sudo chroot $DIST sudo dpkg -i /bash_4.4-5_amd64.deb
-sudo chroot $DIST sudo rm /bash_4.4-5_amd64.deb
+sudo cp bash_4.4.18-3.1_amd64.deb $TMPDIR/$DIST/bash_4.4.18-3.1_amd64.deb
+sudo chroot $DIST dpkg -i /bash_4.4-5_amd64.deb
 
 # clean apt cache
 sudo chroot $DIST apt-get clean
