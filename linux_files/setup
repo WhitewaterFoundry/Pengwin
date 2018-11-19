@@ -722,6 +722,9 @@ fi
 function dockerinstall_build_relay {
 
     #Build the relay
+
+    # can we replace these with wslupath -W and wslupath -H?
+
     wHomeWinPath=$(cmd.exe /c 'echo %HOMEDRIVE%%HOMEPATH%' 2>&1 | tr -d '\r') #wslupath doesn't support root movement yet
     wHome=$(wslpath -u ${wHomeWinPath})
 
@@ -789,6 +792,10 @@ EOF
 
     sudo addgroup docker
     sudo adduser ${USER} docker
+
+    # can we delete the 'sources' folder left in wslupath -H?
+
+    # can we hide the 'go' folder left in wslupath -H? (if necessary calling attrib +h) 
 
     echo "Running the relay for the first time."
     sudo docker-relay
