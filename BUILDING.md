@@ -8,9 +8,13 @@ Read more about the components from the upstream template by Microsoft [here](ht
 
 ## Building Requirements
 1. [Visual Studio Community 2017](https://visualstudio.microsoft.com/vs/community/). (Free)
-	- The "Universal Windows Platform development" Workload is required, along with the following Individual components:
+	- The "Universal Windows Platform development" Workload is recommended, along with the following Individual components:
 		- `C++ Universal Windows Platform tools`
-		- `Windows 10 SDK (10.0.15063.0) for UWP: C#, VB, JS`
+		- `Windows 10 SDK (10.0.16299.0) for UWP: C#, VB, JS`
+	- The bare minimum build dependencies are:
+		- Visual Studio Community Core
+		- VC++ 2017 version 15.9 v14.16 latest v141 tools
+		- Visual C++ 2017 Redistributable Update
 1. Developer Mode
 	- Windows 10 must be in Developer mode, which can be enabled in Start -> Settings -> Update & Security -> For developers.
 1. Enable WSL
