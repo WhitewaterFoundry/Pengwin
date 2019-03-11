@@ -116,6 +116,7 @@ whiptail --title "wlinux-setup" --checklist --separate-output "\nHand-curated ad
     "SHELLS" "Install and configure zsh, csh, and fish" off \
     "EDITORS" "Install text editors neovim, emacs, or Visual Studio Code (requires X)" off \
     "PYTHONPI" "Install Python 3.7 and download and install latest PyPi" off \
+    "PYENV" "Install Pyenv for managing Python virtual environments" off \
     "NODEJS" "Install Node.js and npm" off \
     "GO" "Install the latest Go from Google" off \
     "RUBY" "Install Ruby using rbenv and optionally install Rails" off \
@@ -154,6 +155,11 @@ fi
 if [[ $CHOICE == *"PYTHON"* ]] ; then
   echo "PYTHON"
   pythoninstall
+fi
+
+if [[ $CHOICE == *"PYENV"* ]] ; then
+  echo "PYENV"
+  pyenvinstall
 fi
 
 if [[ $CHOICE == *"NODE"* ]] ; then
@@ -641,6 +647,25 @@ if (whiptail --title "PYTHON" --yesno "Would you like to download and install Py
     cleantmp
 else
     echo "Skipping PYTHON"
+fi
+}
+
+function pyenvinstall {
+if (whiptail --title "PYENV" --yesno "Would you like to download and install Pyenv to manage Python environments?" 8 90) then
+    echo "Installing PYENV"
+    if [ -d "$HOME/.pyenv" ]; then
+        echo "Pyenv already exists in ~/.pyenv - run pyenv update to refresh"
+    else
+        createtmp
+        updateupgrade
+        sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+            libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils \
+            tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+        curl https://pyenv.run | bash
+        cleantmp
+    fi
+else
+    echo "Skipping PYENV"
 fi
 }
 
