@@ -51,6 +51,7 @@ Purchases of WLinux in the Microsoft Store pay for a team of open source indie d
 ## Additional WLinux Documentation
 
 - [LICENSE.md](LICENSE.md)
+- [INSTALLATION.md](INSTALLATION.md)
 - [BUILDING.md](BUILDING.md)
 - [PRIVACY.md](PRIVACY.md)
 - [ROADMAP.md](ROADMAP.md)
