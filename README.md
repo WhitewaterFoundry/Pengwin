@@ -31,7 +31,7 @@ If you are an enterprise customer, you may like to check out our enterprise-focu
     - Enable/disable Windows Explorer shell integration.
     - Configure experimental GUI settings, including a [Windows 10 theme](https://github.com/B00merang-Project/Windows-10) for your Linux applications, HiDPI support and international input methods.
     - Create a secure bridge to Docker running on Windows.
-- Support for [many Linux graphical applications](https://github.com/ethanhs/WSL-Programs) with no need to configure display or libGL in Wlinux. (Requires a Windows-based X client, such as [X410](http://afflnk.microsoft.com/c/1291904/459838/7593?prodsku=9NLP712ZMN9Q&u=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fstore%2Fp%2Fx410%2F9NLP712ZMN9Q).)
+- Support for [many Linux graphical applications](https://github.com/ethanhs/WSL-Programs) with no need to configure display or libGL in Wlinux. (Requires a Windows-based X server, such as [X410](http://afflnk.microsoft.com/c/1291904/459838/7593?prodsku=9NLP712ZMN9Q&u=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fstore%2Fp%2Fx410%2F9NLP712ZMN9Q).)
 - Install over 27,790 open source packages via the apt package management system from the [expansive Debian repositories](https://packages.debian.org/testing/) and any third-party Debian-compatible repositories from outside projects.
 - WLinux provides faster patching for WSL-specific bugs than any upstream Linux distro available on WSL.
 - A handful of unnecessary packages, such as systemd, have been removed from the base image to reduce image size and increase stability.
