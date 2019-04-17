@@ -36,8 +36,9 @@ If you are an enterprise customer, you may like to check out our enterprise-focu
 
 ## Requirements
 
-Windows 10 1803 (Build 17134)
-Windows Subsystem for Linux Enabled
+- Windows 10 1803 (Build 17134)
+- Minimum 250 MB Disk Space
+- Windows Subsystem for Linux Enabled
 
 To enable Windows Subsystem for Linux open PowerShell as Administrator and run:
 
