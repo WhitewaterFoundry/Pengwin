@@ -10,7 +10,7 @@ The first Linux® distribution optimized for WSL. Based on Debian®. From open-s
 - [简体中文](README.zh-hans.md)
 - [繁體中文](README.zh-hant.md)
 
-If you are an enterprise customer, you may like to check out our enterprise-focused distribution, [Pengwin Enterprise](https://github.com/WhitewaterFoundry/WLE).
+If you are an enterprise customer, you may like to check out our enterprise-focused distribution, [Pengwin Enterprise](https://github.com/WhitewaterFoundry/Pengwin-Enterprise).
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?label=Follow&style=social)](https://twitter.com/PengwinLinux)
 
@@ -33,6 +33,17 @@ If you are an enterprise customer, you may like to check out our enterprise-focu
 - Pengwin provides faster patching for WSL-specific bugs than any upstream Linux distro available on WSL.
 - A handful of unnecessary packages, such as systemd, have been removed from the base image to reduce image size and increase stability.
 - New features are [actively developed](https://github.com/WhitewaterFoundry/Pengwin/pulls) based on [community input](https://github.com/WhitewaterFoundry/Pengwin/issues). Learn how you can [earn paid grants](CONTRIBUTING.md) improving Pengwin. 
+
+## Requirements
+
+Windows 10 1803 (Build 17134)
+Windows Subsystem for Linux Enabled
+
+To enable Windows Subsystem for Linux open PowerShell as Administrator and run:
+
+```
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
 
 ## Obtaining Support
 

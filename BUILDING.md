@@ -1,6 +1,6 @@
-## WLinux Components
+## Pengwin Components
 
-- /create-targz-x64.sh - Builds the WLinux custom Linux distro in a WLinux or Debian environment.
+- /create-targz-x64.sh - Builds the Pengwin custom Linux distro in a Pengwin or Debian environment.
 - Launcher project - Builds the actual executable that is run when a user launches the app. 
 - DistroLauncher-Appx project - Builds the distro package with all the assets and other dependencies.
 
@@ -26,21 +26,21 @@ Read more about the components from the upstream template by Microsoft [here](ht
     1. Select "Choose Certificate"
     1. Click the Configure Certificate drop down and select Create test certificate.
 1. Build install.tar.gz
-    1. You will need access to an existing WLinux or Debian-based distro for this step. If you do not already have WLinux installed, I recommend the following steps:
+    1. You will need access to an existing Pengwin or Debian-based distro for this step. If you do not already have Pengwin installed, I recommend the following steps:
         - Enable WSL on Windows if you have not already.
         - Install the [Debian for WSL app](https://www.microsoft.com/en-us/p/debian-gnu-linux/9msvkqc78pk6?activetab=pivot%3Aoverviewtab) from the Microsoft Store.
         - Run, let it finish installing, configure your username and password.
         - Then you will need to update apt, upgrade existing packages, and then install git:
             - ` $ sudo apt-get update ; sudo apt-get upgrade -y ; sudo apt-get install git -y`
-    1. With your WLinux (or configured/updated Debian) distro in place, execute the following:
-        - ` $ git clone https://github.com/WhitewaterFoundry/WLinux.git `
-        - ` $ cd WLinux`
+    1. With your Pengwin (or configured/updated Debian) distro in place, execute the following:
+        - ` $ git clone https://github.com/WhitewaterFoundry/Pengwin.git `
+        - ` $ cd Pengwin`
         - ` $ chmod u+x create-targz-x64.sh`
         - ` $ ./create-targz-x64.sh`
     1. You should find an install.tar.gz in the /x64/ directory of your build directory. (When we get ARM64 support working there will also be an install.tar.gz in a /ARM64/ directory.)
 1. Build the solution to make sure you have everything you need. Fix any build dependencies you are missing.
 1. Build the Windows UWP package:
-    1. Open a `Developer Command Prompt for VS 2017` as an administrator and change directory to your build directory.
+    1. Open a `Developer Command Prompt for VS 2019` as an administrator and change directory to your build directory.
     1. Run `build.bat`
 
 1. If everything has gone correctly, you should find your app package in a subfolder under the `AppPackages\DistroLauncher-Appx` folder.
@@ -55,21 +55,21 @@ Read more about the components from the upstream template by Microsoft [here](ht
 ## Command Line Usage
 The launcher app provides the following functionality:
 
-* `wlinux.exe`
+* `pengwin.exe`
   - Launches the user's default shell in the user's home directory.
 
-* `wlinux.exe install [--root]`
+* `pengwin.exe install [--root]`
   - Install the distribution and do not launch the shell when complete.
     - `--root`: Do not create a user account and leave the default user set to root.
 
-* `wlinux.exe run <command line>`
+* `pengwin.exe run <command line>`
   - Run the provided command line in the current working directory. If no command line is provided, the default shell is launched.
   - Everything after `run` is passed to WslLaunchInteractive.
 
-* `wlinux.exe config [setting [value]]`
+* `pengwin.exe config [setting [value]]`
   - Configure settings for this distribution.
   - Settings:
     - `--default-user <username>`: Sets the default user to <username>. This must be an existing user.
 
-* `wlinux.exe help`
+* `pengwin.exe help`
   - Print usage information.
