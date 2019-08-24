@@ -45,7 +45,7 @@ if %MSBUILD%==() (
 ) 
 :FOUND_MSBUILD
 
-%MSBUILD% %~dp0\DistroLauncher.sln /t:%_MSBUILD_TARGET% /m /nr:true ^
+%MSBUILD% %~dp0\DistroLauncher.sln /t:Clean,Build /m /nr:true ^
     /p:Configuration=Release ^
     /p:Platform="x64" ^
     /p:UseSubFolderForOutputDirDuringMultiPlatformBuild=false
