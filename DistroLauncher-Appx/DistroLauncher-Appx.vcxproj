@@ -80,9 +80,9 @@
     <AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
-    <AppxPackageDir>C:\Users\Hayden\Downloads\</AppxPackageDir>
+    <AppxPackageDir>..\</AppxPackageDir>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>0104667402DD214EB2C94D57D806961D4D4DD3CE</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>dab599a42f587106836c8adb41e74a5898c25e22</PackageCertificateThumbprint>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
