@@ -1,13 +1,17 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+21.5.1:
+* Automatically creates an entry with logo in Windows Terminal
+* In App Settings, it is possible to set Pengwin launch at startup
+
 21.4.1:
-* Updated CMake to version 3.19.1 
+* Updated CMake to version 3.19.1
 * Updated pyenv python to version 3.9.4
 * Fixed a hang with fish and dbus
 * Improved Poetry installer
 * Added Prezto support ZSH installer
 * Do not override DISPLAY variable if it is already defined
- 
+
 21.3.1:
 * Include the latest packages in the image.
 

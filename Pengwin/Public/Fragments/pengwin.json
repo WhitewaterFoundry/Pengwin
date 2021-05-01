@@ -1,0 +1,10 @@
+{
+  "profiles": [
+    {
+      "updates": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
+      "commandline": "pengwin.exe",
+      "icon": "%LOCALAPPDATA%\\Packages\\WhitewaterFoundryLtd.Co.16571368D6CFF_kd1vv0z0vy70w\\LocalState\\pengwin.png",
+      "name": "Pengwin"
+    }
+  ]
+}

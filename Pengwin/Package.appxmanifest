@@ -3,15 +3,15 @@
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+        xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap rescap uap3 desktop">
+        IgnorableNamespaces="uap rescap">
 
   <Identity
     Name="WhitewaterFoundryLtd.Co.16571368D6CFF"
     Publisher="CN=9879127B-9E92-4DE5-9C32-0B1F09F95DCF"
-    Version="21.4.1.0" />
+    Version="21.5.0.0" />
 
   <Properties>
     <DisplayName>Pengwin</DisplayName>
@@ -20,7 +20,9 @@
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.16299.0" MaxVersionTested="10.0.18362.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <PackageDependency Name="Microsoft.VCLibs.140.00.UWPDesktop" MinVersion="14.0.24217.0"
+                       Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"/>
   </Dependencies>
 
   <Resources>
@@ -49,11 +51,28 @@
         <uap:SplashScreen Image="Images\SplashScreen.png" BackgroundColor="transparent" />
       </uap:VisualElements>
 	    <Extensions>
-		    <uap3:Extension Category="windows.appExecutionAlias" Executable="DistroLauncher\pengwin.exe" EntryPoint="Windows.FullTrustApplication">
+		    <uap3:Extension Category="windows.appExecutionAlias" Executable="DistroLauncher\pengwin.exe" 
+		    				EntryPoint="Windows.FullTrustApplication">
 			    <uap3:AppExecutionAlias>
 				    <desktop:ExecutionAlias Alias="pengwin.exe" />
 			    </uap3:AppExecutionAlias>
 		    </uap3:Extension>
+            <uap3:Extension Category="windows.appExtension">
+                <uap3:AppExtension Name="com.microsoft.windows.terminal.settings"
+                                   Id="pengwin"
+                                   PublicFolder="Public"
+                                   DisplayName="Pengwin">
+                </uap3:AppExtension>
+            </uap3:Extension>
+            <desktop:Extension
+                    Category="windows.startupTask"
+                    Executable="DistroLauncher\pengwin.exe"
+                    EntryPoint="Windows.FullTrustApplication">
+                <desktop:StartupTask
+                        TaskId="pengwin"
+                        Enabled="false"
+                        DisplayName="Pengwin"/>
+            </desktop:Extension>
 	    </Extensions>
 
     </Application>

@@ -296,3 +296,5 @@ DistroLauncher/messages.h
 *.dll
 *.exe
 *.tar.gz
+/ARM64/install.tar - Copy.gz
+/x64/install.tar - Copy.gz

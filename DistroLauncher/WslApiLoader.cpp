@@ -46,7 +46,7 @@ BOOL WslApiLoader::WslIsDistributionRegistered() const
 
 HRESULT WslApiLoader::WslRegisterDistribution() const
 {
-    auto hr = _registerDistribution(_distributionName.c_str(), L"install.tar.gz");
+    const auto hr = _registerDistribution(_distributionName.c_str(), L"install.tar.gz");
     if (FAILED(hr))
     {
         Helpers::PrintMessage(MSG_WSL_REGISTER_DISTRIBUTION_FAILED, hr);
@@ -57,7 +57,7 @@ HRESULT WslApiLoader::WslRegisterDistribution() const
 
 HRESULT WslApiLoader::WslConfigureDistribution(ULONG defaultUID, WSL_DISTRIBUTION_FLAGS wslDistributionFlags) const
 {
-    auto hr = _configureDistribution(_distributionName.c_str(), defaultUID, wslDistributionFlags);
+    const auto hr = _configureDistribution(_distributionName.c_str(), defaultUID, wslDistributionFlags);
     if (FAILED(hr))
     {
         Helpers::PrintMessage(MSG_WSL_CONFIGURE_DISTRIBUTION_FAILED, hr);
@@ -68,7 +68,7 @@ HRESULT WslApiLoader::WslConfigureDistribution(ULONG defaultUID, WSL_DISTRIBUTIO
 
 HRESULT WslApiLoader::WslLaunchInteractive(PCWSTR command, BOOL useCurrentWorkingDirectory, DWORD* exitCode) const
 {
-    auto hr = _launchInteractive(_distributionName.c_str(), command, useCurrentWorkingDirectory, exitCode);
+    const auto hr = _launchInteractive(_distributionName.c_str(), command, useCurrentWorkingDirectory, exitCode);
     if (FAILED(hr))
     {
         Helpers::PrintMessage(MSG_WSL_LAUNCH_INTERACTIVE_FAILED, command, hr);
@@ -80,7 +80,8 @@ HRESULT WslApiLoader::WslLaunchInteractive(PCWSTR command, BOOL useCurrentWorkin
 HRESULT WslApiLoader::WslLaunch(PCWSTR command, BOOL useCurrentWorkingDirectory, HANDLE stdIn, HANDLE stdOut,
                                 HANDLE stdErr, HANDLE* process) const
 {
-    auto hr = _launch(_distributionName.c_str(), command, useCurrentWorkingDirectory, stdIn, stdOut, stdErr, process);
+    const auto hr = _launch(_distributionName.c_str(), command, useCurrentWorkingDirectory, stdIn, stdOut, stdErr,
+                            process);
     if (FAILED(hr))
     {
         Helpers::PrintMessage(MSG_WSL_LAUNCH_FAILED, command, hr);

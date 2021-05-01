@@ -26,7 +26,7 @@ void RunProcess(LPWSTR cmdline)
         FALSE, // Set handle inheritance to FALSE
         0, // Opens file in a separate console
         nullptr, // Use parent's environment block
-        nullptr, // Use parent's starting directory 
+        nullptr, // Use parent's starting directory
         &si, // Pointer to STARTUPINFO structure
         &pi // Pointer to PROCESS_INFORMATION structure
     );
@@ -34,7 +34,7 @@ void RunProcess(LPWSTR cmdline)
     // Wait until child process exits.
     WaitForSingleObject(pi.hProcess, INFINITE);
 
-    // Close process and thread handles. 
+    // Close process and thread handles.
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
 }
