@@ -56,18 +56,30 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(appxPackageDir)'
-    Contents: '**\*bundle.appxupload'
+    Contents: '**\*bundle.misixupload'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(appxPackageDir)'
-    Contents: '**\*.appxbundle'
+    Contents: '**\*.misixbundle'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+- task: store-flight@0
+  continueOnError: true
+  timeoutInMinutes: 10
+  inputs:
+    serviceEndpoint: 'Whitewater Foundry'
+    appId: '9NV1GV1PXZ6P'
+    flightName: 'Azure Pipelines'
+    packagePath: '$(Build.ArtifactStagingDirectory)\**\*bundle.misixupload'
+    force: true
+    skipPolling: false
+    deletePackages: true
+    numberOfPackagesToKeep: '2'
 - task: store-publish@0
   continueOnError: true
   timeoutInMinutes: 10
@@ -77,20 +89,8 @@ steps:
     metadataUpdateMethod: 'TextMetadata'
     metadataPath: '$(System.DefaultWorkingDirectory)\appMetadata'
     updateImages: false
-    packagePath: '$(Build.ArtifactStagingDirectory)\**\*bundle.appxupload'
+    packagePath: '$(Build.ArtifactStagingDirectory)\**\*bundle.misixupload'
     force: true
     skipPolling: false
     deletePackages: true
-    numberOfPackagesToKeep: '0'
-- task: store-flight@0
-  continueOnError: true
-  timeoutInMinutes: 10
-  inputs:
-    serviceEndpoint: 'Whitewater Foundry'
-    appId: '9NV1GV1PXZ6P'
-    flightName: 'Azure Pipelines'
-    packagePath: '$(Build.ArtifactStagingDirectory)\**\*bundle.appxupload'
-    force: true
-    skipPolling: false
-    deletePackages: true
-    numberOfPackagesToKeep: '0'
+    numberOfPackagesToKeep: '2'

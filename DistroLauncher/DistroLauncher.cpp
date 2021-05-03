@@ -5,13 +5,24 @@
 
 #include "stdafx.h"
 
-// Commandline arguments: 
+// Commandline arguments:
 #define ARG_CONFIG              L"config"
 #define ARG_CONFIG_DEFAULT_USER L"--default-user"
 #define ARG_INSTALL             L"install"
 #define ARG_INSTALL_ROOT        L"--root"
 #define ARG_RUN                 L"run"
 #define ARG_RUN_C               L"-c"
+
+#include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.Storage.h>
+
+
+using namespace winrt;
+using namespace Windows::UI::ViewManagement;
+using namespace Windows::Foundation;
+using namespace Windows::System;
+using namespace Windows::Storage;
+
 
 // Helper class for calling WSL Functions:
 // https://msdn.microsoft.com/en-us/library/windows/desktop/mt826874(v=vs.85).aspx
@@ -70,7 +81,7 @@ HRESULT SetDefaultUser(std::wstring_view userName)
         return E_INVALIDARG;
     }
 
-    auto hr = g_wslApi.WslConfigureDistribution(uid, WSL_DISTRIBUTION_FLAGS_DEFAULT);
+    const auto hr = g_wslApi.WslConfigureDistribution(uid, WSL_DISTRIBUTION_FLAGS_DEFAULT);
     if (FAILED(hr))
     {
         return hr;
@@ -81,7 +92,52 @@ HRESULT SetDefaultUser(std::wstring_view userName)
     return hr;
 }
 
-int wmain(int argc, wchar_t const* argv[])
+int RetrieveCurrentTheme()
+{
+    DWORD value = 0;
+    DWORD size = sizeof(value);
+
+    // ReSharper disable once CppTooWideScope
+    const auto status = RegGetValueW(HKEY_CURRENT_USER,
+                                     L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+                                     L"AppsUseLightTheme",
+                                     RRF_RT_DWORD,
+                                     nullptr,
+                                     &value,
+                                     &size
+    );
+
+    if (status == ERROR_SUCCESS)
+    {
+        return value;
+    }
+
+    return -1;
+}
+
+fire_and_forget SyncIcons()
+{
+    const int value = RetrieveCurrentTheme();
+    const hstring nameSuffix = value == 0 ? L"" : L"";
+    const hstring iconName = L"pengwin";
+
+    const hstring extension = L".png";
+    const hstring composedPath = iconName + nameSuffix + extension;
+    const auto path = Uri(L"ms-appx:///Assets/" + composedPath);
+
+    try
+    {
+        const auto iconFile = StorageFile::GetFileFromApplicationUriAsync(path).get();
+
+        co_await iconFile.CopyAsync(ApplicationData::Current().LocalFolder(), iconName + extension,
+                                    NameCollisionOption::ReplaceExisting);
+    }
+    catch (...)
+    {
+    }
+}
+
+int wmain(int argc, const wchar_t* argv[])
 {
     // Update the title bar of the console window.
     SetConsoleTitleW(DistributionInfo::WindowTitle.c_str());
@@ -107,12 +163,12 @@ int wmain(int argc, wchar_t const* argv[])
     }
 
     // Install the distribution if it is not already.
-    auto installOnly = ((arguments.size() > 0) && (arguments[0] == ARG_INSTALL));
+    const auto installOnly = ((arguments.size() > 0) && (arguments[0] == ARG_INSTALL));
     auto hr = S_OK;
     if (!g_wslApi.WslIsDistributionRegistered())
     {
         // If the "--root" option is specified, do not create a user account.
-        auto useRoot = ((installOnly) && (arguments.size() > 1) && (arguments[1] == ARG_INSTALL_ROOT));
+        const auto useRoot = ((installOnly) && (arguments.size() > 1) && (arguments[1] == ARG_INSTALL_ROOT));
         hr = InstallDistribution(!useRoot);
         if (FAILED(hr))
         {
@@ -132,6 +188,8 @@ int wmain(int argc, wchar_t const* argv[])
     // Parse the command line arguments.
     if ((SUCCEEDED(hr)) && (!installOnly))
     {
+        SyncIcons();
+
         if (arguments.empty())
         {
             hr = g_wslApi.WslLaunchInteractive(L"", false, &exitCode);
