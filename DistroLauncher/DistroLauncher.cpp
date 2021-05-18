@@ -129,7 +129,7 @@ fire_and_forget SyncIcon(const hstring& iconName)
         const auto iconFile = StorageFile::GetFileFromApplicationUriAsync(path).get();
 
         co_await iconFile.CopyAsync(ApplicationData::Current().LocalFolder(), iconName + extension,
-                                    NameCollisionOption::ReplaceExisting);
+                                    NameCollisionOption::FailIfExists);
     }
     catch (...)
     {
