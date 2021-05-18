@@ -104,6 +104,8 @@
     <ProjectReference Include="..\DistroLauncher\DistroLauncher.vcxproj" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\background1.png" />
+    <Content Include="Assets\background2.png" />
     <Content Include="Assets\pengwin.png" />
     <Content Include="Images\BadgeLogo.scale-100.png" />
     <Content Include="Images\BadgeLogo.scale-125.png" />
