@@ -115,11 +115,10 @@ int RetrieveCurrentTheme()
     return -1;
 }
 
-fire_and_forget SyncIcons()
+fire_and_forget SyncIcon(const hstring& iconName)
 {
     const int value = RetrieveCurrentTheme();
-    const hstring nameSuffix = value == 0 ? L"" : L"";
-    const hstring iconName = L"pengwin";
+    const hstring nameSuffix = L""; //value == 0 ? L"" : L"";
 
     const hstring extension = L".png";
     const hstring composedPath = iconName + nameSuffix + extension;
@@ -188,7 +187,9 @@ int wmain(int argc, const wchar_t* argv[])
     // Parse the command line arguments.
     if ((SUCCEEDED(hr)) && (!installOnly))
     {
-        SyncIcons();
+        SyncIcon(L"pengwin");
+        SyncIcon(L"background1");
+        SyncIcon(L"background2");
 
         if (arguments.empty())
         {
