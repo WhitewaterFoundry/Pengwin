@@ -56,12 +56,12 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(appxPackageDir)'
-    Contents: '**\*bundle.misixupload'
+    Contents: '**\*bundle.msixupload'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(appxPackageDir)'
-    Contents: '**\*.misixbundle'
+    Contents: '**\*.msixbundle'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
@@ -75,7 +75,7 @@ steps:
     serviceEndpoint: 'Whitewater Foundry'
     appId: '9NV1GV1PXZ6P'
     flightName: 'Azure Pipelines'
-    packagePath: '$(Build.ArtifactStagingDirectory)\**\*bundle.misixupload'
+    packagePath: '$(Build.ArtifactStagingDirectory)\**\*bundle.msixupload'
     force: true
     skipPolling: false
     deletePackages: true
@@ -89,7 +89,7 @@ steps:
     metadataUpdateMethod: 'TextMetadata'
     metadataPath: '$(System.DefaultWorkingDirectory)\appMetadata'
     updateImages: false
-    packagePath: '$(Build.ArtifactStagingDirectory)\**\*bundle.misixupload'
+    packagePath: '$(Build.ArtifactStagingDirectory)\**\*bundle.msixupload'
     force: true
     skipPolling: false
     deletePackages: true
