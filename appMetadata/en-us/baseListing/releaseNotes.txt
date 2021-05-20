@@ -1,6 +1,6 @@
 Existing users can update immediately by running $ pengwin-setup update
 
-21.5.2:
+21.5.3:
 * Automatically creates an entry with logo in Windows Terminal
 * Add default background and colors to Windows Terminal (you can change them in Settings)
 * In App Settings, it is possible to set Pengwin launch at startup
@@ -24,11 +24,3 @@ Existing users can update immediately by running $ pengwin-setup update
 21.2.4:
 * Increased GO version to 1.15.8
 * Fix issue with ss -a in WSL2 limiting the version of iproute2 to 5.8
-
-21.2.1:
-
-* Improved Java installation via SDKMan and now it is compatible with IntelliJ IDEA 2021.1 EAP 3. You can now have your entire Java project on Pengwin, compile and execute everything from IntelliJ in Windows.
-* Upgraded to Homebrew 3
-* Upgraded the embedded VCXsrv to 1.20.9.0
-* Fixed a problem with the AWS CLI installer. We are working to bring the AWS CLI version 2 soon.
-* Ported the integration for CLion to every JetBrains tool. A new pengwin-setup item was added to support it. If you face problems with JetBrains tools, especially 2020 and older, run this command.
