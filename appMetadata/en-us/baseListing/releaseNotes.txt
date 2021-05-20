@@ -1,6 +1,6 @@
 Existing users can update immediately by running $ pengwin-setup update
 
-21.5.3:
+21.5.4:
 * Automatically creates an entry with logo in Windows Terminal
 * Add default background and colors to Windows Terminal (you can change them in Settings)
 * In App Settings, it is possible to set Pengwin launch at startup
