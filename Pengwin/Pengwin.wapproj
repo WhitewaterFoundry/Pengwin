@@ -64,6 +64,7 @@
     <AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxPackageSigningTimestampServerUrl>http://timestamp.comodoca.com/%3f__hstc=116687193.ca0320fdf84fdaebb49c623303fc35cd.1574461157682.1575409935578.1578516608285.3&amp;__hssc=116687193.1.1578516608285&amp;__hsfp=100782785</AppxPackageSigningTimestampServerUrl>
+	<UapAppxPackageBuildMode>StoreAndSideload</UapAppxPackageBuildMode>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <AppxBundle>Always</AppxBundle>
