@@ -64,7 +64,7 @@ int RetrieveWindowsVersion()
     return -1;
 }
 
-void DistributionInfo::ChangeDefaultUserInWslConf(std::wstring_view userName)
+void DistributionInfo::ChangeDefaultUserInWslConf(const std::wstring_view userName)
 {
     // ReSharper disable once CppTooWideScope
     const int version = RetrieveWindowsVersion();
@@ -73,7 +73,6 @@ void DistributionInfo::ChangeDefaultUserInWslConf(std::wstring_view userName)
         return;
     }
 
-    DWORD exitCode;
     wchar_t buff[255];
     _swprintf_p(buff, _countof(buff),
                 L"wsl.exe -d %1$s -u root -- if [ $(grep -c \"\\[user\\]\" /etc/wsl.conf) -eq \"0\" ]; then echo -e \"\\n[user]\\ndefault=%2$s\">>/etc/wsl.conf; else sed -i \"s/\\(default=\\)\\(.*\\)/\\1%2$s/\" /etc/wsl.conf ; fi",
@@ -122,8 +121,9 @@ ULONG DistributionInfo::QueryUid(std::wstring_view userName)
         // Query the UID of the supplied username.
         std::wstring command = L"/usr/bin/id -u ";
         command += userName;
-        auto returnValue = 0;
+
         HANDLE child;
+        // ReSharper disable once CppTooWideScope
         auto hr = g_wslApi.WslLaunch(command.c_str(), true, GetStdHandle(STD_INPUT_HANDLE), writePipe,
                                      GetStdHandle(STD_ERROR_HANDLE), &child);
         if (SUCCEEDED(hr))
@@ -139,6 +139,7 @@ ULONG DistributionInfo::QueryUid(std::wstring_view userName)
             CloseHandle(child);
             if (SUCCEEDED(hr))
             {
+                // ReSharper disable once CppTooWideScope
                 char buffer[64];
                 DWORD bytesRead;
 
