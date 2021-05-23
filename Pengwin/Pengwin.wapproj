@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DistroLauncher\DistroLauncher.vcxproj" />
+    <ProjectReference Include="..\PengwinUI\PengwinUI.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\background1.png" />

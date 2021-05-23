@@ -6,19 +6,19 @@
 #include "stdafx.h"
 
 // Commandline arguments:
-#define ARG_CONFIG              L"config"
-#define ARG_CONFIG_DEFAULT_USER L"--default-user"
-#define ARG_INSTALL             L"install"
-#define ARG_INSTALL_ROOT        L"--root"
-#define ARG_RUN                 L"run"
-#define ARG_RUN_C               L"-c"
+constexpr auto ARG_CONFIG = L"config";
+constexpr auto ARG_CONFIG_DEFAULT_USER = L"--default-user";
+constexpr auto ARG_INSTALL = L"install";
+constexpr auto ARG_INSTALL_ROOT = L"--root";
+constexpr auto ARG_RUN = L"run";
+constexpr auto ARG_RUN_C = L"-c";
 
 #include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.System.h>
 #include <winrt/Windows.Storage.h>
 
 
 using namespace winrt;
-using namespace Windows::UI::ViewManagement;
 using namespace Windows::Foundation;
 using namespace Windows::System;
 using namespace Windows::Storage;
@@ -117,7 +117,6 @@ int RetrieveCurrentTheme()
 
 fire_and_forget SyncIcon(const hstring& iconName)
 {
-    const int value = RetrieveCurrentTheme();
     const hstring nameSuffix = L""; //value == 0 ? L"" : L"";
 
     const hstring extension = L".png";
@@ -136,6 +135,26 @@ fire_and_forget SyncIcon(const hstring& iconName)
     }
 }
 
+
+// ReSharper disable once IdentifierTypo
+fire_and_forget ShowPengwinUi()
+{
+    // ReSharper disable once CppTooWideScope
+    const auto file =
+        co_await ApplicationData::Current().LocalFolder().TryGetItemAsync(L"MicrosoftStoreEngagementSDKId.txt");
+
+    if (! file)
+    {
+        // ReSharper disable once StringLiteralTypo
+        const hstring str = L"pengwinui://";
+
+        const auto uri = Uri(str);
+
+        co_await Launcher::LaunchUriAsync(uri);
+    }
+}
+
+// ReSharper disable once IdentifierTypo
 int wmain(int argc, const wchar_t* argv[])
 {
     // Update the title bar of the console window.
@@ -187,9 +206,11 @@ int wmain(int argc, const wchar_t* argv[])
     // Parse the command line arguments.
     if ((SUCCEEDED(hr)) && (!installOnly))
     {
+        // ReSharper disable once StringLiteralTypo
         SyncIcon(L"pengwin");
         SyncIcon(L"background1");
         SyncIcon(L"background2");
+        ShowPengwinUi();
 
         if (arguments.empty())
         {
@@ -202,8 +223,8 @@ int wmain(int argc, const wchar_t* argv[])
                 Helpers::PromptForInput();
             }
         }
-        else if ((arguments[0] == ARG_RUN) ||
-            (arguments[0] == ARG_RUN_C))
+        else if (arguments[0] == ARG_RUN ||
+            arguments[0] == ARG_RUN_C)
         {
             std::wstring command;
             for (size_t index = 1; index < arguments.size(); index += 1)

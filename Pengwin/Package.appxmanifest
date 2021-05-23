@@ -11,7 +11,7 @@
   <Identity
     Name="WhitewaterFoundryLtd.Co.16571368D6CFF"
     Publisher="CN=9879127B-9E92-4DE5-9C32-0B1F09F95DCF"
-    Version="21.5.4.0" />
+    Version="21.5.5.0" />
 
   <Properties>
     <DisplayName>Pengwin</DisplayName>
@@ -48,7 +48,7 @@
 		  </uap:ShowNameOnTiles>
 		</uap:DefaultTile>
 
-        <uap:SplashScreen Image="Images\SplashScreen.png" BackgroundColor="transparent" />
+        <uap:SplashScreen Image="Images\SplashScreen.png" BackgroundColor="black" />
       </uap:VisualElements>
 	    <Extensions>
 		    <uap3:Extension Category="windows.appExecutionAlias" Executable="DistroLauncher\pengwin.exe"
@@ -73,6 +73,11 @@
                         Enabled="false"
                         DisplayName="Pengwin"/>
             </desktop:Extension>
+		    <uap:Extension Category="windows.protocol" EntryPoint="PengwinUI.App" Executable="PengwinUI.exe">
+		     <uap:Protocol Name="pengwinui"/>
+		    </uap:Extension>
+
+
 	    </Extensions>
 
     </Application>
