@@ -39,8 +39,40 @@ void RunProcess(LPWSTR cmdline)
     CloseHandle(pi.hThread);
 }
 
+int RetrieveWindowsVersion()
+{
+    wchar_t value[80];
+    DWORD size = sizeof(value);
+
+    // ReSharper disable once CppTooWideScope
+    const auto status = RegGetValueW(HKEY_LOCAL_MACHINE,
+                                     L"Software\\Microsoft\\Windows NT\\CurrentVersion",
+                                     L"CurrentBuild",
+                                     RRF_RT_REG_SZ,
+                                     nullptr,
+                                     &value,
+                                     &size
+    );
+
+    if (status == ERROR_SUCCESS)
+    {
+        const auto valueInt = std::stoi(value);
+
+        return valueInt;
+    }
+
+    return -1;
+}
+
 void DistributionInfo::ChangeDefaultUserInWslConf(std::wstring_view userName)
 {
+    // ReSharper disable once CppTooWideScope
+    const int version = RetrieveWindowsVersion();
+    if (version < 18362)
+    {
+        return;
+    }
+
     DWORD exitCode;
     wchar_t buff[255];
     _swprintf_p(buff, _countof(buff),
