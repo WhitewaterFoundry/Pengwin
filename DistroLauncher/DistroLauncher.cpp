@@ -6,12 +6,12 @@
 #include "stdafx.h"
 
 // Commandline arguments:
-#define ARG_CONFIG              L"config"
-#define ARG_CONFIG_DEFAULT_USER L"--default-user"
-#define ARG_INSTALL             L"install"
-#define ARG_INSTALL_ROOT        L"--root"
-#define ARG_RUN                 L"run"
-#define ARG_RUN_C               L"-c"
+constexpr auto ARG_CONFIG = L"config";
+constexpr auto ARG_CONFIG_DEFAULT_USER = L"--default-user";
+constexpr auto ARG_INSTALL = L"install";
+constexpr auto ARG_INSTALL_ROOT = L"--root";
+constexpr auto ARG_RUN = L"run";
+constexpr auto ARG_RUN_C = L"-c";
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.System.h>
@@ -117,7 +117,6 @@ int RetrieveCurrentTheme()
 
 fire_and_forget SyncIcon(const hstring& iconName)
 {
-    const int value = RetrieveCurrentTheme();
     const hstring nameSuffix = L""; //value == 0 ? L"" : L"";
 
     const hstring extension = L".png";
