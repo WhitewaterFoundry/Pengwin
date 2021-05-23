@@ -135,6 +135,7 @@ fire_and_forget SyncIcon(const hstring& iconName)
     }
 }
 
+int RetrieveWindowsVersion();
 
 // ReSharper disable once IdentifierTypo
 fire_and_forget ShowPengwinUi()
