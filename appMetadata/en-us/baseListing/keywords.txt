@@ -1,0 +1,7 @@
+linux
+windows subsystem for linux
+wsl
+wsl 2
+debian
+terminal
+wsl2

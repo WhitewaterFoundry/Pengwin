@@ -1,5 +1,14 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+21.7.1:
+* Now Pengwin is compatible with XRDP. Installing xrdp and xorgxrdp should work now.
+* Improved high-dpi support in the embedded VcXsrv
+* Fixed the NodeJS NVM (no longer installs N instead)
+* Fixed the MariaDB installer in LAMP. Also, the support for ARM64 was improved.
+* Improved Python PyEnv configs and bump Python version to 3.9.6
+* Upgraded helm and fixed Kubernetes installer
+* Fixed the docker support uninstaller
+
 21.5.5:
 * Enables put notifications so you will receive a message everytime a new Pengwin version is released
 
@@ -23,7 +32,3 @@ Existing users can update immediately by running $ pengwin-setup update
 21.3.0:
 * Improved again the compatibility of SDKMan and IntelliJ 2021.1 enabling Maven installed via SDKMan
 * Included out of the box full GUI support with mesa and dbus, just install your GUI app via apt
-
-21.2.4:
-* Increased GO version to 1.15.8
-* Fix issue with ss -a in WSL2 limiting the version of iproute2 to 5.8

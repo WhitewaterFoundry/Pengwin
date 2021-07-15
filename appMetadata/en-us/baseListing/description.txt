@@ -1,0 +1,13 @@
+The first Linux distribution optimized for Windows Subsystem for Linux ( WSL ). Based on Debian. Built on work by Microsoft Research. From open-source software startup Whitewater Foundry.
+
+Pengwin is the first Linux distribution created specifically for WSL. It was created by WSL users who recognized the potential of the platform. The project is open source and community input is highly encouraged.
+
+Leverage the power of the Linux terminal on Windows. Get started in open source programming with git. Manage remote servers with OpenSSH or Azure CLI. Automate tasks with Python, PowerShell, or Bash. Run a local LAMP stack for testing your interactive website. Build with the latest open source libraries and tools, including NodeJS and Ruby Gems. Run many essential graphical Linux apps, like GNOME Builder. Easily deploy and interact with Docker. 予測非ラテン文字入力を設定します。
+
+Use pengwin-setup to install VcXsrv or set up X410 to start at pengwin launch. Enable genuine HighDPI support, install your favorite Linux terminal like Terminator or Konsole, and create Start Menu shortcuts in Windows to all your Linux GUI apps.
+
+Pengwin installs itself as a menu entry in Windows Terminal. We crafted the background and the color palette for the best looking and usability in Windows Terminal.
+
+Access your C:\ drive at /mnt/C automatically. Copy and paste from Visual Studio into Emacs. Open Word from zsh. Pipe ifconfig.exe output into a Python script. It is a hybrid world. Pengwin bridges the gap between Windows and Linux. Pengwin also includes wslutilities to make working in the hybrid world easier.
+
+DISCLAIMER: Windows Insider Preview versions are not production-ready and can contain incompatibilities or bugs that affect the performance of Pengwin. We support insider versions on a best-effort basis.
