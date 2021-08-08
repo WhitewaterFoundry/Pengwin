@@ -18,7 +18,7 @@ If you are a commercial, government, or educational institution, you may like to
 
 ## Features
 
-- Pengwin is a Linux environment for Windows 10 built on open-source technology concieved by Microsoft Research and the Linux ecosystem curated by the Debian project.
+- Pengwin is a Linux environment for Windows 10 built on open-source technology conceived by Microsoft Research and the Linux ecosystem curated by the Debian project.
 - Pengwin is also the first Linux distribution pre-configured and optimized to run specifically on [Windows® Subsystem for Linux](https://github.com/sirredbeard/Awesome-WSL), a Microsoft-supported feature of Windows 10 and Windows Server 2019.
 - Pengwin includes [wslu](https://github.com/wslutilities/wslu), a set of useful open-source utilities for interacting between WSL and Windows 10.
 - A custom Pengwin-setup tool, accessible via `$ pengwin-setup` allows new Pengwin users to get started on Linux immediately:
