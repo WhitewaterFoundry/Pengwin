@@ -11,7 +11,7 @@
   <Identity
     Name="WhitewaterFoundryLtd.Co.16571368D6CFF"
     Publisher="CN=9879127B-9E92-4DE5-9C32-0B1F09F95DCF"
-    Version="21.7.1.0" />
+    Version="21.8.0.0" />
 
   <Properties>
     <DisplayName>Pengwin</DisplayName>
@@ -42,10 +42,6 @@
 		<uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"
 		               Square310x310Logo="Images\LargeTile.png" Square71x71Logo="Images\SmallTile.png"
 		               ShortName="Pengwin">
-		  <uap:ShowNameOnTiles>
-		    <uap:ShowOn Tile="wide310x150Logo" />
-			<uap:ShowOn Tile="square310x310Logo" />
-		  </uap:ShowNameOnTiles>
 		</uap:DefaultTile>
 
         <uap:SplashScreen Image="Images\SplashScreen.png" BackgroundColor="black" />

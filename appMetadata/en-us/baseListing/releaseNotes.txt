@@ -1,5 +1,12 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+21.8.0:
+* Improved Start menu icons for Pengwin
+* Fixed HiDPI with GTK in WSLg
+* Upgraded docker version
+* Fixed the cloud cli installer
+* Upgraded Terraform to 1.0.5
+
 21.7.1:
 * Now Pengwin is compatible with XRDP. Installing xrdp and xorgxrdp should work now.
 * Improved high-dpi support in the embedded VcXsrv
@@ -28,7 +35,3 @@ Existing users can update immediately by running $ pengwin-setup update
 
 21.3.1:
 * Include the latest packages in the image.
-
-21.3.0:
-* Improved again the compatibility of SDKMan and IntelliJ 2021.1 enabling Maven installed via SDKMan
-* Included out of the box full GUI support with mesa and dbus, just install your GUI app via apt
