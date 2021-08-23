@@ -33,7 +33,3 @@ Existing users can update immediately by running $ pengwin-setup update
 
 21.3.1:
 * Include the latest packages in the image.
-
-21.3.0:
-* Improved again the compatibility of SDKMan and IntelliJ 2021.1 enabling Maven installed via SDKMan
-* Included out of the box full GUI support with mesa and dbus, just install your GUI app via apt
