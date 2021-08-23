@@ -1,4 +1,9 @@
 Existing users can update immediately by running $ pengwin-setup update
+21.8.0:
+* Fixed HiDPI with GTK in WSLg
+* Upgraded docker version
+* Fixed the cloud cli installer
+* Upgraded Terraform to 1.0.5
 
 21.7.1:
 * Now Pengwin is compatible with XRDP. Installing xrdp and xorgxrdp should work now.
