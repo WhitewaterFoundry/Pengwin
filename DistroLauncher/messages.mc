@@ -22,14 +22,14 @@ WslLaunch %1 failed with error: 0x%2!x!
 
 MessageId=1005 SymbolicName=MSG_USAGE
 Language=English
-Launches or configures a Linux distribution.
+Launches or configures Pengwin Linux distribution.
 
 Usage: 
     <no args> 
         Launches the user's default shell in the user's home directory.
 
     install [--root]
-        Install the distribuiton and do not launch the shell when complete.
+        Install the distribution and do not launch the shell when complete.
           --root
               Do not create a user account and leave the default user set to root.
 
@@ -70,7 +70,7 @@ Enter new UNIX username: %0
 MessageId=1010 SymbolicName=MSG_CREATE_USER_PROMPT
 Language=English
 Please create a default Linux user account. The username does not need to match your Windows username.
-For more information visit: https://aka.ms/wslusers
+For more information, visit https://aka.ms/wslusers.
 .
 
 MessageId=1011 SymbolicName=MSG_PRESS_A_KEY
@@ -88,4 +88,9 @@ MessageId=1013 SymbolicName=MSG_INSTALL_ALREADY_EXISTS
 Language=English
 The distribution installation has become corrupted.
 Please select Reset from App Settings or uninstall and reinstall the app.
+.
+MessageId=1014 SymbolicName=MSG_ENABLE_VIRTUALIZATION
+Language=English
+Please enable the Virtual Machine Platform Windows feature and ensure virtualization is enabled in the BIOS.
+For information, please visit https://aka.ms/enablevirtualization.
 .
