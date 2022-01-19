@@ -24,8 +24,8 @@ MessageId=1005 SymbolicName=MSG_USAGE
 Language=English
 Launches or configures Pengwin Linux distribution.
 
-Usage: 
-    <no args> 
+Usage:
+    <no args>
         Launches the user's default shell in the user's home directory.
 
     install [--root]
@@ -33,17 +33,17 @@ Usage:
           --root
               Do not create a user account and leave the default user set to root.
 
-    run <command line> 
+    run <command line>
         Run the provided command line in the current working directory. If no
         command line is provided, the default shell is launched.
 
-    config [setting [value]] 
+    config [setting [value]]
         Configure settings for this distribution.
         Settings:
           --default-user <username>
               Sets the default user to <username>. This must be an existing user.
 
-    help 
+    help
         Print usage information.
 .
 
@@ -89,6 +89,7 @@ Language=English
 The distribution installation has become corrupted.
 Please select Reset from App Settings or uninstall and reinstall the app.
 .
+
 MessageId=1014 SymbolicName=MSG_ENABLE_VIRTUALIZATION
 Language=English
 Please enable the Virtual Machine Platform Windows feature and ensure virtualization is enabled in the BIOS.
