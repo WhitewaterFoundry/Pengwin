@@ -26,12 +26,13 @@ using namespace Windows::Storage;
 
 // Helper class for calling WSL Functions:
 // https://msdn.microsoft.com/en-us/library/windows/desktop/mt826874(v=vs.85).aspx
-WslApiLoader g_wslApi(DistributionInfo::Name);
+// ReSharper disable once CppInconsistentNaming
+WslApiLoader g_wslApi(DistributionInfo::NAME);
 
 static HRESULT InstallDistribution(bool createUser);
 static HRESULT SetDefaultUser(std::wstring_view userName);
 
-HRESULT InstallDistribution(bool createUser)
+HRESULT InstallDistribution(const bool createUser)
 {
     // Register the distribution.
     Helpers::PrintMessage(MSG_STATUS_INSTALLING);
@@ -75,19 +76,30 @@ HRESULT SetDefaultUser(std::wstring_view userName)
 {
     // Query the UID of the given user name and configure the distribution
     // to use this UID as the default.
-    const auto uid = DistributionInfo::QueryUid(userName);
+    const ULONG uid = DistributionInfo::QueryUid(userName);
     if (uid == UID_INVALID)
     {
         return E_INVALIDARG;
     }
 
-    const auto hr = g_wslApi.WslConfigureDistribution(uid, WSL_DISTRIBUTION_FLAGS_DEFAULT);
+    // Set the default user as root, so ChangeDefaultUserInWslConf chan make the change
+    HRESULT hr = g_wslApi.WslConfigureDistribution(0, WSL_DISTRIBUTION_FLAGS_DEFAULT);
     if (FAILED(hr))
     {
         return hr;
     }
 
-    DistributionInfo::ChangeDefaultUserInWslConf(userName);
+    hr = DistributionInfo::ChangeDefaultUserInWslConf(userName);
+    if (FAILED(hr))
+    {
+        return hr;
+    }
+
+    hr = g_wslApi.WslConfigureDistribution(uid, WSL_DISTRIBUTION_FLAGS_DEFAULT);
+    if (FAILED(hr))
+    {
+        return hr;
+    }
 
     return hr;
 }
@@ -98,6 +110,7 @@ int RetrieveCurrentTheme()
     DWORD size = sizeof value;
 
     // ReSharper disable once CppTooWideScope
+    // ReSharper disable once CppTooWideScopeInitStatement
     const auto status = RegGetValueW(HKEY_CURRENT_USER,
                                      L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
                                      L"AppsUseLightTheme",
@@ -109,7 +122,7 @@ int RetrieveCurrentTheme()
 
     if (status == ERROR_SUCCESS)
     {
-        return value;
+        return static_cast<int>(value);
     }
 
     return -1;
@@ -141,7 +154,8 @@ int RetrieveWindowsVersion();
 fire_and_forget ShowPengwinUi()
 {
     // ReSharper disable once CppTooWideScope
-    const auto file =
+    // ReSharper disable once CppTooWideScopeInitStatement
+    const auto& file =
         co_await ApplicationData::Current().LocalFolder().TryGetItemAsync(L"MicrosoftStoreEngagementSDKId.txt");
 
     if (! file)
@@ -156,10 +170,10 @@ fire_and_forget ShowPengwinUi()
 }
 
 // ReSharper disable once IdentifierTypo
-int wmain(int argc, const wchar_t* argv[])
+int wmain(const int argc, const wchar_t* argv[])
 {
     // Update the title bar of the console window.
-    SetConsoleTitleW(DistributionInfo::WindowTitle.c_str());
+    SetConsoleTitleW(DistributionInfo::WINDOW_TITLE.c_str());
 
     // Initialize a vector of arguments.
     std::vector<std::wstring_view> arguments;
@@ -178,7 +192,7 @@ int wmain(int argc, const wchar_t* argv[])
             Helpers::PromptForInput();
         }
 
-        return exitCode;
+        return static_cast<int>(exitCode);
     }
 
     // Install the distribution if it is not already.
@@ -255,7 +269,7 @@ int wmain(int argc, const wchar_t* argv[])
         else
         {
             Helpers::PrintMessage(MSG_USAGE);
-            return exitCode;
+            return static_cast<int>(exitCode);
         }
     }
 

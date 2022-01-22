@@ -5,80 +5,21 @@
 
 #include "stdafx.h"
 
-void RunProcess(LPWSTR cmdline)
+HRESULT DistributionInfo::ChangeDefaultUserInWslConf(const std::wstring_view userName)
 {
-    // additional information
-    STARTUPINFOW si;
-    PROCESS_INFORMATION pi;
+    DWORD exitCode = 0;
 
-    // set the size of the structures
-    ZeroMemory(&si, sizeof(si));
-    si.cb = sizeof(si);
-    ZeroMemory(&pi, sizeof(pi));
+    wchar_t commandLine[255];
+    _swprintf_p(commandLine, _countof(commandLine),
+                L"if [ $(grep -c \"\\[user\\]\" /etc/wsl.conf) -eq \"0\" ]; then echo -e \"\\n[user]\\ndefault=%1$s\">>/etc/wsl.conf; else sed -i \"s/\\(default=\\)\\(.*\\)/\\1%1$s/\" /etc/wsl.conf ; fi",
+                std::wstring(userName).c_str());
 
-    // start the program up
-    CreateProcessW
-    (
-        nullptr, // the path
-        cmdline, // Command line
-        nullptr, // Process handle not inheritable
-        nullptr, // Thread handle not inheritable
-        FALSE, // Set handle inheritance to FALSE
-        0, // Opens file in a separate console
-        nullptr, // Use parent's environment block
-        nullptr, // Use parent's starting directory
-        &si, // Pointer to STARTUPINFO structure
-        &pi // Pointer to PROCESS_INFORMATION structure
-    );
-
-    // Wait until child process exits.
-    WaitForSingleObject(pi.hProcess, INFINITE);
-
-    // Close process and thread handles.
-    CloseHandle(pi.hProcess);
-    CloseHandle(pi.hThread);
-}
-
-int RetrieveWindowsVersion()
-{
-    wchar_t value[80];
-    DWORD size = sizeof(value);
-
-    // ReSharper disable once CppTooWideScope
-    const auto status = RegGetValueW(HKEY_LOCAL_MACHINE,
-                                     L"Software\\Microsoft\\Windows NT\\CurrentVersion",
-                                     L"CurrentBuild",
-                                     RRF_RT_REG_SZ,
-                                     nullptr,
-                                     &value,
-                                     &size
-    );
-
-    if (status == ERROR_SUCCESS)
+    if (const auto hr = g_wslApi.WslLaunchInteractive(commandLine, true, &exitCode); FAILED(hr) || exitCode != 0)
     {
-        const auto valueInt = std::stoi(value);
-
-        return valueInt;
+        return hr;
     }
 
-    return -1;
-}
-
-void DistributionInfo::ChangeDefaultUserInWslConf(const std::wstring_view userName)
-{
-    // ReSharper disable once CppTooWideScope
-    const int version = RetrieveWindowsVersion();
-    if (version < 18362)
-    {
-        return;
-    }
-
-    wchar_t buff[255];
-    _swprintf_p(buff, _countof(buff),
-                L"wsl.exe -d %1$s -u root -- if [ $(grep -c \"\\[user\\]\" /etc/wsl.conf) -eq \"0\" ]; then echo -e \"\\n[user]\\ndefault=%2$s\">>/etc/wsl.conf; else sed -i \"s/\\(default=\\)\\(.*\\)/\\1%2$s/\" /etc/wsl.conf ; fi",
-                Name.c_str(), std::wstring(userName).c_str());
-
-    RunProcess(buff);
+    return 0;
 }
 
 bool DistributionInfo::CreateUser(std::wstring_view userName)
@@ -88,7 +29,7 @@ bool DistributionInfo::CreateUser(std::wstring_view userName)
     std::wstring commandLine = L"/usr/sbin/adduser --quiet --gecos '' ";
     commandLine += userName;
     auto hr = g_wslApi.WslLaunchInteractive(commandLine.c_str(), true, &exitCode);
-    if ((FAILED(hr)) || (exitCode != 0))
+    if (FAILED(hr) || exitCode != 0)
     {
         return false;
     }
@@ -97,7 +38,7 @@ bool DistributionInfo::CreateUser(std::wstring_view userName)
     commandLine = L"/usr/sbin/usermod -aG adm,cdrom,sudo,dip,plugdev ";
     commandLine += userName;
     hr = g_wslApi.WslLaunchInteractive(commandLine.c_str(), true, &exitCode);
-    if ((FAILED(hr)) || (exitCode != 0))
+    if (FAILED(hr) || exitCode != 0)
     {
         // Delete the user if the group add command failed.
         commandLine = L"/usr/sbin/deluser ";
@@ -114,7 +55,7 @@ ULONG DistributionInfo::QueryUid(std::wstring_view userName)
     // Create a pipe to read the output of the launched process.
     HANDLE readPipe;
     HANDLE writePipe;
-    SECURITY_ATTRIBUTES sa{sizeof(sa), nullptr, true};
+    SECURITY_ATTRIBUTES sa{sizeof sa, nullptr, true};
     auto uid = UID_INVALID;
     if (CreatePipe(&readPipe, &writePipe, &sa, 0))
     {
@@ -124,6 +65,7 @@ ULONG DistributionInfo::QueryUid(std::wstring_view userName)
 
         HANDLE child;
         // ReSharper disable once CppTooWideScope
+        // ReSharper disable once CppTooWideScopeInitStatement
         auto hr = g_wslApi.WslLaunch(command.c_str(), true, GetStdHandle(STD_INPUT_HANDLE), writePipe,
                                      GetStdHandle(STD_ERROR_HANDLE), &child);
         if (SUCCEEDED(hr))
@@ -131,7 +73,7 @@ ULONG DistributionInfo::QueryUid(std::wstring_view userName)
             // Wait for the child to exit and ensure process exited successfully.
             WaitForSingleObject(child, INFINITE);
             DWORD exitCode;
-            if ((GetExitCodeProcess(child, &exitCode) == false) || (exitCode != 0))
+            if (GetExitCodeProcess(child, &exitCode) == false || exitCode != 0)
             {
                 hr = E_INVALIDARG;
             }
@@ -140,11 +82,11 @@ ULONG DistributionInfo::QueryUid(std::wstring_view userName)
             if (SUCCEEDED(hr))
             {
                 // ReSharper disable once CppTooWideScope
-                char buffer[64];
+                char buffer[64]{};
                 DWORD bytesRead;
 
                 // Read the output of the command from the pipe and convert to a UID.
-                if (ReadFile(readPipe, buffer, (sizeof(buffer) - 1), &bytesRead, nullptr))
+                if (ReadFile(readPipe, buffer, sizeof buffer - 1, &bytesRead, nullptr))
                 {
                     buffer[bytesRead] = ANSI_NULL;
                     try
