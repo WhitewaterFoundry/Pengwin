@@ -49,8 +49,11 @@ steps:
     script: |
       version=$(sed -n -E '/^ +Version=/s/^ +Version="([0-9\.]*)(.*)/\1/p' Pengwin/Package.appxmanifest)
       sed -E -i "s/(^.*commandline.*16571368D6CFF_)([0-9\.]+)(_x64)(_.*$)/\1${version}_x64\4/" x64/pengwin.json
+      sed -E -i "s/(^.*icon.*16571368D6CFF_)([0-9\.]+)(_x64)(_.*$)/\1${version}_x64\4/" x64/pengwin.json
+      sed -E -i "s/(^.*backgroundImage.*16571368D6CFF_)([0-9\.]+)(_x64)(_.*$)/\1${version}_x64\4/" x64/pengwin.json
+      
       cp x64/pengwin.json ARM64/pengwin.json
-      sed -E -i "s/(^.*commandline.*16571368D6CFF_)([0-9\.]+)(_x64)(_.*$)/\1${version}_ARM64\4/" ARM64/pengwin.json
+      sed -E -i "s/_x64_/_ARM64_/g" ARM64/pengwin.json
 
 - task: VSBuild@1
   inputs:
