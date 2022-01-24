@@ -1,4 +1,13 @@
 Existing users can update immediately by running $ pengwin-setup update
+
+22.1.5:
+* Fix an error message shown at launch in WSL 1 about xdpyinfo when vcxsrv is installed.
+* Switch Azure CLI installer to bullseye repos.
+* Switch Powershell installer to bullseye repos.
+* Improve the performance in the pengwin.exe config --default-user <username>.
+* Finally fixed the problem that Pengwin didn't launch in Windows Terminal on specific configurations.
+* If you have Windows 11, Windows Terminal 1.12, and have Windows Terminal as your default console, now when you open Pengwin from the Start Menu, it will show the correct profile on Windows Terminal.
+
 22.1.0:
 * Show a better message in WSL2 when the Virtual Machine Platform Windows feature is not enabled
 * Keep the previous Debian repo for compatibility with packages expecting buster

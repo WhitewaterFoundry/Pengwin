@@ -1,37 +1,38 @@
 #!/bin/bash
 
 function process_arguments() {
-    while [[ $# -gt 0 ]]
-    do
-      case "$1" in
-        --debug|-d|--verbose|-v)
-          echo "Running in debug/verbose mode"
-          set -x
-          shift
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --debug | -d | --verbose | -v)
+        echo "Running in debug/verbose mode"
+        set -x
+        shift
         ;;
-        --silent)
-          echo "Silent installation"
-          SILENT=1
-          shift
+      --silent)
+        echo "Silent installation"
+        silent=1
+        shift
         ;;
-        --install)
-          echo "Base image creation"
-          INSTALL=1
-          shift
+      --install)
+        echo "Base image creation"
+        install=1
+        shift
         ;;
-        *)
-          shift
-        esac
-    done
+      *)
+        shift
+        ;;
+    esac
+  done
 }
 
+# bashsupport disable=BP2001
 function install_repositories() {
 
   sudo apt-get -y -q update
   sudo apt-get -y -q install curl
 
   export os=debian
-  export dist=bullseye 
+  export dist=11
 
   curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-base$1/script.deb.sh | sudo -E bash
   curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-setup$1/script.deb.sh | sudo -E bash
@@ -50,9 +51,8 @@ function install_packages() {
   # Update apt repositories
   sudo apt-get -y -q update
 
-
   # Check for .dist-upgrade file in /etc/apt and inform user dist-upgrade available if so
-  if [[ -f "/etc/apt/.dist-upgrade" ]] ; then
+  if [[ -f "/etc/apt/.dist-upgrade" ]]; then
     sudo rm /etc/apt/.dist-upgrade
     sudo apt-get -y -q dist-upgrade
   fi
@@ -61,7 +61,7 @@ function install_packages() {
 
 function remove_legacy_repo() {
   sudo sed -i -e 's|deb https://apt.patrickwu.space/ stable main|# deb https://apt.patrickwu.space/ stable main|g' /etc/apt/sources.list
-  
+
 }
 
 function remove_legacy_regkeys() {
@@ -90,18 +90,15 @@ function main() {
     install_repositories "${dev}"
     install_packages
 
-    if [[ ! ${INSTALL} ]]; then
+    if [[ ! ${install} ]]; then
       remove_legacy_regkeys
     fi
   fi
 
-  if [[ ! ${SILENT} ]]; then
+  if [[ ! ${silent} ]]; then
     invoke_setup
   fi
 
 }
 
-
 main "$@"
-
-exit 0
