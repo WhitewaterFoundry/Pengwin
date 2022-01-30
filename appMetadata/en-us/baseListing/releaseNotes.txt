@@ -1,5 +1,8 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+22.1.6:
+* Use cmd-exe instead of cmd.exe to avoid executing cmd.exe in the Linux home path.
+
 22.1.5:
 * Fix an error message shown at launch in WSL 1 about xdpyinfo when vcxsrv is installed.
 * Switch Azure CLI installer to bullseye repos.
@@ -13,7 +16,6 @@ Existing users can update immediately by running $ pengwin-setup update
 * Add an alias to the wsl command so that you can type wsl --version instead of wsl.exe --version inside Pengwin
 * dotnet package use the new repo for bullseye
 * Bump Python to 3.10.1 also updated all installation types
-* Fix gopath in go installer
 * Fix MariaDB 10.6 install and improve the overall LAMP installer
 * Show progress ring in profile tab and taskbar in Windows Terminal when updating pengwin-setup and generating start menu shortcuts
 * Install x11-utils as part of VcXsrv installation
