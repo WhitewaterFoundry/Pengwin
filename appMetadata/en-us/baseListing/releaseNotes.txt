@@ -18,8 +18,6 @@ Existing users can update immediately by running $ pengwin-setup update
 * Bump Python to 3.10.1 also updated all installation types
 * Fix MariaDB 10.6 install and improve the overall LAMP installer
 * Show progress ring in profile tab and taskbar in Windows Terminal when updating pengwin-setup and generating start menu shortcuts
-* Install x11-utils as part of VcXsrv installation
 * Fix a bug that breaks XRDP upon SDKMan installation
 * Upgrade .NET installer to 6.0
-* Make the SDKMan install the latest Java by default when using the Java installer in pengwin-setup
 * Upgrade VcXsrv to 1.20.14.0
