@@ -1,5 +1,8 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+22.1.6:
+* Use cmd-exe instead of cmd.exe to avoid executing cmd.exe in the Linux home path.
+
 22.1.5:
 * Fix an error message shown at launch in WSL 1 about xdpyinfo when vcxsrv is installed.
 * Switch Azure CLI installer to bullseye repos.
