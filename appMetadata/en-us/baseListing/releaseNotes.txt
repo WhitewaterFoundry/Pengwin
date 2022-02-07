@@ -1,5 +1,8 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+22.2.0:
+* Fix a launch error with Windows Terminal 1.12
+
 22.1.6:
 * Use cmd-exe instead of cmd.exe to avoid executing cmd.exe in the Linux home path.
 
