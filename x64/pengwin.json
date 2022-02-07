@@ -14,7 +14,8 @@
       "colorScheme": "Pengwin",
       "cursorShape": "vintage",
       "fontFace": "Cascadia Code",
-      "useAcrylic": true
+      "useAcrylic": true,
+      "startingDirectory": null
     }
   ],
   "schemes": [
