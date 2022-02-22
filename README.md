@@ -114,3 +114,4 @@ Purchases of Pengwin in the Microsoft Store pay for a team of open source indie 
 - [Ricardo Echavarria](https://twitter.com/r_icarus)
 
 <a href='//www.microsoft.com/store/apps/9NV1GV1PXZ6P?ocid=badge'><img src='https://assets.windowsphone.com/85864462-9c82-451e-9355-a3d5f874397a/English_get-it-from-MS_InvariantCulture_Default.png' alt='Store badge' height=50/></a>
+
