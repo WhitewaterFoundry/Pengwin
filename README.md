@@ -91,6 +91,7 @@ Purchases of Pengwin in the Microsoft Store pay for a team of open source indie 
 
 - [Carlos Rafael Ramirez](https://github.com/crramirez)
 - [Javier David Santos](https://github.com/javiersantossanchez)
+- [José Alejandro Carrizo](https://github.com/carrizo)
 
 ### Contributors
 
