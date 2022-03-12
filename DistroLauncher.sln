@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30406.217
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Launcher", "DistroLauncher\DistroLauncher.vcxproj", "{BA627106-E5F7-46EE-B8D7-2D5A760F2FB2}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LauncherTests", "LauncherTests\LauncherTests.vcxproj", "{3FBA1AEE-63DF-4490-82AE-74AAAB1BFD80}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PengwinUI", "PengwinUI\PengwinUI.csproj", "{4F3B346B-175D-46BC-B233-92D0B25D5576}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PengwinW", "PengwinW\PengwinW.vcxproj", "{D666189E-1DDB-4059-B362-213824968E68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,26 @@ Global
 		{4F3B346B-175D-46BC-B233-92D0B25D5576}.Release|x64.ActiveCfg = Release|x64
 		{4F3B346B-175D-46BC-B233-92D0B25D5576}.Release|x64.Build.0 = Release|x64
 		{4F3B346B-175D-46BC-B233-92D0B25D5576}.Release|x86.ActiveCfg = Release|x86
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|Any CPU.Build.0 = Debug|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|ARM.ActiveCfg = Debug|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|ARM.Build.0 = Debug|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|ARM64.ActiveCfg = Debug|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|ARM64.Build.0 = Debug|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|x64.ActiveCfg = Debug|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|x64.Build.0 = Debug|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|x86.ActiveCfg = Debug|Win32
+		{D666189E-1DDB-4059-B362-213824968E68}.Debug|x86.Build.0 = Debug|Win32
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|Any CPU.ActiveCfg = Release|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|Any CPU.Build.0 = Release|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|ARM.ActiveCfg = Release|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|ARM.Build.0 = Release|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|ARM64.ActiveCfg = Release|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|ARM64.Build.0 = Release|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|x64.ActiveCfg = Release|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|x64.Build.0 = Release|x64
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|x86.ActiveCfg = Release|Win32
+		{D666189E-1DDB-4059-B362-213824968E68}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
