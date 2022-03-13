@@ -31,12 +31,12 @@ WslApiLoader::~WslApiLoader()
 
 BOOL WslApiLoader::WslIsOptionalComponentInstalled() const
 {
-    return ((_wslApiDll != nullptr) &&
-        (_isDistributionRegistered != nullptr) &&
-        (_registerDistribution != nullptr) &&
-        (_configureDistribution != nullptr) &&
-        (_launchInteractive != nullptr) &&
-        (_launch != nullptr));
+    return _wslApiDll != nullptr &&
+        _isDistributionRegistered != nullptr &&
+        _registerDistribution != nullptr &&
+        _configureDistribution != nullptr &&
+        _launchInteractive != nullptr &&
+        _launch != nullptr;
 }
 
 BOOL WslApiLoader::WslIsDistributionRegistered() const
@@ -88,4 +88,9 @@ HRESULT WslApiLoader::WslLaunch(PCWSTR command, BOOL useCurrentWorkingDirectory,
     }
 
     return hr;
+}
+
+void WslApiLoader::SetDistributionName(const std::wstring_view& distributionName)
+{
+    _distributionName = std::wstring(distributionName);
 }

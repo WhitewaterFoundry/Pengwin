@@ -12,6 +12,8 @@ constexpr auto ARG_INSTALL = L"install";
 constexpr auto ARG_INSTALL_ROOT = L"--root";
 constexpr auto ARG_RUN = L"run";
 constexpr auto ARG_RUN_C = L"-c";
+constexpr auto ARG_DISTRO = L"--distribution";
+constexpr auto ARG_DISTRO_D = L"-d";
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.System.h>
@@ -227,6 +229,13 @@ int wmain(const int argc, const wchar_t* argv[])
         SyncIcon(L"background2");
         ShowPengwinUi();
 
+        if (arguments.size() >= 2 && (arguments[0] == ARG_DISTRO ||
+            arguments[0] == ARG_DISTRO_D))
+        {
+            g_wslApi.SetDistributionName(arguments[1]);
+            arguments.erase(arguments.begin(), arguments.begin() + 2);
+        }
+
         if (arguments.empty())
         {
             hr = g_wslApi.WslLaunchInteractive(L"", false, &exitCode);
@@ -268,7 +277,7 @@ int wmain(const int argc, const wchar_t* argv[])
         }
         else
         {
-            Helpers::PrintMessage(MSG_USAGE);
+            Helpers::PrintMessage(MSG_USAGE, DistributionInfo::WINDOW_TITLE.c_str());
             return static_cast<int>(exitCode);
         }
     }
@@ -279,6 +288,10 @@ int wmain(const int argc, const wchar_t* argv[])
         if (hr == HRESULT_FROM_WIN32(ERROR_LINUX_SUBSYSTEM_NOT_PRESENT))
         {
             Helpers::PrintMessage(MSG_MISSING_OPTIONAL_COMPONENT);
+        }
+        else if (hr == HCS_E_HYPERV_NOT_INSTALLED)
+        {
+            Helpers::PrintMessage(MSG_ENABLE_VIRTUALIZATION);
         }
         else
         {
