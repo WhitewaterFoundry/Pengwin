@@ -200,6 +200,14 @@ int wmain(const int argc, const wchar_t* argv[])
     // Install the distribution if it is not already.
     const auto installOnly = arguments.size() > 0 && arguments[0] == ARG_INSTALL;
     auto hr = S_OK;
+/*
+
+    if (!g_wslApi.WslIsDistributionRegistered())
+    {
+        g_wslApi.SetDistributionName(L"Pengwin");
+    }
+*/
+
     if (!g_wslApi.WslIsDistributionRegistered())
     {
         // If the "--root" option is specified, do not create a user account.
