@@ -13,6 +13,8 @@ HRESULT DistributionInfo::ChangeDefaultUserInWslConf(const std::wstring_view use
     _swprintf_p(commandLine, _countof(commandLine),
                 L"if [ $(grep -c \"\\[user\\]\" /etc/wsl.conf) -eq \"0\" ]; then echo -e \"\\n[user]\\ndefault=%1$s\">>/etc/wsl.conf; else sed -i \"s/\\(default=\\)\\(.*\\)/\\1%1$s/\" /etc/wsl.conf ; fi",
                 std::wstring(userName).c_str());
+    MessageBoxW(nullptr, commandLine, L"Hola", MB_OK);
+
 
     if (const auto hr = g_wslApi.WslLaunchInteractive(commandLine, true, &exitCode); FAILED(hr) || exitCode != 0)
     {

@@ -28,12 +28,15 @@ Usage:
     <no args>
         Launches the user's default shell in the user's home directory.
 
+    --distribution, -d <Distro>
+        Launches the user's default shell in the user's home directory in the specified distribution. Suitable when you have more than one %1 installation.
+
     install [--root]
         Install the distribution and do not launch the shell when complete.
           --root
               Do not create a user account and leave the default user set to root.
 
-    run <command line>
+    run, -c <command line>
         Run the provided command line in the current working directory. If no
         command line is provided, the default shell is launched.
 

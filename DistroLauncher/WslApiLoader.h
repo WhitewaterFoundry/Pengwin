@@ -45,6 +45,8 @@ public:
                       HANDLE stdErr,
                       HANDLE* process) const;
 
+    void SetDistributionName(const std::wstring_view& distributionName);
+
 private:
     std::wstring _distributionName;
     HMODULE _wslApiDll;
