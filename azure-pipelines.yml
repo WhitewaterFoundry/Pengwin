@@ -100,7 +100,7 @@ steps:
     appId: '9NV1GV1PXZ6P'
     metadataUpdateMethod: 'TextMetadata'
     metadataPath: '$(System.DefaultWorkingDirectory)\appMetadata'
-    updateImages: false
+    updateImages: true
     packagePath: '$(Build.ArtifactStagingDirectory)\**\*bundle.msixupload'
     force: true
     skipPolling: false
