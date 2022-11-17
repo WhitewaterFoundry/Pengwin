@@ -1,5 +1,27 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+
+22.11.3:
+* Support for SystemD Windows 10 / 11
+* Added an option in pengwin-setup to enable / disable SystemD
+* Now you can install the Xfce desktop environment from pengwin-setup
+* Enabled the backports so, you'll have a more recent version of 7zip, cmake, git, golang, npm among others
+* Improved the DISPLAY variable management for non WSLg users or who still want to use Xservers
+* Now Pengwin can start with Windows logon without showing a terminal window
+* Customized the XRDP login screen with a Pengwin theme
+* Customized the default wallpaper for Xfce with a Pengwin theme
+* Updated .NET version to 7.0
+* Include by default the software-properties-common to ease the installation of packages from PPAs
+* Allow to disable WSLg from pengwin-setup only for Pengwin
+* Fixed autocompletion for helm and kubectl
+* Bump pyenv python to 3.10.4
+* Upgraded MariaDB installer
+* Upgraded terraform to 1.2.8
+* Improved the integration with Rancher Desktop and Docker Desktop
+* Improved the IBus installer in pengwin-setup
+* Added support for installing JetBrains Toolbox inside Pengwin
+* Added wslsystemctl command for starting services in WSL1
+
 22.2.1:
 * Fix name for Windows Terminal menu
 

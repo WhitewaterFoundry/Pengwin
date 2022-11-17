@@ -1,1 +1,0 @@
-Pengwin is Debian based, harness the full power of the open-source ecosystem.

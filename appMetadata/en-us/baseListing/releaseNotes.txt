@@ -1,5 +1,26 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+22.11.3:
+* Support for SystemD Windows 10 / 11
+* Added an option in pengwin-setup to enable / disable SystemD
+* Now you can install the Xfce desktop environment from pengwin-setup
+* Enabled the backports so, you'll have a more recent version of 7zip, cmake, git, golang, npm among others
+* Improved the DISPLAY variable management for non WSLg users or who still want to use Xservers
+* Now Pengwin can start with Windows logon without showing a terminal window
+* Customized the XRDP login screen with a Pengwin theme
+* Customized the default wallpaper for Xfce with a Pengwin theme
+* Updated .NET version to 7.0
+* Include by default the software-properties-common to ease the installation of packages from PPAs
+* Allow to disable WSLg from pengwin-setup only for Pengwin
+* Fixed autocompletion for helm and kubectl
+* Bump pyenv python to 3.10.4
+* Upgraded MariaDB installer
+* Upgraded terraform to 1.2.8
+* Improved the integration with Rancher Desktop and Docker Desktop
+* Improved the IBus installer in pengwin-setup
+* Added support for installing JetBrains Toolbox inside Pengwin
+* Added wslsystemctl command for starting services in WSL1
+
 22.2.1:
 * Fix name for Windows Terminal menu
 
@@ -8,20 +29,3 @@ Existing users can update immediately by running $ pengwin-setup update
 
 22.1.6:
 * Use cmd-exe instead of cmd.exe to avoid executing cmd.exe in the Linux home path.
-
-22.1.5:
-* Fix an error message shown at launch in WSL 1 about xdpyinfo when vcxsrv is installed.
-* Switch Azure CLI installer to bullseye repos.
-* Switch Powershell installer to bullseye repos.
-* Improve the performance in the pengwin.exe config --default-user <username>.
-* Finally fixed the problem that Pengwin didn't launch in Windows Terminal on specific configurations.
-* If you have Windows 11, Windows Terminal 1.12, and have Windows Terminal as your default console, now when you open Pengwin from the Start Menu, it will show the correct profile on Windows Terminal.
-
-22.1.2:
-* Show a better message in WSL2 when the Virtual Machine Platform Windows feature is not enabled
-* Add an alias to the wsl command so that you can type wsl --version instead of wsl.exe --version inside Pengwin
-* Bump Python to 3.10.1 also updated all installation types
-* Fix MariaDB 10.6 install and improve the overall LAMP installer
-* Show progress ring in profile tab and taskbar in Windows Terminal when updating pengwin-setup and generating start menu shortcuts
-* Upgrade .NET installer to 6.0
-* Upgrade VcXsrv to 1.20.14.0
