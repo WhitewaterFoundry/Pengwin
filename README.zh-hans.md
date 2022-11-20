@@ -6,7 +6,7 @@
 
 <img src='https://github.com/WhitewaterFoundry/Screenshots/raw/master/ezgif.com-gif-maker.gif'>
 
-<a href='//www.microsoft.com/store/apps/9NV1GV1PXZ6P?ocid=badge'><img src='https://assets.windowsphone.com/42e5aa4a-f19a-4205-9191-a97105ed7663/Chinese_Simplified_get-it-from-MS_InvariantCulture_Default.png' alt='Chinese badge' height=50/></a>
+<a href='//www.microsoft.com/store/apps/9NV1GV1PXZ6P?ocid=badge'><img src='https://get.microsoft.com/images/zh-cn%20dark.svg' alt='Chinese badge' height=50/></a>
 
 - [English](EADME.md)
 - [繁體中文](README.zh-hant.md)
@@ -34,7 +34,6 @@
     - 支持 Docker 桥的创建。
 - 支持大部分的 [GUI 应用](https://github.com/ethanhs/WSL-Programs)! 注：需要安装 Windows 下的X服务器，如 [X410](http://afflnk.microsoft.com/c/1291904/459838/7593?prodsku=9NLP712ZMN9Q&u=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fstore%2Fp%2Fx410%2F9NLP712ZMN9Q)。
 - Pengwin 提供与其他 WSL 支持的发行版相比更快的 Bug 修复。
-- 一些不必要或者不支持的应用如`systemd`已被移除。
 - 我们会基于[社区反馈](https://github.com/WhitewaterFoundry/Pengwin/issues)不断的开发[新功能](https://github.com/WhitewaterFoundry/Pengwin/pulls)。还有，不要错过我们的 [Pengwin 赏金计划](CONTRIBUTING.md)。
 
 ## 安装需求
