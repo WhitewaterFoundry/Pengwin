@@ -4,7 +4,7 @@ The first Linux® distribution optimized for [WSL](https://en.wikipedia.org/wiki
 
 <img src='https://github.com/WhitewaterFoundry/Screenshots/raw/master/ezgif.com-gif-maker.gif'>
 
-<a href='//www.microsoft.com/store/apps/9NV1GV1PXZ6P?ocid=badge'><img src='https://assets.windowsphone.com/85864462-9c82-451e-9355-a3d5f874397a/English_get-it-from-MS_InvariantCulture_Default.png' alt='Store badge' height=50/></a>
+<a href='//www.microsoft.com/store/apps/9NV1GV1PXZ6P?ocid=badge'><img src='https://get.microsoft.com/images/en-us%20dark.svg' alt='Store badge' height=50/></a>
 
 - [日本語](README.ja.md)
 - [简体中文](README.zh-hans.md)
@@ -33,7 +33,6 @@ If you are a commercial, government, or educational institution, you may like to
 - Support for [many Linux graphical applications](https://github.com/ethanhs/WSL-Programs) with no need to configure display or libGL in Pengwin. (Requires a Windows-based X server, such as [X410](http://afflnk.microsoft.com/c/1291904/459838/7593?prodsku=9NLP712ZMN9Q&u=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fstore%2Fp%2Fx410%2F9NLP712ZMN9Q).)
 - Install over 27,790 open source packages via the apt package management system from the [expansive Debian repositories](https://packages.debian.org/testing/) and any third-party Debian-compatible repositories from outside projects.
 - Pengwin provides faster patching for WSL-specific bugs than any upstream Linux distro available on WSL.
-- A handful of unnecessary packages, such as systemd, have been removed from the base image to reduce image size and increase stability.
 - New features are [actively developed](https://github.com/WhitewaterFoundry/Pengwin/pulls) based on [community input](https://github.com/WhitewaterFoundry/Pengwin/issues). Learn how you can [earn paid grants](CONTRIBUTING.md) improving Pengwin. 
 
 ## Requirements
