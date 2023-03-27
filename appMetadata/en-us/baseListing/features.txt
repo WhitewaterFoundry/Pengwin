@@ -1,9 +1,10 @@
+Based on Debian: Pengwin is built on top of Debian, a stable and popular Linux distribution with a large user base and extensive software library.
 Pengwin includes wslu, a set of useful open-source utilities for interacting between WSL and Windows.
 A custom pengwin-setup tool, accessible via $ pengwin-setup allows new Pengwin users to get started on Linux immediately.
-Support for many Linux graphical applications with no need to configure DISPLAY in Pengwin.
-pengwin-setup will automatically install and configure VcXsrv or can configure X410.
+Support for many Linux graphical applications with no need to configure DISPLAY in Pengwin even on WSL 1.
+For WSL 1 pengwin-setup will automatically install and configure VcXsrv or can configure X410.
 Full high dpi compatibility, pengwin-setup will adjust the environment for you.
-Create Windows Start Menu items from Linux desktop apps.
+Create Windows Start Menu items from Linux desktop apps even on WSL 1.
 Install your favorite Linux terminal: Konsole, Terminator, Tilix, etc.
 Install 28,728 open source packages via the apt package management system from the vast Debian repositories and third-party Debian-compatible repositories from outside projects.
 A handful of unnecessary packages have been removed from the base image to reduce image size and increase stability.
@@ -12,4 +13,5 @@ Deploy a one-click LAMP stack.
 We have handcrafted a Windows Terminal profile for a pleasant experience.
 Install the most popular development environments.
 New features are actively developed based on community input.
-Pengwin comes with excellent end-user support via our GitHub page.
+Regular updates: Pengwin is actively developed and updated, with regular releases that include bug fixes, security updates, and new features.
+Support: Pengwin has a strong community of users and developers who provide support and resources for troubleshooting issues and getting the most out of the distribution.
