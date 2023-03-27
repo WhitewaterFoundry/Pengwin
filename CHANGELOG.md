@@ -1,5 +1,11 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+23.03.0:
+* Prepare everything for a smooth transition to bookworm
+* Upgrade Go to 1.19.4
+* Improve docker compatibility with WSL1
+* Added new MariaDB versions to installer
+* Added nano to the default installation
 
 22.11.3:
 * Support for SystemD Windows 10 / 11
