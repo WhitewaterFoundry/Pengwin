@@ -11,7 +11,7 @@
   <Identity
     Name="WhitewaterFoundryLtd.Co.16571368D6CFF"
     Publisher="CN=9879127B-9E92-4DE5-9C32-0B1F09F95DCF"
-    Version="22.11.4.0" />
+    Version="23.3.0.0" />
 
   <Properties>
     <DisplayName>Pengwin</DisplayName>
