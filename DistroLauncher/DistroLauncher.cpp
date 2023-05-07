@@ -14,6 +14,7 @@ constexpr auto ARG_RUN = L"run";
 constexpr auto ARG_RUN_C = L"-c";
 constexpr auto ARG_DISTRO = L"--distribution";
 constexpr auto ARG_DISTRO_D = L"-d";
+constexpr auto ARG_UNREGISTER = L"unregister";
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.System.h>
@@ -160,7 +161,7 @@ fire_and_forget ShowPengwinUi()
     const auto& file =
         co_await ApplicationData::Current().LocalFolder().TryGetItemAsync(L"MicrosoftStoreEngagementSDKId.txt");
 
-    if (! file)
+    if (!file)
     {
         // ReSharper disable once StringLiteralTypo
         const hstring str = L"pengwinui://";
@@ -200,13 +201,13 @@ int wmain(const int argc, const wchar_t* argv[])
     // Install the distribution if it is not already.
     const auto installOnly = arguments.size() > 0 && arguments[0] == ARG_INSTALL;
     auto hr = S_OK;
-/*
-
-    if (!g_wslApi.WslIsDistributionRegistered())
-    {
-        g_wslApi.SetDistributionName(L"Pengwin");
-    }
-*/
+    /*
+    
+        if (!g_wslApi.WslIsDistributionRegistered())
+        {
+            g_wslApi.SetDistributionName(L"Pengwin");
+        }
+    */
 
     if (!g_wslApi.WslIsDistributionRegistered())
     {
@@ -277,6 +278,15 @@ int wmain(const int argc, const wchar_t* argv[])
                     hr = SetDefaultUser(arguments[2]);
                 }
             }
+
+            if (SUCCEEDED(hr))
+            {
+                exitCode = 0;
+            }
+        }
+        else if (arguments[0] == ARG_UNREGISTER)
+        {
+            hr = g_wslApi.WslUnregisterDistribution();
 
             if (SUCCEEDED(hr))
             {

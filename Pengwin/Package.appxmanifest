@@ -70,10 +70,8 @@
                         DisplayName="Pengwin"/>
             </desktop:Extension>
 		    <uap:Extension Category="windows.protocol" EntryPoint="PengwinUI.App" Executable="PengwinUI.exe">
-		     <uap:Protocol Name="pengwinui"/>
+				<uap:Protocol Name="pengwinui"/>
 		    </uap:Extension>
-
-
 	    </Extensions>
 
     </Application>

@@ -45,6 +45,8 @@ Usage:
         Settings:
           --default-user <username>
               Sets the default user to <username>. This must be an existing user.
+    unregister
+        Unregisters the distribution and deletes the root filesystem.
 
     help
         Print usage information.
@@ -98,3 +100,9 @@ Language=English
 Please enable the Virtual Machine Platform Windows feature and ensure virtualization is enabled in the BIOS.
 For information, please visit https://aka.ms/enablevirtualization.
 .
+
+MessageId=1015 SymbolicName=MSG_WSL_UN_REGISTER_DISTRIBUTION_FAILED
+Language=English
+WslUnRegisterDistribution failed with error: 0x%1!x!
+.
+
