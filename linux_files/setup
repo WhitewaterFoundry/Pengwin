@@ -32,7 +32,7 @@ function install_repositories() {
   sudo apt-get -y -q install curl
 
   export os=debian
-  export dist=11
+  export dist=bookworm
 
   curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-base$1/script.deb.sh | sudo -E bash
   curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-setup$1/script.deb.sh | sudo -E bash
