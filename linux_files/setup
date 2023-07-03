@@ -36,6 +36,11 @@ function install_repositories() {
 
   curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-base$1/script.deb.sh | sudo -E bash
   curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-setup$1/script.deb.sh | sudo -E bash
+
+
+  export os=debian
+  export dist=bullseye
+
   curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.deb.sh | sudo -E bash
 
   sudo apt-get update -y -q
