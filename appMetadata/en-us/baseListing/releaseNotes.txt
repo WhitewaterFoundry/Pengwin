@@ -1,5 +1,11 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+23.07.0:
+* Upgraded the baseline to Debian 12 bookworm with every new version that comes with it.
+* To correctly upgrade to this version you'll need to execute 'pengwin-setup update' twice and then 'sudo apt dist-upgrade -y' to complete the upgrade process
+* Upgraded to Mesa 22.3.6, bringing OpenGL 4 and GPU Video Acceleration via VAAPI. It works out of the box, you only need to enable SystemD via pengwin-setup.
+* Improve Windows interop when SystemD is active.
+
 23.03.0:
 * Prepare everything for a smooth transition to bookworm
 * Upgrade Go to 1.19.4
