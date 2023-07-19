@@ -102,6 +102,7 @@ goto :ARGS_LOOP
 
 :POST_ARGS_LOOP
 %MSBUILD% %~dp0\DistroLauncher.sln /t:%_MSBUILD_TARGET% /m /nr:true ^
+	/restore ^
     /p:Configuration=%_MSBUILD_CONFIG% ^
     /p:Platform=%_MSBUILD_PLATFORM% ^
     /p:AppxBundlePlatforms=%_MSBUILD_APPX_BUNDLE_PLATFORMS% ^
@@ -109,7 +110,7 @@ goto :ARGS_LOOP
 
 if (%ERRORLEVEL%) == (0) (
     echo.
-    echo Created appx in %~dp0AppPackages\DistroLauncher-Appx\
+    echo Created MSIXBUNDLE in ./Pengwin/AppPackages/Pengwin_<version>_<arch>
     echo.
 )
 
