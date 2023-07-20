@@ -16,7 +16,5 @@ We have handcrafted a Windows Terminal profile for a pleasant experience.
 Install the most popular development environments (python, node, ruby, java, .Net, etc.) with version managers like (pyenv, n, rbenv, sdkman, etc) with pengwin-setup.
 Be ready for the cloud, installing Kubertenes, Terraform, Azure CLI, AWS CLI, etc. via pengwin-setup
 You can set up Pengwin to start at Windows logon without showing a Window, check the App Settings of Pengwin in the Settings Windows app.
-Install 28,728 open-source packages via the apt package management system from the vast Debian repositories and third-party Debian-compatible repositories from outside projects.
-New features are actively developed based on community input.
 Regular updates: Pengwin is actively developed and updated, with regular releases that include bug fixes, security updates, and new features.
 Support: Pengwin has a strong community of users and developers who provide support and resources for troubleshooting issues and getting the most out of the distribution.
