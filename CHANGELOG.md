@@ -1,5 +1,8 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+23.07.1:
+* Updated the NodeJS installer with new versions and the latest version of yarn.
+
 23.07.0:
 * Upgraded the baseline to Debian 12 bookworm with every new version that comes with it.
 * To correctly upgrade to this version you'll need to execute 'pengwin-setup update' twice and then 'sudo apt dist-upgrade -y' to complete the upgrade process

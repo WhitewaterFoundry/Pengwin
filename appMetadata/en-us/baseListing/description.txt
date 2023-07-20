@@ -1,17 +1,17 @@
-Pengwin is a Linux distribution based on Debian, designed specifically for use on Windows Subsystem for Linux (WSL). It is developed by Whitewater Foundry and provides a custom environment for running Linux command-line tools and applications within the Windows operating system. Pengwin includes a variety of pre-installed software packages and supports many programming languages and development tools. It also offers a streamlined installation process and integration with the Windows file system, allowing users to easily access and manipulate Windows files from the Linux environment.
+Pengwin is a Linux distribution based on Debian, explicitly designed for use on Windows Subsystem for Linux (WSL). Whitewater Foundry develops it and provides a custom environment for running Linux command-line tools and graphical applications within the Windows operating system. Pengwin includes a variety of pre-installed software packages and supports many programming languages and development tools. It also offers a streamlined installation process and integration with the Windows file system, allowing users to access and manipulate Windows files from the Linux environment easily.
 
 Pengwin is the Linux distribution explicitly created for WSL. It was created by WSL users who recognized the potential of the platform. The project is open-source, and community input is highly encouraged.
 
-Leverage the power of the Linux terminal on Windows. Get started in open-source programming with git. Manage remote servers with OpenSSH or Azure CLI. Automate tasks with Python, PowerShell, or Bash. Run a local LAMP stack for testing your interactive website. Build with the latest open source libraries and tools, including NodeJS and Ruby Gems. Run many essential graphical Linux apps, like Jetbrains IntelliJ and Linux terminals. Quickly deploy and interact with Docker. 予測非ラテン文字入力を設定します。
+Leverage the power of the Linux terminal on Windows. Get started in open-source programming with git. Manage remote servers with OpenSSH or Azure CLI—Automate tasks with Python, PowerShell, or Bash. Run a local LAMP stack for testing your interactive website. Build with the latest open-source libraries and tools, including NodeJS and Ruby Gems. Run many essential graphical Linux apps, like Jetbrains IntelliJ and Linux terminals. Quickly deploy and interact with Docker. 予測非ラテン文字入力を設定します。
 
 Enable genuine HighDPI support, install your favorite Linux terminal like Terminator or Konsole, and create Start Menu shortcuts in Windows for all your Linux GUI apps. Fully compatible with WSLg and Windows 11.
 
-In WSL 1 use pengwin-setup to install VcXsrv or set up X410 to start at pengwin launch.
+In WSL 1, use pengwin-setup to install VcXsrv or set up X410 to start at pengwin launch. Even start services with the wslsystemctl command.
 
 Pengwin installs itself as a menu entry in Windows Terminal. We crafted the background and the color palette for the best looking and usability in Windows Terminal.
 
 Access your C:\ drive at /mnt/c automatically. Copy and paste from Visual Studio into Emacs. Open Word from zsh. Pipe ipconfig.exe output into a Python script. It is a hybrid world. Pengwin bridges the gap between Windows and Linux. Pengwin also includes wslutilities to make working in the hybrid world easier.
 
-Pengwin is based on Debian, which looks like Ubuntu, but it is not the same.
+Pengwin is based on Debian, which looks like Ubuntu, but it is different, and installation recipes or tutorials for Ubuntu may not work in Pengwin. Always look for Debian instructions instead.
 
 DISCLAIMER: Windows Insider Preview Builds are not production-ready and can contain incompatibilities or bugs that affect the performance of Pengwin. We support insider versions on a best-effort basis.
