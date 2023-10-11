@@ -84,7 +84,6 @@ function invoke_setup() {
 function main() {
   DEBUG_ARG=""
 
-  sudo -i -E
   process_arguments "$@"
   if [[ ! -f /usr/local/bin/pengwin-setup ]]; then
 
