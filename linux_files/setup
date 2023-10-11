@@ -29,44 +29,44 @@ function process_arguments() {
 # bashsupport disable=BP2001
 function install_repositories() {
 
-  sudo apt-get -y -q update
-  sudo apt-get -y -q install curl
+  apt-get -y -q update
+  apt-get -y -q install curl
 
   export os=debian
   export dist=bookworm
 
-  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-base$1/script.deb.sh | sudo -E bash "${DEBUG_ARG}"
-  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-setup$1/script.deb.sh | sudo -E bash "${DEBUG_ARG}"
+  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-base$1/script.deb.sh | bash "${DEBUG_ARG}"
+  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-setup$1/script.deb.sh | bash "${DEBUG_ARG}"
 
 
   export os=debian
   export dist=bullseye
 
-  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.deb.sh | sudo -E bash "${DEBUG_ARG}"
+  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.deb.sh | bash "${DEBUG_ARG}"
 
-  sudo apt-get update -y -q
+  apt-get update -y -q
 }
 
 function install_packages() {
 
-  sudo apt-get -y -q install pengwin-base wslu pengwin-setup
+  apt-get -y -q install pengwin-base wslu pengwin-setup
 
   # Remove packagecloud repository definitions
-  sudo rm /etc/apt/sources.list.d/whitewaterfoundry_*.list
+  rm /etc/apt/sources.list.d/whitewaterfoundry_*.list
 
   # Update apt repositories
-  sudo apt-get -y -q update
+  apt-get -y -q update
 
   # Check for .dist-upgrade file in /etc/apt and inform user dist-upgrade available if so
   if [[ -f "/etc/apt/.dist-upgrade" ]]; then
-    sudo rm /etc/apt/.dist-upgrade
-    sudo apt-get -y -q dist-upgrade
+    rm /etc/apt/.dist-upgrade
+    apt-get -y -q dist-upgrade
   fi
 
 }
 
 function remove_legacy_repo() {
-  sudo sed -i -e 's|deb https://apt.patrickwu.space/ stable main|# deb https://apt.patrickwu.space/ stable main|g' /etc/apt/sources.list
+  sed -i -e 's|deb https://apt.patrickwu.space/ stable main|# deb https://apt.patrickwu.space/ stable main|g' /etc/apt/sources.list
 
 }
 
@@ -76,7 +76,7 @@ function remove_legacy_regkeys() {
 }
 
 function invoke_setup() {
-  sudo ln -s /usr/local/bin/pengwin-setup /etc/setup
+  ln -s /usr/local/bin/pengwin-setup /etc/setup
   /usr/local/bin/pengwin-setup
 
 }
@@ -84,6 +84,7 @@ function invoke_setup() {
 function main() {
   DEBUG_ARG=""
 
+  sudo -i -E
   process_arguments "$@"
   if [[ ! -f /usr/local/bin/pengwin-setup ]]; then
 
