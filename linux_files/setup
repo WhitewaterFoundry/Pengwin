@@ -6,6 +6,7 @@ function process_arguments() {
       --debug | -d | --verbose | -v)
         echo "Running in debug/verbose mode"
         set -x
+        DEBUG_ARG="-x"
         shift
         ;;
       --silent)
@@ -34,14 +35,14 @@ function install_repositories() {
   export os=debian
   export dist=bookworm
 
-  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-base$1/script.deb.sh | sudo -E bash
-  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-setup$1/script.deb.sh | sudo -E bash
+  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-base$1/script.deb.sh | sudo -E bash "${DEBUG_ARG}"
+  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/pengwin-setup$1/script.deb.sh | sudo -E bash "${DEBUG_ARG}"
 
 
   export os=debian
   export dist=bullseye
 
-  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.deb.sh | sudo -E bash
+  curl -s https://packagecloud.io/install/repositories/whitewaterfoundry/wslu/script.deb.sh | sudo -E bash "${DEBUG_ARG}"
 
   sudo apt-get update -y -q
 }
@@ -81,6 +82,7 @@ function invoke_setup() {
 }
 
 function main() {
+  DEBUG_ARG=""
 
   process_arguments "$@"
   if [[ ! -f /usr/local/bin/pengwin-setup ]]; then
