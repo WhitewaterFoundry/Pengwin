@@ -48,6 +48,7 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxPackageSigningTimestampServerUrl>http://timestamp.comodoca.com/%3f__hstc=116687193.ca0320fdf84fdaebb49c623303fc35cd.1574461157682.1575409935578.1578516608285.3&amp;__hssc=116687193.1.1578516608285&amp;__hsfp=100782785</AppxPackageSigningTimestampServerUrl>
     <UapAppxPackageBuildMode>StoreAndSideload</UapAppxPackageBuildMode>
+    <PackageCertificateThumbprint>2D5B0AA4BDFD7060FD8FBD517BCAEA44CBA6FF63</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <AppxBundle>Always</AppxBundle>
