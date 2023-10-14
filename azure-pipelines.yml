@@ -29,7 +29,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      CIRCLE_TOKEN="$(cat $(circleToken.secureFilePath))"
+      CIRCLE_TOKEN="$(cat $(cygpath -u $(circleToken.secureFilePath)))"
       echo ${CIRCLE_TOKEN}
       url=$(curl -H "Circle-Token: ${CIRCLE_TOKEN}" https://circleci.com/api/v1.1/project/github/WhitewaterFoundry/pengwin-rootfs-builds/latest/artifacts | grep -o 'https://[^"]*')
       mkdir -p ARM64
