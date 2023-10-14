@@ -21,6 +21,8 @@ variables:
 steps:
 - task: Bash@3
   displayName: Download and move 64 bit ARM image
+  env:
+    CIRCLE_TOKEN: $(circleCiToken)
   inputs:
     targetType: 'inline'
     script: |
@@ -29,8 +31,6 @@ steps:
       url=$(curl -H "Circle-Token: ${CIRCLECI_TOKEN}" https://circleci.com/api/v1.1/project/github/WhitewaterFoundry/pengwin-rootfs-builds/latest/artifacts | grep -o 'https://[^"]*')
       mkdir -p ARM64
       curl -L -H "Circle-Token: ${CIRCLE_TOKEN}" "${url}" --output ARM64/install.tar.gz
-    env:
-      CIRCLE_TOKEN: $(circleCiToken)
 
 - task: DownloadBuildArtifacts@0
   displayName: Download 64 bit image
