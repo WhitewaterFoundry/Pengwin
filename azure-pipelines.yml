@@ -19,11 +19,17 @@ variables:
   appxPackageDir: '$(System.DefaultWorkingDirectory)\AppxPackages'
 
 steps:
+- task: DownloadSecureFile@1
+  name: circleToken
+  inputs:
+    secureFile: 'circle-token.txt'
+
 - task: Bash@3
   displayName: Download and move 64 bit ARM image
   inputs:
     targetType: 'inline'
     script: |
+      CIRCLE_TOKEN="$(cat $(circleToken.secureFilePath))"
       echo ${CIRCLE_TOKEN}
       url=$(curl -H "Circle-Token: ${CIRCLE_TOKEN}" https://circleci.com/api/v1.1/project/github/WhitewaterFoundry/pengwin-rootfs-builds/latest/artifacts | grep -o 'https://[^"]*')
       mkdir -p ARM64
