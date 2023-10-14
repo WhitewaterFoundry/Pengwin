@@ -24,11 +24,13 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      export CIRCLE_TOKEN=$(circleCiToken)
-      echo ${CIRCLE_TOKEN}
+      set -x
+      circle_token=$(circleCiToken)
+      echo ${circle_token}
       url=$(curl -H "Circle-Token: ${CIRCLECI_TOKEN}" https://circleci.com/api/v1.1/project/github/WhitewaterFoundry/pengwin-rootfs-builds/latest/artifacts | grep -o 'https://[^"]*')
       mkdir -p ARM64
-      curl -L -H "Circle-Token: ${CIRCLE_TOKEN}" "${url}" --output ARM64/install.tar.gz
+      curl -L -H "Circle-Token: ${circle_token}" "${url}" --output ARM64/install.tar.gz
+
 - task: DownloadBuildArtifacts@0
   displayName: Download 64 bit image
   inputs:
@@ -40,6 +42,7 @@ steps:
     downloadType: 'single'
     artifactName: 'drop'
     downloadPath: '$(System.ArtifactsDirectory)'
+
 - task: CmdLine@2
   displayName: Move 64 bit image
   inputs:
