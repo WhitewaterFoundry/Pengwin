@@ -25,7 +25,7 @@ steps:
     targetType: 'inline'
     script: |
       set -x
-      circle_token=$(circleCiToken)
+      circle_token="${{ variables.circleCiToken}}"
       echo ${circle_token}
       url=$(curl -H "Circle-Token: ${CIRCLECI_TOKEN}" https://circleci.com/api/v1.1/project/github/WhitewaterFoundry/pengwin-rootfs-builds/latest/artifacts | grep -o 'https://[^"]*')
       mkdir -p ARM64
