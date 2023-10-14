@@ -24,7 +24,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      export CIRCLE_TOKEN='$(circleCiToken)'
+      export CIRCLE_TOKEN=$(circleCiToken)
       echo ${CIRCLE_TOKEN}
       curl -H "Circle-Token: ${CIRCLECI_TOKEN}" https://circleci.com/api/v1.1/project/github/WhitewaterFoundry/pengwin-rootfs-builds/latest/artifacts | grep -o 'https://[^"]*' | wget --verbose --header "Circle-Token: ${CIRCLE_TOKEN}" --input-file -
       mv install_arm64_rootfs.tar.gz ARM64/install.tar.gz"
