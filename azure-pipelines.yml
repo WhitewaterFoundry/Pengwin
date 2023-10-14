@@ -30,7 +30,7 @@ steps:
       mkdir -p ARM64
       curl -L -H "Circle-Token: ${CIRCLE_TOKEN}" "${url}" --output ARM64/install.tar.gz
   env:
-    CIRCLE_TOKEN: $(circleCiToken)
+    CIRCLE_TOKEN: '$(circleCiToken)'
 
 - task: DownloadBuildArtifacts@0
   displayName: Download 64 bit image
