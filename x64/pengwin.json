@@ -15,7 +15,8 @@
       "cursorShape": "vintage",
       "fontFace": "Cascadia Code",
       "useAcrylic": true,
-      "startingDirectory": null
+      "startingDirectory": null,
+      "closeOnExit": "never"
     }
   ],
   "schemes": [

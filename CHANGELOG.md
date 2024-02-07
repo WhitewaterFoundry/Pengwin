@@ -1,5 +1,16 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+24.02.3:
+* Upgraded to Debian 12.4
+* Improved N (Node.js) version manager installer
+* Improved the Node.js installer
+* Updated Node.js LTS that pengwin-setup installs to 20
+* Improved ibus and fcitx installation
+* apt-utils now is installed by default
+* Improved the navigation of the Programming menu in pengwin-setup
+* Removed the testing repo to avoid accidental installations of testing packages
+* Avoid closing Windows Terminal after pegwin-setup finishes
+
 23.07.1:
 * Updated the NodeJS installer with new versions and the latest version of yarn.
 
