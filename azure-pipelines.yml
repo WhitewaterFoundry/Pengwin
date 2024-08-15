@@ -16,7 +16,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'x64|ARM64'
   buildConfiguration: 'Release'
-  appxPackageDir: '$(System.DefaultWorkingDirectory)\AppxPackages'
+  appxPackageDir: 'AppxPackages'
 
 steps:
 - task: DownloadSecureFile@1
@@ -87,32 +87,28 @@ steps:
     maximumCpuCount: true
     msbuildArchitecture: 'x64'
 
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: |
+      ARM64\install.tar.gz
+      x64\install.tar.gz
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(appxPackageDir)'
     Contents: '**\*bundle.msixupload'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-- task: CopyFiles@2
+- task: DeleteFiles@1
   inputs:
     SourceFolder: '$(appxPackageDir)'
-    Contents: '**\*.msixbundle'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: |
+      **\*bundle.msixupload
+      **\*.msixbundle
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-
-- task: DeleteFiles@1
-  inputs:
-    SourceFolder: '$(appxPackageDir)'
-    Contents: '**\*.msixbundle'
-- task: DeleteFiles@1
-  inputs:
-    Contents: 'x64\install.tar.gz'
-- task: DeleteFiles@1
-  inputs:
-    Contents: 'ARM64\install.tar.gz'
 
 - task: store-flight@0
   continueOnError: true
