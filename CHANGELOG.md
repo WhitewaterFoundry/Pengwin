@@ -1,5 +1,16 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+24.08.1:
+* Improved the navigation in the pengwin-setup menus allowing selecting the options with less keystrokes.
+* The backports are active and working, so you'll receive the latest version of many packages like curl, cmake, golang, systemd, emacs, meson, xrdp among others.
+* Upgraded Terraform to 1.9.4
+* Included by default the command-not-found package to help users to find the correct package to install when a command is not found.
+* Fixed and improved the Kubernetes installer.
+* Fixed an error when spt is trying to upgrade systemd package on WSL1.
+* Fix XFCE installation with newer versions of WSL, if you are facing the issue run the installer again, from pengwin-setup.
+* Be sure that dbus is only started once, regardless how many times you start Pengwin.
+* Added a Message Of The Day Setting, to pengwin-setup to configure it.
+
 24.02.3:
 * Upgraded to Debian 12.4
 * Improved N (Node.js) version manager installer

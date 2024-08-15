@@ -108,7 +108,7 @@
       <Version>6.2.14</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Services.Store.Engagement">
-      <Version>10.1901.28001</Version>
+      <Version>10.2307.3001</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
