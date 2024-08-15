@@ -89,7 +89,6 @@ steps:
 
 - task: DeleteFiles@1
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)'
     Contents: |
       ARM64\install.tar.gz
       x64\install.tar.gz
