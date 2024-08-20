@@ -1,7 +1,12 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+24.08.2:
+* Added a --help option to pengwin-setup and will show you some usability and automation options
+* Upgraded Terraform to 1.9.5
+* Fixed a regression that caused that the GUI menu didn't load
+
 24.08.1:
-* Improved the navigation in the pengwin-setup menus allowing selecting the options with less keystrokes.
+* Improved the navigation in the pengwin-setup menus allowing selecting the options with fewer keystrokes.
 * The backports are active and working, so you'll receive the latest version of many packages like curl, cmake, golang, systemd, emacs, meson, xrdp among others.
 * Upgraded Terraform to 1.9.4
 * Included by default the command-not-found package to help users to find the correct package to install when a command is not found.
