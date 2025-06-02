@@ -2,7 +2,7 @@ Based on Debian: Pengwin is built on top of Debian, a stable and widespread Linu
 Pengwin includes wslu, a set of useful open-source utilities for interacting between WSL and Windows. (wslusc, wslsys,  wslfetch,  wslvar,  wslview,  wslact,  wslclip, wslgsu)
 A custom pengwin-setup tool, accessible via $ pengwin-setup, allows new Pengwin users to get started on Linux immediately.
 Compatible with Windows 11/10 with the latest version of WSL and WSLg.
-Turn SystemD on/off via pengwin-setup. Supports SystemD even without the Store version of WSL.
+Turn systemd on/off via pengwin-setup. Supports SystemD even without the Store version of WSL.
 Support for many Linux graphical applications with no need to configure DISPLAY in Pengwin, even on WSL 1.
 Built-in support for GPU acceleration and GPU video acceleration without custom repos, environment variables, or user groups.
 Install via pengwin-setup a complete desktop environment based on Xfce, accessible directly from the Windows start menu.
