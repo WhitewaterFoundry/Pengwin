@@ -1,5 +1,24 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+25.06.0:
+* Upgraded Terraform to 1.12.1
+* Upgraded Node.js versions to 24 and 22 lts
+* Upgraded to Debian 12.11
+* Upgraded to Mesa 25.0.4 and the D3D12 driver includes:
+    * OpenGL 4.6 support completed
+    * Expanded video encode/decode support (HEVC 4:2:2/4:4:4, H.264 Baseline)
+    * Added VP9 and AV1 codecs in GPU Video Acceleration
+* Changed the TUI engine of pengwin-setup from newt to ncurses, with the following improvements:
+    * Mouse support, you can now click options and buttons
+    * Accelerator keys are shown in the options for rapid selection
+    * The big dialogs like the uninstaller are now resizable
+* Updated the version of VCXsrv to 21.1.13
+* Updated python to 3.13
+* Fixed a regression in pengwin-setup that prevented returning to the previous menu
+* Fix GPU Video Acceleration access in WSL 2.5.x
+* Fixed an error in the icon generation in the desktop environment installer
+* Added udev package due to it is necessary for the video acceleration
+
 24.08.2:
 * Added a --help option to pengwin-setup and will show you some usability and automation options
 * Upgraded Terraform to 1.9.5

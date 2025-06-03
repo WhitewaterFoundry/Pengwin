@@ -46,9 +46,9 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <AppxPackageSigningTimestampServerUrl>http://timestamp.comodoca.com/%3f__hstc=116687193.ca0320fdf84fdaebb49c623303fc35cd.1574461157682.1575409935578.1578516608285.3&amp;__hssc=116687193.1.1578516608285&amp;__hsfp=100782785</AppxPackageSigningTimestampServerUrl>
+    <AppxPackageSigningTimestampServerUrl>http://timestamp.sectigo.com/</AppxPackageSigningTimestampServerUrl>
     <UapAppxPackageBuildMode>StoreAndSideload</UapAppxPackageBuildMode>
-    <PackageCertificateThumbprint>2D5B0AA4BDFD7060FD8FBD517BCAEA44CBA6FF63</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>F7D10FD57CCCB9868CFA8576D3E169369A922660</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <AppxBundle>Always</AppxBundle>
