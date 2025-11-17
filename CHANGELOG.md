@@ -10,7 +10,6 @@ Existing users can update immediately by running $ pengwin-setup update
 * Updated JetBrains Toolbox installation script URL
 * Fixed WSL1 systemd upgrade script
 * Fixed backports configuration for Debian 13
-* Fixed PowerShell installer for ARM64 compatibility
 * Added check for Debian version consistency during installation
 * Updated DISPLAY setup to use default gateway from `ip route`
 * Updated path for oemcp configuration file
