@@ -1,7 +1,7 @@
-linux
-windows subsystem for linux
 wsl
-ubuntu
-debian
 terminal
-windows terminal
+xfce
+systemd
+apt
+deb
+curl
