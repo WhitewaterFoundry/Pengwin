@@ -1,23 +1,17 @@
 Existing users can update immediately by running $ pengwin-setup update
 
 25.11.0:
-* Major upgrade to Debian 13 (Trixie)
+* Upgraded to Debian 13 (Trixie)
+* Upgraded to Mesa 25.2.6-1~bpo13+1
 * Added the default user to the render group for GPU acceleration
-* Updated VcXsrv to 21.1.16
-* Updated Terraform to 1.13.5
-* Updated Node.js to versions 25 (latest) and 24 (LTS)
-* Updated Python to 3.14 (pyenv) and 3.13 (Debian repos)
-* Updated Ruby to 3.3.6, Bundler to 2.7.2, and Rails to 8.1.1
-* Updated .NET SDK to 9.0
-* Updated AWS CLI to version 2 with automatic v1 migration support
-* Updated MariaDB to support versions 11.8 and 12.x
-* Updated Kubernetes to v1.33
-* Added AI menu with GitHub Copilot CLI and Vim/Neovim installers
-* Added FZF fuzzy finder to TOOLS menu
-* Added Microsoft Edit installer
-* Added JetBrains Toolbox uninstaller support
-* Improved XRDP compression settings for better remote desktop experience
-* Fixed PowerShell and .NET SDK installers to properly warn on ARM64
-* Fixed systemd upgrade issues on WSL1
-* Enhanced upgrade process with proper restart handling
+* Updated Terraform to 1.13.4
+* Updated JetBrains Toolbox installation script
+* Fixed WSL1 systemd upgrade issues
+* Fixed backports configuration for Debian 13
+* Fixed PowerShell installer for ARM64 architecture
+* Updated DISPLAY setup to use default gateway from `ip route`
+* Updated path for oemcp configuration file
+* Added kmod and procps as dependencies
+* Removed systemd from package dependencies
+* Added mesa-libgallium to Recommends for better graphics support
 
