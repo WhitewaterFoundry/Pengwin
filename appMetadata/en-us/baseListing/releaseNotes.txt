@@ -2,7 +2,7 @@ Existing users can update immediately by running $ pengwin-setup update
 
 25.11.0:
 * Upgraded to Debian 13 (Trixie)
-* Upgraded to Mesa 25.2.6-1~bpo13+1
+* Upgraded to Mesa 25.2.6-1
 * Added the default user to the render group for GPU acceleration
 * Updated Terraform to 1.13.4
 * Updated JetBrains Toolbox installation script
@@ -10,7 +10,7 @@ Existing users can update immediately by running $ pengwin-setup update
 * Fixed backports configuration for Debian 13
 * Fixed PowerShell installer for ARM64 architecture
 * Updated DISPLAY setup to use default gateway from `ip route`
-* Updated path for oemcp configuration file
+* Updated path for oemcp configuration file fixing some wsl utilities
 * Added kmod and procps as dependencies
 * Removed systemd from package dependencies
 * Added mesa-libgallium to Recommends for better graphics support
