@@ -1,5 +1,23 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+25.11.0:
+* Added the default user to the render group for GPU acceleration
+* Updated keywords for app metadata to include xfce, systemd, apt, deb, and curl
+* Corrected typographical errors in features documentation
+* Upgraded to Debian 13 (Trixie)
+* Upgraded to Mesa 25.2.6-1~bpo13+1
+* Updated Terraform to 1.13.4
+* Updated JetBrains Toolbox installation script URL
+* Fixed WSL1 systemd upgrade script
+* Fixed backports configuration for Debian 13
+* Added check for Debian version consistency during installation
+* Updated DISPLAY setup to use default gateway from `ip route`
+* Updated path for oemcp configuration file
+* Added kmod and procps as dependencies
+* Removed systemd from package dependencies
+* Added mesa-libgallium to Recommends for graphics support
+* Updated pengwin-load-vgem-module for virtual graphics support
+
 25.06.0:
 * Upgraded Terraform to 1.12.1
 * Upgraded Node.js versions to 24 and 22 lts
