@@ -1,5 +1,47 @@
 Existing users can update immediately by running $ pengwin-setup update
 
+25.11.0:
+* Added the default user to the render group for GPU acceleration
+* Updated keywords for app metadata to include xfce, systemd, apt, deb, and curl
+* Corrected typographical errors in features documentation
+
+pengwin-setup changes:
+* **Major upgrade to Debian 13 (Trixie)**
+* Updated Terraform to 1.13.5
+* Updated VcXsrv to 21.1.16
+* Updated Node.js versions to 25 latest and 24 LTS
+* Updated Python to 3.14 (pyenv) and 3.13 (Debian repos)
+* Updated Ruby to 3.3.6 with Bundler 2.7.2 and Rails 8.1.1
+* Updated .NET SDK to 9.0
+* Updated Azure CLI and PowerShell to use Bookworm repos
+* Updated AWS CLI to version 2 with automatic v1 migration
+* Updated MariaDB installer to support 11.8 and 12.x versions
+* Updated Kubernetes installation to v1.33
+* Updated Joomla installer to 5.2.1
+* Added AI menu with GitHub Copilot CLI and Vim/Neovim plugin installers
+* Added FZF to TOOLS menu with full integration
+* Added Microsoft Edit installer
+* Added JetBrains Toolbox uninstaller
+* Added PowerShell installation blocking for non-x86_64 architectures
+* Added .NET SDK architecture warning for non-x86_64 systems
+* Improved XRDP compression settings for better remote desktop performance
+* Fixed Homebrew test to support version 5
+* Fixed PowerShell installer for ARM64 compatibility
+* Fixed LaTeX installer menu function for non-interactive mode
+* Enhanced upgrade handling with proper restart prompts
+
+pengwin-base changes:
+* **Migration to Debian 13 (Trixie)**
+* Fixed WSL1 systemd upgrade script
+* Fixed backports configuration for Debian 13
+* Added check for Debian version consistency during installation
+* Updated DISPLAY setup to use default gateway from `ip route`
+* Update path for oemcp configuration file
+* Added kmod and procps as dependencies
+* Removed systemd from package dependencies
+* Added mesa-libgallium to Recommends for graphics support
+* Updated pengwin-load-vgem-module for virtual graphics support
+
 25.06.0:
 * Upgraded Terraform to 1.12.1
 * Upgraded Node.js versions to 24 and 22 lts
