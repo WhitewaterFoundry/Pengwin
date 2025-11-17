@@ -10,6 +10,4 @@ Existing users can update immediately by running $ pengwin-setup update
 * Fixed backports configuration for Debian 13
 * Updated DISPLAY setup to use default gateway from `ip route`
 * Updated path for oemcp configuration file fixing some wsl utilities
-* Added kmod and procps as dependencies
-* Removed systemd from package dependencies
 
