@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="324761cd-af18-4342-844e-bb91c92423bc"
-    Publisher="CN=hcram"
-    Version="1.0.0.0" />
+    Name="WhitewaterFoundryLtd.Co.16571368D6CFF"
+    Publisher="CN=9879127B-9E92-4DE5-9C32-0B1F09F95DCF"
+    Version="25.11.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="324761cd-af18-4342-844e-bb91c92423bc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>PengwinUI</DisplayName>
-    <PublisherDisplayName>hcram</PublisherDisplayName>
+    <DisplayName>Pengwin</DisplayName>
+    <PublisherDisplayName>Whitewater Foundry</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="PengwinUI.App">
       <uap:VisualElements
-        DisplayName="PengwinUI"
+        DisplayName="Pengwin"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="PengwinUI"
