@@ -236,7 +236,6 @@ int wmain(const int argc, const wchar_t* argv[])
         SyncIcon(L"pengwin");
         SyncIcon(L"background1");
         SyncIcon(L"background2");
-        ShowPengwinUi();
 
         if (arguments.size() >= 2 && (arguments[0] == ARG_DISTRO ||
             arguments[0] == ARG_DISTRO_D))

@@ -11,3 +11,10 @@ Existing users can update immediately by running $ pengwin-setup update
 * Updated DISPLAY setup to use default gateway from ip route
 * Updated path for oemcp configuration file fixing some WSL utilities
 
+25.06.0:
+* Terraform 1.12.1, Node.js 22/24 LTS, Debian 12.11
+* Mesa 25.0.4 with D3D12: completed OpenGL 4.6, expanded HEVC/H.264 support, added VP9/AV1 GPU acceleration
+* pengwin-setup TUI switched to ncurses: mouse support, visible accelerator keys, resizable large dialogs
+* Updated VCXsrv to 21.1.13 and Python to 3.13
+* Fixed pengwin-setup menu regression, GPU video acceleration in WSL 2.5.x, and desktop icon generation
+* Added udev package required for video acceleration

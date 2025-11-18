@@ -35,7 +35,7 @@
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
   <PropertyGroup>
     <ProjectGuid>4175daa1-10e2-45bf-88bd-6577af555b1b</ProjectGuid>
-    <TargetPlatformVersion>10.0.22000.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.26100.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
@@ -75,7 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DistroLauncher\DistroLauncher.vcxproj" />
-    <ProjectReference Include="..\PengwinUI\PengwinUI.csproj" />
     <ProjectReference Include="..\PengwinW\PengwinW.vcxproj" />
   </ItemGroup>
   <ItemGroup>
