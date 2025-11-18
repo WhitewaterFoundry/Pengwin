@@ -10,7 +10,8 @@ trigger:
     include: [ master ]
 
 pool:
-  vmImage: 'windows-2022'
+  name: Windows
+  #vmImage: 'windows-2022'
 
 variables:
   solution: '**/*.sln'
