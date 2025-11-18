@@ -32,8 +32,8 @@ steps:
     script: |
       # Tried with secure variable without success (bug?) so I am using secureFiles
 
-      echo $WSLENV
-      CIRCLE_TOKEN="$(cat "${CIRCLE_TOKEN_FILE:-circle-token.txt}")"
+      echo $(dirname "$0")/circle-token.txt
+      CIRCLE_TOKEN="$(cat "${CIRCLE_TOKEN_FILE:-$(dirname "$0")/circle-token.txt}")"
       url=$(curl -H "Circle-Token: ${CIRCLE_TOKEN}" https://circleci.com/api/v1.1/project/github/WhitewaterFoundry/pengwin-rootfs-builds/latest/artifacts | grep -o 'https://[^"]*')
       mkdir -p ARM64
       curl -L -H "Circle-Token: ${CIRCLE_TOKEN}" "${url}" --output ARM64/install.tar.gz
