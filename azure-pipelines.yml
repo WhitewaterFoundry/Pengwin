@@ -31,6 +31,7 @@ steps:
     targetType: 'inline'
     script: |
       # Tried with secure variable without success (bug?) so I am using secureFiles
+      echo CIRCLE_TOKEN_FILE="${CIRCLE_TOKEN_FILE}"
       CIRCLE_TOKEN="$(cat "${CIRCLE_TOKEN_FILE}")"
       url=$(curl -H "Circle-Token: ${CIRCLE_TOKEN}" https://circleci.com/api/v1.1/project/github/WhitewaterFoundry/pengwin-rootfs-builds/latest/artifacts | grep -o 'https://[^"]*')
       mkdir -p ARM64
