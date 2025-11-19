@@ -6,11 +6,11 @@
 Read more about the components from the upstream template by Microsoft [here](https://github.com/Microsoft/WSL-DistroLauncher). 
 
 ## Building Requirements
-1. [Visual Studio Community 2019](https://visualstudio.microsoft.com/vs/community/). (Free)
+1. [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/). (Free)
 	- The "Universal Windows Platform development" Workload is required, along with the following Individual components:
-		- `C++ (v142) Universal Windows Platform tools`
-		- Recommended Version - `Windows 10 SDK (10.0.17763.0) for UWP: C#, VB, JS`
-		- Minimum Version - `Windows 10 SDK (10.0.17134.0) for UWP: C#, VB, JS`		
+		- `C++ (v143) Universal Windows Platform tools`
+		- Recommended Version - `Windows 10 SDK (10.0.19041.0) or later for UWP: C#, VB, JS`
+		- Minimum Version - `Windows 10 SDK (10.0.17763.0) for UWP: C#, VB, JS`		
 1. Developer Mode
 	- Windows 10 must be in Developer mode, which can be enabled in Start -> Settings -> Update & Security -> For developers.
 1. Enable WSL
@@ -19,10 +19,10 @@ Read more about the components from the upstream template by Microsoft [here](ht
         - Open PowerShell as Administrator, type `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux`, and restart as required.
 
 ## Build Process
-1. Open DistroLauncher.sln in Visual Studio Community 2019.
+1. Open DistroLauncher.sln in Visual Studio Community 2022.
 2. Generate a test certificate:
 
-As of Visual Studio 2019, the original feature to create Test Certificates have been removed in order to, "promote better security practices". A [bug report](https://developercommunity.visualstudio.com/content/problem/612872/create-test-certificate-option-missing-from-uwp-sd.html) has been filed, but it does not seem that this feature will be coming back soon. To address that bug report, [Chris Paterson](https://developercommunity.visualstudio.com/users/179609/0a25123f-a73b-680f-8ba0-adf2e9b32c8e.html) created a script which has this same feature.
+As of Visual Studio 2019 and later (including 2022), the original feature to create Test Certificates have been removed in order to, "promote better security practices". A [bug report](https://developercommunity.visualstudio.com/content/problem/612872/create-test-certificate-option-missing-from-uwp-sd.html) has been filed, but it does not seem that this feature will be coming back soon. To address that bug report, [Chris Paterson](https://developercommunity.visualstudio.com/users/179609/0a25123f-a73b-680f-8ba0-adf2e9b32c8e.html) created a script which has this same feature.
 
 Open Powershell and copy and paste this script into the prompt, it creates the test certificate for you:
 ```
@@ -38,7 +38,7 @@ New-SelfSignedCertificate -Type Custom -Subject $Subject -KeyUsage DigitalSignat
 **You will need the thumbprint later so be sure to copy it**
 1. Get or build install.tar.gz
     1. Get the most [recent install.tar.gz files](https://github.com/whitewaterfoundry/pengwin-rootfs-builds/releases), and place in x64 or ARM64, or
-    1. Build the install.tar.gz on an existing Debian or Pengwin system using the [legacy build script](https://github.com/WhitewaterFoundry/legacy-rootfs-build-scripts).
+    1. Build the install.tar.gz on an existing Debian or Pengwin system using the [build scripts](https://github.com/WhitewaterFoundry/pengwin-rootfs-builds).
 1. Updating the thumbprint
     1. Open the file `DistroLauncher-Appx\DistroLauncher-Appx.vcxproj`
     1. Search for the line that starts with `<PackageCertificateThumbprint>`
@@ -47,10 +47,10 @@ New-SelfSignedCertificate -Type Custom -Subject $Subject -KeyUsage DigitalSignat
 1. Build the Windows UWP package:
     The package can be built in Visual Studio or via command line
     - For a UI guided build
-        1. Open `DistroLauncher.sln` in Visual Studio Community 2019.
+        1. Open `DistroLauncher.sln` in Visual Studio Community 2022.
         1. Follow the instructions [here](https://docs.microsoft.com/en-us/windows/uwp/packaging/packaging-uwp-apps#create-an-app-package-upload-file)
     - To build from the command line
-        1. Open a `Developer Command Prompt for VS 2019` as an administrator and change directory to your build directory.
+        1. Open a `Developer Command Prompt for VS 2022` as an administrator and change directory to your build directory.
         1. Run `build.bat`
             - By default, this generates the debug appxbundle targeting both x64 and ARM64
             - To only target Debug|x64, run `build.bat x64`
