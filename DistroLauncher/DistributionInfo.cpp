@@ -9,7 +9,7 @@ HRESULT DistributionInfo::ChangeDefaultUserInWslConf(const std::wstring_view use
 {
     DWORD exitCode = 0;
 
-    wchar_t commandLine[255];
+    wchar_t commandLine[512];
     _swprintf_p(commandLine, _countof(commandLine),
                 L"if [ $(grep -c \"\\[user\\]\" /etc/wsl.conf) -eq \"0\" ]; then echo -e \"\\n[user]\\ndefault=%1$s\">>/etc/wsl.conf; else sed -i \"s/\\(default=\\)\\(.*\\)/\\1%1$s/\" /etc/wsl.conf ; fi",
                 std::wstring(userName).c_str());
