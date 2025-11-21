@@ -298,3 +298,4 @@ DistroLauncher/messages.h
 *.tar.gz
 /ARM64/install.tar - Copy.gz
 /x64/install.tar - Copy.gz
+_codeql_detected_source_root
