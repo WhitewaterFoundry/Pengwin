@@ -175,10 +175,20 @@ fire_and_forget ShowPengwinUi()
 bool IsCurrentDirNotSystem32()
 {
     wchar_t system32Dir[MAX_PATH];
-    GetSystemDirectoryW(system32Dir, MAX_PATH);
+    const auto system32DirLength = GetSystemDirectoryW(system32Dir, MAX_PATH);
+    if (system32DirLength == 0 || system32DirLength >= MAX_PATH)
+    {
+        // On error, assume we're not in System32 for safety
+        return true;
+    }
 
     wchar_t currentDir[MAX_PATH];
-    GetCurrentDirectoryW(MAX_PATH, currentDir);
+    const auto currentDirLength = GetCurrentDirectoryW(MAX_PATH, currentDir);
+    if (currentDirLength == 0 || currentDirLength >= MAX_PATH)
+    {
+        // On error, assume we're not in System32 for safety
+        return true;
+    }
 
     return _wcsicmp(system32Dir, currentDir) != 0;
 }
