@@ -267,8 +267,8 @@ int wmain(const int argc, const wchar_t* argv[])
 
         if (arguments.empty())
         {
-            /* If the current working dir is not System32 then it was called from Open with Terminal
-            option or from command line. In this case is better to start the distro in the current directory */
+            // If the current working dir is not System32 then it was called from Open with Terminal
+            // option or from command line. In this case it is better to start the distro in the current directory.
             const bool useCurrentWorkingDirectory = IsCurrentDirNotSystem32();
 
             hr = g_wslApi.WslLaunchInteractive(L"", useCurrentWorkingDirectory, &exitCode);
