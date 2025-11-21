@@ -26,4 +26,7 @@ namespace DistributionInfo
 
     // Changes the default user in /etc/wsl.conf
     HRESULT ChangeDefaultUserInWslConf(std::wstring_view userName);
+
+    // Changes the default user in /etc/wsl-distribution.conf
+    HRESULT ChangeDefaultUserInWslDistributionConf(ULONG uid);
 }

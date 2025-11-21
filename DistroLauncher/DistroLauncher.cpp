@@ -34,6 +34,7 @@ WslApiLoader g_wslApi(DistributionInfo::NAME);
 
 static HRESULT InstallDistribution(bool createUser);
 static HRESULT SetDefaultUser(std::wstring_view userName);
+static HRESULT SetDefaultUserDuringInstall(std::wstring_view userName);
 
 HRESULT InstallDistribution(const bool createUser)
 {
@@ -65,11 +66,33 @@ HRESULT InstallDistribution(const bool createUser)
         while (!DistributionInfo::CreateUser(userName));
 
         // Set this user account as the default.
-        hr = SetDefaultUser(userName);
+        // During installation, we only set the UID via WslConfigureDistribution
+        // The new WSL architecture handles the default user automatically
+        hr = SetDefaultUserDuringInstall(userName);
         if (FAILED(hr))
         {
             return hr;
         }
+    }
+
+    return hr;
+}
+
+HRESULT SetDefaultUserDuringInstall(std::wstring_view userName)
+{
+    // Query the UID of the given user name and configure the distribution
+    // to use this UID as the default.
+    // For new WSL architecture, we don't need to modify wsl.conf during installation
+    const ULONG uid = DistributionInfo::QueryUid(userName);
+    if (uid == UID_INVALID)
+    {
+        return E_INVALIDARG;
+    }
+
+    const HRESULT hr = g_wslApi.WslConfigureDistribution(uid, WSL_DISTRIBUTION_FLAGS_DEFAULT);
+    if (FAILED(hr))
+    {
+        return hr;
     }
 
     return hr;
@@ -85,7 +108,7 @@ HRESULT SetDefaultUser(std::wstring_view userName)
         return E_INVALIDARG;
     }
 
-    // Set the default user as root, so ChangeDefaultUserInWslConf chan make the change
+    // Set the default user as root, so ChangeDefaultUserInWslConf can make the change
     HRESULT hr = g_wslApi.WslConfigureDistribution(0, WSL_DISTRIBUTION_FLAGS_DEFAULT);
     if (FAILED(hr))
     {
@@ -93,6 +116,13 @@ HRESULT SetDefaultUser(std::wstring_view userName)
     }
 
     hr = DistributionInfo::ChangeDefaultUserInWslConf(userName);
+    if (FAILED(hr))
+    {
+        return hr;
+    }
+
+    // Also update /etc/wsl-distribution.conf to reflect the change of the user id
+    hr = DistributionInfo::ChangeDefaultUserInWslDistributionConf(uid);
     if (FAILED(hr))
     {
         return hr;

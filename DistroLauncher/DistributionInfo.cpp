@@ -22,6 +22,23 @@ HRESULT DistributionInfo::ChangeDefaultUserInWslConf(const std::wstring_view use
     return 0;
 }
 
+HRESULT DistributionInfo::ChangeDefaultUserInWslDistributionConf(const ULONG uid)
+{
+    DWORD exitCode = 0;
+
+    wchar_t commandLine[512];
+    _swprintf_p(commandLine, _countof(commandLine),
+                L"if [ -f /etc/wsl-distribution.conf ]; then sed -i \"s/^DEFAULT_UID=.*/DEFAULT_UID=%1$u/\" /etc/wsl-distribution.conf; else echo \"DEFAULT_UID=%1$u\" > /etc/wsl-distribution.conf; fi",
+                uid);
+
+    if (const auto hr = g_wslApi.WslLaunchInteractive(commandLine, true, &exitCode); FAILED(hr) || exitCode != 0)
+    {
+        return hr;
+    }
+
+    return 0;
+}
+
 bool DistributionInfo::CreateUser(std::wstring_view userName)
 {
     // Create the user account.
