@@ -172,6 +172,27 @@ fire_and_forget ShowPengwinUi()
     }
 }
 
+bool IsCurrentDirNotSystem32()
+{
+    wchar_t system32Dir[MAX_PATH];
+    const auto system32DirLength = GetSystemDirectoryW(system32Dir, MAX_PATH);
+    if (system32DirLength == 0 || system32DirLength >= MAX_PATH)
+    {
+        // On error, assume we're not in System32 for safety
+        return true;
+    }
+
+    wchar_t currentDir[MAX_PATH];
+    const auto currentDirLength = GetCurrentDirectoryW(MAX_PATH, currentDir);
+    if (currentDirLength == 0 || currentDirLength >= MAX_PATH)
+    {
+        // On error, assume we're not in System32 for safety
+        return true;
+    }
+
+    return _wcsicmp(system32Dir, currentDir) != 0;
+}
+
 // ReSharper disable once IdentifierTypo
 int wmain(const int argc, const wchar_t* argv[])
 {
@@ -246,7 +267,11 @@ int wmain(const int argc, const wchar_t* argv[])
 
         if (arguments.empty())
         {
-            hr = g_wslApi.WslLaunchInteractive(L"", false, &exitCode);
+            // If the current working dir is not System32 then it was called from Open with Terminal
+            // option or from command line. In this case it is better to start the distro in the current directory.
+            const bool useCurrentWorkingDirectory = IsCurrentDirNotSystem32();
+
+            hr = g_wslApi.WslLaunchInteractive(L"", useCurrentWorkingDirectory, &exitCode);
 
             // Check exitCode to see if wsl.exe returned that it could not start the Linux process
             // then prompt users for input so they can view the error message.
