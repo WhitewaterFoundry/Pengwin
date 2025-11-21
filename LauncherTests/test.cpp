@@ -44,7 +44,7 @@ void RunProcess(LPSTR cmdline)
 
 TEST(TestCaseName, TestWslConfChange)
 {
-    char buff[255];
+    char buff[512];
     _sprintf_p(buff, _countof(buff),
                "wsl.exe -d WLinux -u root -- if [ $(grep -c \"\\[user\\]\" /etc/wsl.conf) -eq \"0\" ]; then echo -e \"\\n[user]\\ndefault=%1$s\">>/etc/wsl.conf; else sed -i \"s/\\(default=\\)\\(.*\\)/\\1%1$s/\" /etc/wsl.conf ; fi",
                "userName");
