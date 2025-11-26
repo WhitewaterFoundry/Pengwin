@@ -1,3 +1,54 @@
 {
-  "copied from x64": 1
+  "profiles": [
+    {
+      "hidden": true,
+      "updates": "{7f586916-8357-53d4-bb2b-ca96f639898a}"
+    },
+    {
+      "commandline": "\"%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_25.11.0.0_arm64__kd1vv0z0vy70w\\DistroLauncher\\pengwin.exe\"",
+      "icon": "%LOCALAPPDATA%\\Packages\\WhitewaterFoundryLtd.Co.16571368D6CFF_kd1vv0z0vy70w\\LocalState\\pengwin.png",
+      "name": "Pengwin",
+      "guid": "{cd7a6dbb-fab4-5d5d-b42d-3adf32f21ed6}",
+      "pathTranslationStyle": "wsl",
+      "wsl.distribution-type": "debian",
+      "wsl.distribution-version": "12",
+      "backgroundImage": "%LOCALAPPDATA%\\Packages\\WhitewaterFoundryLtd.Co.16571368D6CFF_kd1vv0z0vy70w\\LocalState\\background.png",
+      "backgroundImageAlignment": "bottomRight",
+      "backgroundImageOpacity": 0.15,
+      "backgroundImageStretchMode": "none",
+      "bellStyle": "none",
+      "colorScheme": "Pengwin",
+      "cursorShape": "filledBox",
+      "fontFace": "Cascadia Code",
+      "startingDirectory": null,
+      "showMarksOnScrollbar": true,
+      "autoMarkPrompts": true
+    }
+  ],
+  "schemes": [
+    {
+      "name": "Pengwin",
+
+      "background": "#16001A",
+      "black": "#0C0C0C",
+      "blue": "#003DE8",
+      "brightBlack": "#767676",
+      "brightBlue": "#3B78FF",
+      "brightCyan": "#61D6D6",
+      "brightGreen": "#16C60C",
+      "brightPurple": "#F500D8",
+      "brightRed": "#E74856",
+      "brightWhite": "#F2F2F2",
+      "brightYellow": "#F9F1A5",
+      "cursorColor": "#FFFFFF",
+      "cyan": "#3A96DD",
+      "foreground": "#CCCCCC",
+      "green": "#13A10E",
+      "purple": "#9B1AAD",
+      "red": "#E01123",
+      "selectionBackground": "#FFFFFF",
+      "white": "#CCCCCC",
+      "yellow": "#C19C00"
+    }
+  ]
 }
