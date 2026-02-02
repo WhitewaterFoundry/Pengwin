@@ -11,7 +11,7 @@
   <Identity
     Name="WhitewaterFoundryLtd.Co.16571368D6CFF"
     Publisher="CN=9879127B-9E92-4DE5-9C32-0B1F09F95DCF"
-    Version="25.11.0.0" />
+    Version="26.2.1.0" />
 
   <Properties>
     <DisplayName>Pengwin</DisplayName>
@@ -36,7 +36,7 @@
       <uap:VisualElements
         DisplayName="Pengwin"
         Description="The bespoke WSL distro."
-        BackgroundColor="white"
+        BackgroundColor="black"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
 		<uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"

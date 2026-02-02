@@ -13,7 +13,8 @@ namespace DistributionInfo
     //
     // WARNING: This value must not change between versions of your app,
     // otherwise users upgrading from older versions will see launch failures.
-    const std::wstring NAME = L"WLinux";
+    const std::wstring NAME = L"Pengwin";
+    const std::wstring NAME_OLD = L"WLinux";
 
     // The title bar for the console window while the distribution is installing.
     const std::wstring WINDOW_TITLE = L"Pengwin";
@@ -23,7 +24,4 @@ namespace DistributionInfo
 
     // Query the UID of the user account.
     ULONG QueryUid(std::wstring_view userName);
-
-    // Changes the default user in /etc/wsl.conf
-    HRESULT ChangeDefaultUserInWslConf(std::wstring_view userName);
 }

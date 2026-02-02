@@ -23,12 +23,12 @@ using WSL_LAUNCH = HRESULT(STDAPICALLTYPE*)(PCWSTR, PCWSTR, BOOL, HANDLE, HANDLE
 class WslApiLoader
 {
 public:
-    WslApiLoader(const std::wstring& distributionName);
+    WslApiLoader(const std::wstring& distributionName, const std::wstring& distributionNameOld);
     ~WslApiLoader();
 
     BOOL WslIsOptionalComponentInstalled() const;
 
-    BOOL WslIsDistributionRegistered() const;
+    BOOL WslIsDistributionRegistered();
 
     HRESULT WslRegisterDistribution() const;
 
@@ -52,6 +52,7 @@ public:
 
 private:
     std::wstring _distributionName;
+    std::wstring _distributionNameOld;
     HMODULE _wslApiDll;
     WSL_IS_DISTRIBUTION_REGISTERED _isDistributionRegistered;
     WSL_REGISTER_DISTRIBUTION _registerDistribution;

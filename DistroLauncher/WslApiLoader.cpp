@@ -6,8 +6,9 @@
 #include "stdafx.h"
 #include "WslApiLoader.h"
 
-WslApiLoader::WslApiLoader(const std::wstring& distributionName) :
-    _distributionName(distributionName)
+WslApiLoader::WslApiLoader(const std::wstring& distributionName, const std::wstring& distributionNameOld) :
+    _distributionName(distributionName),
+	_distributionNameOld(distributionNameOld)
 {
     _wslApiDll = LoadLibraryEx(L"wslapi.dll", nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
     if (_wslApiDll != nullptr)
@@ -40,9 +41,18 @@ BOOL WslApiLoader::WslIsOptionalComponentInstalled() const
         _launch != nullptr;
 }
 
-BOOL WslApiLoader::WslIsDistributionRegistered() const
+BOOL WslApiLoader::WslIsDistributionRegistered()
 {
-    return _isDistributionRegistered(_distributionName.c_str());
+    if (!_isDistributionRegistered(_distributionName.c_str()))
+    {
+	    if (!_isDistributionRegistered(_distributionNameOld.c_str()))
+	    {
+			return FALSE;
+	    }
+        _distributionName = _distributionNameOld;
+        return TRUE;
+    }
+    return TRUE;
 }
 
 HRESULT WslApiLoader::WslRegisterDistribution() const
