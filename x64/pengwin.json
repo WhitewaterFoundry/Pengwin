@@ -1,12 +1,15 @@
 {
   "profiles": [
     {
-      "updates": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
-      "commandline": "\"%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_22.11.0.0_x64__kd1vv0z0vy70w\\DistroLauncher\\pengwin.exe\"",
-      "icon": "%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_22.11.0.0_x64__kd1vv0z0vy70w\\Assets\\pengwin.png",
+      "hidden": true,
+      "updates": "{7f586916-8357-53d4-bb2b-ca96f639898a}"
+    },
+    {
+      "commandline": "\"%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_25.11.0.0_x64__kd1vv0z0vy70w\\DistroLauncher\\pengwin.exe\"",
+      "icon": "%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_25.11.0.0_x64__kd1vv0z0vy70w\\Assets\\pengwin.png",
       "name": "Pengwin",
       "acrylicOpacity": 0.9,
-      "backgroundImage": "%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_22.11.0.0_x64__kd1vv0z0vy70w\\Assets\\background1.png",
+      "backgroundImage": "%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_25.11.0.0_x64__kd1vv0z0vy70w\\Assets\\background1.png",
       "backgroundImageAlignment": "bottomRight",
       "backgroundImageOpacity": 0.2,
       "backgroundImageStretchMode": "none",
@@ -16,7 +19,12 @@
       "fontFace": "Cascadia Code",
       "useAcrylic": true,
       "startingDirectory": null,
-      "closeOnExit": "never"
+      "closeOnExit": "never",
+      "showMarksOnScrollbar": true,
+      "autoMarkPrompts": true,
+      "pathTranslationStyle": "wsl",
+      "wsl.distribution-type": "debian",
+      "wsl.distribution-version": "13.0"
     }
   ],
   "schemes": [

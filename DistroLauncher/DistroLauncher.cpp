@@ -30,7 +30,7 @@ using namespace Windows::Storage;
 // Helper class for calling WSL Functions:
 // https://msdn.microsoft.com/en-us/library/windows/desktop/mt826874(v=vs.85).aspx
 // ReSharper disable once CppInconsistentNaming
-WslApiLoader g_wslApi(DistributionInfo::NAME);
+WslApiLoader g_wslApi(DistributionInfo::NAME, DistributionInfo::NAME_OLD);
 
 static HRESULT InstallDistribution(bool createUser);
 static HRESULT SetDefaultUser(std::wstring_view userName);
@@ -85,20 +85,7 @@ HRESULT SetDefaultUser(std::wstring_view userName)
         return E_INVALIDARG;
     }
 
-    // Set the default user as root, so ChangeDefaultUserInWslConf chan make the change
-    HRESULT hr = g_wslApi.WslConfigureDistribution(0, WSL_DISTRIBUTION_FLAGS_DEFAULT);
-    if (FAILED(hr))
-    {
-        return hr;
-    }
-
-    hr = DistributionInfo::ChangeDefaultUserInWslConf(userName);
-    if (FAILED(hr))
-    {
-        return hr;
-    }
-
-    hr = g_wslApi.WslConfigureDistribution(uid, WSL_DISTRIBUTION_FLAGS_DEFAULT);
+    HRESULT hr = g_wslApi.WslConfigureDistribution(uid, WSL_DISTRIBUTION_FLAGS_DEFAULT);
     if (FAILED(hr))
     {
         return hr;
@@ -172,6 +159,17 @@ fire_and_forget ShowPengwinUi()
     }
 }
 
+static bool is_current_dir_not_system32()
+{
+    wchar_t system_32dir[MAX_PATH];
+    GetSystemDirectoryW(system_32dir, MAX_PATH);
+
+    wchar_t current_dir[MAX_PATH];
+    GetCurrentDirectoryW(MAX_PATH, current_dir);
+
+    return _wcsicmp(system_32dir, current_dir) != 0;
+}
+
 // ReSharper disable once IdentifierTypo
 int wmain(const int argc, const wchar_t* argv[])
 {
@@ -201,13 +199,6 @@ int wmain(const int argc, const wchar_t* argv[])
     // Install the distribution if it is not already.
     const auto installOnly = arguments.size() > 0 && arguments[0] == ARG_INSTALL;
     auto hr = S_OK;
-    /*
-    
-        if (!g_wslApi.WslIsDistributionRegistered())
-        {
-            g_wslApi.SetDistributionName(L"Pengwin");
-        }
-    */
 
     if (!g_wslApi.WslIsDistributionRegistered())
     {
@@ -246,7 +237,11 @@ int wmain(const int argc, const wchar_t* argv[])
 
         if (arguments.empty())
         {
-            hr = g_wslApi.WslLaunchInteractive(L"", false, &exitCode);
+            /* If the current working dir is not System32 then it was called from Open with Terminal
+            option or from command line. In this case is better to start the distro in the current directory */
+            const bool useCurrentWorkingDirectory = is_current_dir_not_system32();
+
+            hr = g_wslApi.WslLaunchInteractive(L"", useCurrentWorkingDirectory, &exitCode);
 
             // Check exitCode to see if wsl.exe returned that it could not start the Linux process
             // then prompt users for input so they can view the error message.

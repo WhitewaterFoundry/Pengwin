@@ -5,28 +5,11 @@
 
 #include "stdafx.h"
 
-HRESULT DistributionInfo::ChangeDefaultUserInWslConf(const std::wstring_view userName)
-{
-    DWORD exitCode = 0;
-
-    wchar_t commandLine[255];
-    _swprintf_p(commandLine, _countof(commandLine),
-                L"if [ $(grep -c \"\\[user\\]\" /etc/wsl.conf) -eq \"0\" ]; then echo -e \"\\n[user]\\ndefault=%1$s\">>/etc/wsl.conf; else sed -i \"s/\\(default=\\)\\(.*\\)/\\1%1$s/\" /etc/wsl.conf ; fi",
-                std::wstring(userName).c_str());
-
-    if (const auto hr = g_wslApi.WslLaunchInteractive(commandLine, true, &exitCode); FAILED(hr) || exitCode != 0)
-    {
-        return hr;
-    }
-
-    return 0;
-}
-
 bool DistributionInfo::CreateUser(std::wstring_view userName)
 {
     // Create the user account.
     DWORD exitCode;
-    std::wstring commandLine = L"/usr/sbin/adduser --quiet --gecos '' ";
+    std::wstring commandLine = L"/usr/sbin/adduser --quiet --comment '' ";
     commandLine += userName;
     auto hr = g_wslApi.WslLaunchInteractive(commandLine.c_str(), true, &exitCode);
     if (FAILED(hr) || exitCode != 0)
