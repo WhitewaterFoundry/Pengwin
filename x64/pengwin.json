@@ -5,6 +5,11 @@
       "updates": "{7f586916-8357-53d4-bb2b-ca96f639898a}"
     },
     {
+      "hidden": true,
+      "updates": "{5c12a7d7-4629-5a27-bbc5-5d49f6744851}"
+    },
+    {
+      "guid": "{2e335228-8ef9-5d38-9355-b719f464c1c8}",
       "commandline": "\"%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_25.11.0.0_x64__kd1vv0z0vy70w\\DistroLauncher\\pengwin.exe\"",
       "icon": "%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_25.11.0.0_x64__kd1vv0z0vy70w\\Assets\\pengwin.png",
       "name": "Pengwin",

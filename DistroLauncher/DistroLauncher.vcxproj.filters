@@ -60,7 +60,7 @@
     <CustomBuild Include="messages.mc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="images\icon.ico">
+    <Image Include="E:\WhitewaterFoundry\OneDrive - Whitewater Foundry Ltd., Co\Pengwin\Pengwin Graphics\new logo\icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
