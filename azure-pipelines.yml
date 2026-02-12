@@ -9,6 +9,9 @@ trigger:
   branches:
     include: [ master ]
 
+workspace:
+  clean: all
+
 pool:
   name: Windows
   #vmImage: 'windows-2022'
