@@ -1,17 +1,36 @@
-Pengwin is a Linux distribution based on Debian, explicitly designed for use on Windows Subsystem for Linux (WSL). Whitewater Foundry develops it and provides a custom environment for running Linux command-line tools and graphical applications within the Windows operating system. Pengwin includes a variety of pre-installed software packages and supports many programming languages and development tools. It also offers a streamlined installation process and integration with the Windows file system, allowing users to access and manipulate Windows files from the Linux environment easily.
+Pengwin is a Debian-based Linux distribution built specifically for Windows Subsystem for Linux (WSL). Developed by Whitewater Foundry, it delivers a production-grade Linux environment on Windows with polished onboarding, strong Windows integration, and first-class support for both command-line and graphical Linux apps.
 
-Pengwin is the Linux distribution explicitly created for WSL. It was created by WSL users who recognized the potential of the platform. The project is open-source, and community input is highly encouraged.
+Pengwin is open-source, built by WSL users, and shaped by community feedback.
 
-Leverage the power of the Linux terminal on Windows. Get started in open-source programming with git. Manage remote servers with OpenSSH or Azure CLI—Automate tasks with Python, PowerShell, or Bash. Run a local LAMP stack for testing your interactive website. Build with the latest open-source libraries and tools, including NodeJS and Ruby Gems. Run many essential graphical Linux apps, like Jetbrains IntelliJ and Linux terminals. Quickly deploy and interact with Docker. 予測非ラテン文字入力を設定します。
+Why Pengwin
 
-Enable genuine HighDPI support, install your favorite Linux terminal like Terminator or Konsole, and create Start Menu shortcuts in Windows for all your Linux GUI apps. Fully compatible with WSLg and Windows 11.
+* Debian 13 (Trixie) foundation for stability, security, and a huge package ecosystem.
+* Fast onboarding with `pengwin-setup`: guided setup and automation for dev tools, cloud tooling, and desktop environments.
+* systemd support: enabled by default on new installs, and can be toggled on/off via pengwin-setup (existing installs opt in).
+* Modern WSL export/import architecture: `wsl --export` / `wsl --import` preserves your icon and Windows Terminal profile when importing under a new name.
+* Windows Terminal integration: Pengwin registers itself in Windows Terminal with a curated profile (colors/background) and improved launch behavior (starts in the current directory when launched via “Open with Windows Terminal” and when set as default).
+* GPU acceleration + GPU video acceleration out of the box (no custom repos or manual environment hacks).
+* Optional D3D12 acceleration toggle to disable hardware acceleration for driver compatibility or troubleshooting.
+* wslu utilities included for Windows↔Linux workflows (open URLs/files, clipboard interop, Windows env vars, etc.).
 
-In WSL 1, use pengwin-setup to install VcXsrv or set up X410 to start at pengwin launch. Even start services with the wslsystemctl command.
+What you can do with it
 
-Pengwin installs itself as a menu entry in Windows Terminal. We crafted the background and the color palette for the best looking and usability in Windows Terminal.
+* Use a real Linux terminal on Windows: git, OpenSSH, Python, PowerShell, Bash, and more.
+* Install developer stacks via version managers (e.g., pyenv, n, rbenv, SDKMAN!) and get modern toolchains quickly.
+* Run local services for dev/test, including a one-click LAMP stack.
+* Install cloud & DevOps tooling such as Terraform, Kubernetes tooling, and cloud CLIs via pengwin-setup.
+* Run essential Linux GUI apps (IDEs, terminals, tools) with WSLg on Windows 11.
 
-Access your C:\ drive at /mnt/c automatically. Copy and paste from Visual Studio into Emacs. Open Word from zsh. Pipe ipconfig.exe output into a Python script. It is a hybrid world. Pengwin bridges the gap between Windows and Linux. Pengwin also includes wslutilities to make working in the hybrid world easier.
+Desktop apps and WSL1 support
 
-Pengwin is based on Debian, which looks like Ubuntu, but it is different, and installation recipes or tutorials for Ubuntu may not work in Pengwin. Always look for Debian instructions instead.
+* Install a full Xfce desktop environment from pengwin-setup and launch it directly from the Windows Start Menu.
+* On WSL1, pengwin-setup can install/configure VcXsrv or set up X410, and you can manage services using `wslsystemctl`.
 
-DISCLAIMER: Windows Insider Preview Builds are not production-ready and can contain incompatibilities or bugs that affect the performance of Pengwin. We support insider versions on a best-effort basis.
+Hybrid Windows + Linux workflow
+
+Access your `C:` drive at `/mnt/c`, work in a mixed toolchain, and move seamlessly between ecosystems—Pengwin is designed to make the hybrid workflow feel native.
+
+Notes
+
+* Pengwin is Debian-based (not Ubuntu). For best results, follow Debian instructions when troubleshooting or installing packages.
+* DISCLAIMER: Windows Insider Preview builds are not production-ready and may introduce incompatibilities. Support for Insider builds is best-effort.

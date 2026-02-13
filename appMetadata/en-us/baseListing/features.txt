@@ -1,20 +1,20 @@
-Based on Debian: Pengwin is built on top of Debian, a stable and widespread Linux distribution with a large user base and extensive software library.
-Pengwin includes wslu, a set of useful open-source utilities for interacting between WSL and Windows. (wslusc, wslsys,  wslfetch,  wslvar,  wslview,  wslact,  wslclip, wslgsu)
-A custom pengwin-setup tool, accessible via $ pengwin-setup, allows new Pengwin users to get started on Linux immediately.
-Compatible with Windows 11/10 with the latest version of WSL and WSLg.
-Turn systemd on/off via pengwin-setup. Supports SystemD even without the Store version of WSL.
-Support for many Linux graphical applications with no need to configure DISPLAY in Pengwin, even on WSL 1.
-Built-in support for GPU acceleration and GPU video acceleration without custom repos, environment variables, or user groups.
-Install via pengwin-setup a complete desktop environment based on Xfce, accessible directly from the Windows start menu.
-For WSL 1, pengwin-setup will automatically install and configure VcXsrv or can configure X410 for GUI applications.
-With full high dpi compatibility, pengwin-setup will adjust the environment for you.
-Create Windows Start Menu items from Linux desktop apps, even on WSL 1.
-Install your favorite Linux terminal: Konsole, Terminator, Tilix, etc.
-You can access your Windows home directly from your Linux one via the winhome symbolic link.
-Deploy a one-click LAMP stack.
-We have handcrafted a Windows Terminal profile for a pleasant experience.
-Install the most popular development environments (python, node, ruby, java, .Net, etc.) with version managers like (pyenv, n, rbenv, sdkman, etc) with pengwin-setup.
-Be ready for the cloud, installing Kubertenes, Terraform, Azure CLI, AWS CLI, etc. via pengwin-setup
-You can set up Pengwin to start at Windows logon without showing a Window, check the App Settings of Pengwin in the Settings Windows app.
-Regular updates: Pengwin is actively developed and updated, with regular releases that include bug fixes, security updates, and new features.
-Support: Pengwin has a strong community of users and developers who provide support and resources for troubleshooting issues and getting the most out of the distribution.
+Debian base for a stable, widely-used Linux foundation and massive package ecosystem.
+First-class WSL support on Windows 10/11, including seamless WSLg integration for GUI apps.
+pengwin-setup onboarding: guided setup and automation via pengwin-setup to get productive fast.
+systemd support end-to-end: enabled by default on new installs, and can be toggled on/off via pengwin-setup (existing installs opt in).
+GUI apps out of the box: no manual DISPLAY setup on WSLg; on WSL1, pengwin-setup can auto-configure VcXsrv or X410.
+GPU acceleration built-in (no custom repos or manual user-group tweaks required).
+GPU video acceleration enabled with modern Mesa support (VA-API).
+D3D12 acceleration control: optional GUI toggle to disable hardware acceleration for compatibility/troubleshooting.
+Xfce desktop environment installer via pengwin-setup, with Start Menu integration.
+XRDP-ready experience with performance-oriented defaults for responsive remote desktop sessions.
+HiDPI friendly: environment is tuned for crisp UI on high-resolution displays.
+Create Windows Start Menu items from Linux desktop apps (including WSL1 scenarios).
+Windows Terminal integration: handcrafted profile + improved launch behavior (starts in the current directory from “Open with Windows Terminal”).
+wslu utilities included for Windows↔Linux interop (clipboard, open URLs, env vars, etc.).
+winhome shortcut: access your Windows user home easily from Linux via the winhome symlink.
+Developer stacks on demand: install Python, Node.js, Ruby, Java, and .NET using version managers (pyenv, n, rbenv, SDKMAN!, etc.).
+Cloud & DevOps tooling: install Kubernetes, Terraform, Azure CLI, AWS CLI, and more from pengwin-setup.
+One-click LAMP stack deployment for local web dev.
+AIUTILS menu in pengwin-setup to install GitHub Copilot CLI and Copilot for Vim/Neovim.
+Actively maintained with frequent updates, bug fixes, security updates, and community support resources.
